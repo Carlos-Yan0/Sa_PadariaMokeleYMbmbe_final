@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-image: url("https://i.pinimg.com/736x/76/86/ad/7686ad446150f50651b872aeedeca8e2.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  position: relative;
+  width: 850px;
+  height: 550px;
+  background: #ffffff;
+  border-radius: 30px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, .2);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.Campo_amarelo {
+  background: linear-gradient(#edb06a, #f3a852);
+  border-radius: 25px;
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.Campo_amarelo h1,
+.Campo_amarelo h2,
+.Campo_amarelo h3 {
+  margin: 10px 0;
+}
+
+.campo_identificador {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  flex-direction: column;
+  position: relative;
+}
+
+.login-header {
+  text-align: center;
+  position: relative;
+  top: -50px;
+}
+
+.login-header h1 {
+  margin-bottom: 20px;
+}
+
+#nome_funcionario,
+#senha_funcionario {
+  width: 300px;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 18px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+button {
+  background-color: #f3a853;
+  color: white;
+  font-weight: 500;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 18px;
+  margin-top: 10px;
+  width: 300px;
+}
+
+button:hover {
+  background-color: #e07b3a;
+}
+
+a {
+  text-decoration: none;
+  color: #f3a853;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 15px;
+  display: inline-block;
+}
+
+/* MODAL */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 30px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+.modal-content h2 {
+  background: #f3a852;
+  color: white;
+  padding: 15px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  margin: -30px -30px 20px -30px;
+}
+
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-content input {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.modal-content button {
+  background-color: #f3a853;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.modal-content button:hover {
+  background-color: #e07b3a;
+}
+
+.close {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #555;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #000;
+}

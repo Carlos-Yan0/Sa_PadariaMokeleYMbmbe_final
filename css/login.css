@@ -187,6 +187,6 @@ a {
     }
   }
   .Campo_amarelo {
-    animation: slideIn 1s ease-out forwards;
+    animation: slideIn 1s ease-out;
   }
 

@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body {
+    background-image: url("https://i.pinimg.com/736x/76/86/ad/7686ad446150f50651b872aeedeca8e2.jpg");
+}
+
+header {
+    width: 101.5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-left: -1.5%;
+    margin-right: 5%;
+    margin-top: 10px;
+    background-color: #f3a853;
+    color: #fff;
+    padding: 5px;
+    border-radius:20px;
+}
+header h1{
+    font-family: "Poppins";
+    
+}
+p{
+    font-family: "Poppins";
+    font-size: 15px;
+}
+.back {
+    border-radius: 36px;
+    padding: 5px 20px 20px 20px;
+    background-color: #f3a85300;
+    margin: 60px auto 30px auto; /* Topo 60px, base 30px */
+    max-width: 1050px;
+    max-height: 700px;
+}
+
+.container a {
+    text-decoration: none;
+    color:#252525;
+}
+.container {
+    background-color: #fffcf9;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 1050px;
+    box-shadow: 0 10px 10px #f3a853;
+    height: 550px;
+    margin: auto;
+    margin-top:-10px;
+    border-bottom-left-radius: 36px;
+    border-bottom-right-radius: 36px;
+    align-content: flex-start;
+}
+
+.card {
+    width: 300px; /* pode manter esse valor */
+    height: 200px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    border: 2px solid #bd9f78;
+    margin-top:30px;
+    box-sizing: border-box;
+    transition: 0.5s;
+}
+.card:hover{
+    transform:scale(1.1);
+    box-shadow: 0 4px 50px rgba(0, 0, 0, 0.363);
+}
+.card h1{
+    margin-top:-1px;
+    font-family: "poppins";
+    font-size: 25px;
+}
+/*#-------------#Botões#-----------#*/
+#button-vendas {
+    padding: 20px;
+    font-size:large;
+}
+
+#button-dashboard {
+    padding: 20px;
+    font-size:large;
+}
+
+#button-historico {
+    padding: 20px;
+    font-size:large;
+}
+
+#button-estoque {
+    padding: 20px;
+    font-size:large;
+}
+
+#button-usuario {
+    padding: 20px;
+    font-size:large;
+}
+
+#button-comanda {
+    padding: 20px;
+    font-size:large;
+}
+/*#----------#Hover dos Botões#------------#*/
+#button-vendas:hover{
+    background-color:#f3a85369
+}
+#button-dashboard:hover{
+    background-color:#f3a85369
+}
+#button-historico:hover{
+    background-color:#f3a85369
+}
+#button-estoque:hover{
+    background-color:#f3a85369
+}
+#button-usuario:hover{
+    background-color:#f3a85369
+}
+#button-comanda:hover{
+    background-color:#f3a85369
+}
+
+.grid {
+    background-color: #fffcf9;
+    margin: 10%;
+    padding: 100px;
+    border-radius: 10px;
+}
+
+.material-symbols-outlined{        /* cor do ícone */
+    font-size: 25px;
+    border-radius: 50%;
+    padding: 10px;
+}
+/*#---------------------------------------------------------#---------------------------------------------------------#*/
+                                            /*CSS DO MENU RAPA 🤟🤟🤟🤟🤟🤟🤟🤟🤟🤟🤟*/
+/*#---------------------------------------------------------#---------------------------------------------------------#*/
+/* Cabeçalho do menu */
+.cabeca-do-menu {
+    background-color: #f3a853;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    min-height: 70px;
+    transition: 0.3s;
+    margin-bottom: 10px;
+}
+
+.cabeca-do-menu img.logo {
+    width: 50px;
+    height: auto;
+}
+
+.cabeca-do-menu h1 {
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: 0.3s;
+    margin-left: 10px;
+}
+
+.menu-lateral:hover .cabeca-do-menu {
+    justify-content: flex-start;
+}
+
+/* Menu lateral */
+.menu-lateral {
+    width: 70px;
+    height: 100vh;
+    background-color: rgba(189, 159, 120, 0.45);
+    backdrop-filter: blur(5px);
+    padding-top: 10px;
+    box-shadow: 3px 0 0 #f3a853;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    transition: width 0.2s;
+    font-family: "Poppins";
+}
+
+.menu-lateral:hover {
+    width: 250px;
+}
+
+/* Links do menu */
+.menu-lateral ul {
+    list-style: none;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0 5px;
+}
+
+.menu-lateral ul li {
+    margin-bottom: 10px;
+}
+
+.menu-lateral ul li a {
+    color: black;
+    display: flex; 
+    align-items: center;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 8px 10px;
+    border-radius: 5px;
+    transition: background 0.2s, color 0.2s;
+    justify-content: center;
+}
+
+.menu-lateral:hover ul li a {
+    justify-content: flex-start;
+}
+
+/* Ícones */
+.menu-lateral .icon {
+    font-size: 28px;
+    flex-shrink: 0;
+}
+
+/* Nome dos links */
+.nome-do-link {
+    opacity: 0;
+    width: 0;
+    margin: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: 0.2s;
+}
+
+.menu-lateral:hover .nome-do-link {
+    opacity: 1;
+    width: auto;
+    margin-left: 10px;
+}
+
+/* Hover nos itens */
+ul li.item-menu {
+    transition: background-color 0.2s;
+}
+
+ul li.item-menu:hover {
+    background-color: #f3a853;
+}
+
+ul li.item-menu:hover a,
+ul li.item-menu:hover .icon {
+    color: white;
+}

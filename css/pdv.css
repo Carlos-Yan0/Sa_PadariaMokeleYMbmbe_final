@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+/* Reset básico */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-image: url("https://i.pinimg.com/736x/76/86/ad/7686ad446150f50651b872aeedeca8e2.jpg");
+  font-family: 'Poppins', sans-serif;
+  color: #000;
+  padding: 2rem;
+}
+
+/* Container principal centralizado */
+main {
+  width: 65%;
+  margin: 0 auto;
+  margin-left:3.5%;
+  margin-right: 50%;
+  margin-top:5%;
+  background-color: rgb(255, 255, 255);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+main h1{
+  color:#f3a853
+}
+.main-total{
+  margin-top: -25%;
+  margin-left:69%;
+  width: 30%;
+  height: 100%;
+  padding: 10px 90px;
+}
+.info-total{
+  justify-content: left;
+  text-align: left;
+  margin-left:10%;
+}
+.img{
+  height:150px;
+  width:150px;
+  margin-left:25%;
+}
+header{
+  Width: 171%; margin-left: -35%;
+}
+/* Cabeçalho */
+header h1 {
+  background-color: #eeeeee;
+  color: #f3a853;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+header h1:first-of-type {
+  margin-bottom: 0.5rem;
+}
+
+header h1 span.data,
+header h1 span.atend,
+header h1 span.caixa {
+
+  color: rgb(0, 0, 0);
+  font-size: 1rem;
+}
+
+/* Área de busca de produto */
+.area-busca {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.area-busca label {
+  font-weight: 500;
+  color: #000;
+}
+
+.area-busca input[type="text"] {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Botões da área de busca */
+.area-busca button {
+  padding: 0 10px;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+.botaoME {
+  background-color: #fc5050;
+  width: 60px;
+  height: 40px;
+  font-size: 20px;
+  border-radius: 50%;
+  text-align: center;
+}
+.botaoMA {
+  background-color: #4a9a2e;
+  width: 60px;
+  height: 40px;
+  font-size: 20px;
+  border-radius: 50%;
+  padding: 0 auto;
+  transition: 0.9s;
+}
+
+.botaoADD {
+  background-color: #f3a852;
+  padding: 1000px;
+  height: 40px;
+}
+
+.botaoME:hover,
+.botaoMA:hover,
+.botaoADD:hover {
+  filter: brightness(1.1);
+}
+.material-symbols-outlined{
+  margin-top: 10px;
+}
+/* Tabela de produtos */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+table thead {
+  background-color: #f3a852;
+  color: #fff;
+}
+
+table thead th {
+  padding: 8px 12px;
+  text-align: center;
+  font-weight: bold;
+}
+
+table tbody td {
+  padding: 8px 12px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 153, 51, 0.3);
+}
+
+/* Botões de ação na tabela */
+.btn-acao {
+  border: none;
+  background: transparent;
+  cursor: pointer;                                
+  margin: 0 4px;
+  font-size: 1.1rem;
+}
+
+.editar {
+  color: #4caf50;
+}
+
+.excluir {
+  color: #f44336;
+}
+
+/* Rodapé da venda */
+footer.rodape-venda {
+  width: 170%;
+  margin: 1rem auto 0 auto;
+  margin-left:-35%;
+  background-color: #ffe0b2;
+  border-top: 2px solid #f3a852;
+  padding: 1rem;
+  font-family: 'Poppins', sans-serif;
+  color: #5d4037;
+  border-radius: 0 0 15px 15px;
+}
+
+.info-valores {
+  display: flex;
+  justify-content: flex-end;
+  gap: 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.info-valores{
+  margin-left:40px;
+  font-size: 1.3rem;
+  color: #000;
+}
+.valor-total {
+  justify-content: left;
+  font-size: 19px;
+}
+
+.botoes-venda {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.botoes-venda button {
+  padding: 10px 20px;
+  border-radius: 12px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  color: #fff;
+}
+
+.botao-cancelar {
+  background-color: #ef5350;
+  margin-left:15px;
+  transition: 1s;
+}
+.botao-cancelar:hover{
+  background-color: #680202;
+  border-radius: 80px;
+}
+.botao-finalizar {
+  background-color: #f3a852;
+  margin-left:5px;
+  transition: 1s;
+}
+.botao-finalizar:hover{
+  background-color: #4a9a2e;
+  border-radius: 80px;
+}
+
+.rodape-copy {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #6d4c41;
+  margin-top: 0.5rem;
+}
+.rodape2{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f3a853;
+  color: white;
+  display: flex; /* FLEX para alinhar */
+  justify-content: space-between; /* Extremidades */
+  align-items: center; /* Centralizar verticalmente */
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  z-index: 10;
+}
+
+body > footer .footer-esquerdo, footer .footer-direito {
+  margin: 0;
+}

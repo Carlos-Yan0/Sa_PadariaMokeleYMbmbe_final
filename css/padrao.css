@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: url('https://i.pinimg.com/1200x/46/73/ee/4673eeb5fe44425b7dca8214cf75bc75.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center; /* centraliza horizontalmente */
+    align-items: center;     /* centraliza verticalmente */
+    font-size: 1.2em;
+}
+
+main {
+    height: 90vh;
+    max-width: calc(100% - 100px);
+    margin: 5vh auto 5vh 80px;
+    background: white;
+    box-shadow: 0 0px 10px #f3a853;
+    border-radius: 18px;
+    overflow: hidden; /* opcional, para evitar vazamentos visuais */
+}
+
+header.titulo-de-pagina {
+    width: 100%;
+    background-color: #f3a853;
+}
+
+
+header.titulo-de-pagina h1 {
+    font-size: 2.5rem;
+    color: white;
+    padding: 10px;
+    width: 100%;
+}
+
+button {
+    background-color: #f3a853;
+    color: white;
+    font-weight: 500;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 18px;
+    cursor: pointer;
+}
+
+main a{
+    text-decoration: none;
+    color: #967345;
+    font-weight: 700;
+}
+
+input{
+    border: 1px solid #967345;
+    border-radius: 18px;
+    padding: 10px;
+    width: 20%;
+    margin-bottom: 10px;
+}
+
+input::placeholder {
+    color: #967345;
+}
+
+.sem-spinners::-webkit-inner-spin-button,
+.sem-spinners::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+h1{
+    color: #f3a853;
+}
+
+h2 {
+    font-size: 2rem;
+    color: #967345;
+    margin: 20px 0;
+}
+h3 {
+    font-size: 1.5rem;
+    color: #967345;
+    margin: 20px 0;
+}
+h4 {
+    font-size: 1.2rem;
+    color: #967345;
+    margin: 20px 0;
+}
+h5 {
+    font-size: 1rem;
+    color: #967345;
+    margin: 20px 0;
+}
+h6 {
+    font-size: 0.8rem;
+    color: #967345;
+    margin: 20px 0;
+}
+
+body > footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f3a853;
+    color: white;
+    display: flex; /* FLEX para alinhar */
+    justify-content: space-between; /* Extremidades */
+    align-items: center; /* Centralizar verticalmente */
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    z-index: 10;
+}
+
+body > footer .footer-esquerdo, footer .footer-direito {
+    margin: 0;
+}
+

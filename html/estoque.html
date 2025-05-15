@@ -1,118 +1,51 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estoque 📦</title>
+    <title>Estoque</title>
 
-    <!-- <link rel="stylesheet" href="menu.css"> -->
-    <link rel="stylesheet" href="../css/config_estoque.css">
-    <link rel="stylesheet" href="../css/menu.css">
+    <link rel="stylesheet" href="../css/estoque.css">
+    <link rel="stylesheet" href="../css/popups.css">
 
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <script src="../js/menu.js"></script>
+    <script src="../js/js_estoque.js"></script>
+    <script src="../js/add-estoque-popup.js"></script>
+
     <link rel="icon" href="../img/icon.png" type="image/png">
     <meta charset="UTF-8">
 </head>
+
 <body>
 
-    <nav class="menu-lateral">
-        <div class="cabeca-do-menu">
-            <img src="../img/icon.png" alt="Logo Da Padaria Mokele y Mbembe" class="logo">
-            <h1>Padaria<br>Mokele y Mbembe</h1>
-        </div>
+    <div id="menu"></div>
 
-         <ul>
-            <li class="item-menu">
-                <a href="/menu">
-                    <span class="icon">
-                        <span class="material-symbols-outlined">home</span>
-                    </span>
-                    <span class="nome-do-link">Home</span>
-                </a>
-            </li>
-            <li class="item-menu">
-                <a href="/pvd">
-                    <span class="icon">
-                        <span class="material-symbols-outlined">shopping_cart</span>
-                    </span>
-                    <span class="nome-do-link">Sistema de Vendas</span>
-                </a>
-            </li>
-            <li class="item-menu">
-                <a href="/dashboard">
-                    <span class="icon">
-                        <span class="material-symbols-outlined">dashboard</span>
-                    </span>
-                    <span class="nome-do-link">Dashboard</span>
-                </a>
-            </li>
-            <li class="item-menu">
-                <a href="/historico-vendas">
-                    <span class="icon">
-                        <span class="material-symbols-outlined">receipt_long</span>
-                    </span>
-                    <span class="nome-do-link">Histórico de Vendas</span>
-                </a>
-            </li>
-            <li class="item-menu">
-                <a href="/estoque">
-                    <span class="icon">
-                        <span class="material-symbols-outlined">inventory_2</span>
-                    </span>
-                    <span class="nome-do-link">Estoque</span>
-                </a>
-            </li>
-            <li class="item-menu">
-                <a href="/gestao-usuarios">
-                    <span class="icon">
-                        <span class="material-symbols-outlined">groups</span>
-                    </span>
-                    <span class="nome-do-link">Gestão de Usuários</span>
-                </a>
-            </li>
-            <li class="item-menu">
-                <a href="/comandas">
-                    <span class="icon">
-                        <span class="material-symbols-outlined">confirmation_number</span>
-                    </span>
-                    <span class="nome-do-link">Emissão de Comandas</span>
-                </a>
-            </li>
-            <li class="item-menu">
-                <a href="/">
-                    <span class="icon">
-                        <span class="material-symbols-outlined">logout</span>
-                    </span>
-                    <span class="nome-do-link">Logout</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-
-    
     <main>
         <div class="titulo-de-pagina">
             <h1>Estoque</h1>
-            <button class="add">Adicionar Item</button>
+            <button class="add" onclick="mostrarPopup()">Adicionar Item</button>
         </div>
         <hr>
-        
+
         <div class="tabela-container">
             <table id="tabelaEstoque">
                 <thead>
+                    <!-- BASEADO NA JUNÇÃO DE PRODUTOS + ESTOQUE DO BANCO DE DADOS -->
                     <tr>
-                        <th>Cód</th>
+                        <th>Id</th>
                         <th>Nome</th>
-                        <th>Tipo</th>
+                        <th>Categoria</th>
                         <th>Medida</th>
                         <th>Val Uni</th>
                         <th>Qtde</th>
-                        <th>Val Inventário</th>
-                        <th>Status</th>
-                        <th>Ações</th>
+                        <th>Val Inventário</th> <!-- Val Uni * Qtde-->
+                        <th>Status</th> <!-- Baseado no quão próximo está do limite -->
+                        <th>Ações</th> <!-- Editar e Excluir -->
                     </tr>
                 </thead>
                 <tbody>
@@ -122,7 +55,45 @@
         </div>
         <button class="export">Exportar</button>
     </main>
-    <script src="../js/js_estoque.js"></script>
-    <footer><div class="footer-esquerdo">Usuário: João Mbembe Gerente</div> <div class="footer-direito">Copyright 2025-2025</div></footer>
+    <footer>
+        <div class="footer-esquerdo">Usuário: João Mbembe Gerente</div>
+        <div class="footer-direito">Copyright 2025-2025</div>
+    </footer>
+
+    <div id="backdrop-popup"></div>
+    <div id="popup-add">
+        <form action="#">
+            <label for="nome-produto">Nome do Produto:</label>
+
+            <input type="text" id="nome-produto" placeholder="Nome" required>
+
+            <label for="categoria">Validade:</label>
+            <select id="categoria" required>
+                <option value="insumo">Insumo</option>
+                <option value="Produto">Produto</option>
+            </select>
+            <label for="medida">Unidade de Medida:</label>
+            <select id="medida" required>
+                <option value="UN">UN</option>
+                <option value="Kg">Kg</option>
+                <option value="L">L</option>
+            </select>
+            <label for="valor-unitario-produto">Valor Unitário do Produto:</label>
+            <input type="number" id="valor-unitario-produto" placeholder="Valor Unitário do Produto" required min="0" step="0.01">
+
+            <label for="quantidade-produto">Quantidade do Produto:</label>
+            <input type="number" id="quantidade-produto" placeholder="Quantidade do Produto" required min="0">
+
+            <label for="quantidade-minima">Quantidade Mínima:</label>
+            <input type="number" id="quantidade-minima" placeholder="Quantidade Mínima" required min="0">
+            <label for="validade">Validade</label>
+            <input type="datetime-local" id="validade" required title="Escolha uma data e hora">
+            <button type="submit" id="adicionar-produto">Adicionar Produto</button>
+            <!-- Adicione aqui futuramente uma função para adicionar o produto -->
+            <button type="reset" id="cancelar">Cancelar</button>
+
+        </form>
+    </div>
 </body>
+
 </html>

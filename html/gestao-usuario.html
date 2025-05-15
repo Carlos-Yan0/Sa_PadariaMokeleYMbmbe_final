@@ -5,18 +5,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestão de Usuário 👨🏿‍💻</title>
 
-    <link rel="stylesheet" href="{{url_for('static', filename='css/config_usuario.css')}}">
-    <link rel="stylesheet" href="{{url_for('static', filename='css/menu.css')}}">
-    <script src="{{url_for('static', filename='js/js_usuario.js')}}"></script>
+    <link rel="stylesheet" href="../css/config_usuario.css">
+    <link rel="stylesheet" href="../css/menu.css">
+    <script src="../js/js_usuario.js" defer></script>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="icon" href="../img/icon.png" type="image/png">
-    <script src="../Js/menu.js"></script>
+    <script src="../js/menu.jss/menu.js"></script>
 </head>
 <body>
+    <nav class="menu-lateral">
+        <div class="cabeca-do-menu">
+            <img src="../img/icon.png" alt="Logo Da Padaria Mokele y Mbembe" class="logo">
+            <h1>Padaria<br>Mokele y Mbembe</h1>
+        </div>
 
+         <ul>
+            <li class="item-menu">
+                <a href="menu.html">
+                    <span class="icon">
+                        <span class="material-symbols-outlined">home</span>
+                    </span>
+                    <span class="nome-do-link">Home</span>
+                </a>
+            </li>
+            <li class="item-menu">
+                <a href="pvd.html">
+                    <span class="icon">
+                        <span class="material-symbols-outlined">shopping_cart</span>
+                    </span>
+                    <span class="nome-do-link">Sistema de Vendas</span>
+                </a>
+            </li>
+            <li class="item-menu">
+                <a href="dashboard.html">
+                    <span class="icon">
+                        <span class="material-symbols-outlined">dashboard</span>
+                    </span>
+                    <span class="nome-do-link">Dashboard</span>
+                </a>
+            </li>
+            <li class="item-menu">
+                <a href="historico-vendas.html">
+                    <span class="icon">
+                        <span class="material-symbols-outlined">receipt_long</span>
+                    </span>
+                    <span class="nome-do-link">Histórico de Vendas</span>
+                </a>
+            </li>
+            <li class="item-menu">
+                <a href="estoque.html">
+                    <span class="icon">
+                        <span class="material-symbols-outlined">inventory_2</span>
+                    </span>
+                    <span class="nome-do-link">Estoque</span>
+                </a>
+            </li>
+            <li class="item-menu">
+                <a href="gestao-usuario.html">
+                    <span class="icon">
+                        <span class="material-symbols-outlined">groups</span>
+                    </span>
+                    <span class="nome-do-link">Gestão de Usuários</span>
+                </a>
+            </li>
+            <li class="item-menu">
+                <a href="comanda.html">
+                    <span class="icon">
+                        <span class="material-symbols-outlined">confirmation_number</span>
+                    </span>
+                    <span class="nome-do-link">Emissão de Comandas</span>
+                </a>
+            </li>
+            <li class="item-menu">
+                <a href="login.html">
+                    <span class="icon">
+                        <span class="material-symbols-outlined">logout</span>
+                    </span>
+                    <span class="nome-do-link">Logout</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
     <div id="menu"></div>
 
     
@@ -39,16 +111,24 @@
                         <th>Ações</th>
                     </tr>
                 </thead>
+                <tbody></tbody>
             </table>
         </div>
         <div id="popup_usuario" style="display: none;">
-            <form action="/gestao-usuarios" method="post">
-                <input type="text" name="nomeForm" placeholder="Nome do usuario">
-                <input type="text" name="cpfForm" placeholder="CPF">
-                <input type="email" name="emailForm" placeholder="Email">
-                <input type="text" name="telefoneForm" placeholder="Telefone" >
-                <input type="text" name="senhaForm" placeholder="Senha">
-                <input type="text" name="salarioForm" placeholder="Salario">
+            <form id="formUsuario">
+                <input type="text" name="nomeForm" placeholder="Nome do usuario" id="nomeForm">
+                <input type="text" name="cpfForm" placeholder="CPF" id="cpfForm">
+                <input type="email" name="emailForm" placeholder="Email" id="emailForm">
+                <input type="text" name="telefoneForm" placeholder="Telefone" id="telefoneForm">
+                <input type="text" name="senhaForm" placeholder="Senha" id="senhaForm">
+                <input type="text" name="salarioForm" placeholder="Salario" id="salarioForm">
+                <select name="curintia" id="curintiaCARgo">
+                    <option value="Gerente">Gerente</option>
+                    <option value="Controlador de estoque">Controlador de Estoque</option>
+                    <option value="Analista de vendas">Analista de vendas</option>
+                    <option value="Caixa">Caixa</option>
+                </select>
+                <button type="button" onclick="criar_usuario(event)">Salvar usuario</button>
             </form>
             <button type="button" onclick="fechar_popup()">Fechar</button>
         </div>
@@ -62,5 +142,4 @@
         <div class="footer-direito">Copyright 2025-2025</div>
     </footer>
 </body>
-    <script src="../js/js_usuario.js"></script>
 </html>

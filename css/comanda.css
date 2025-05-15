@@ -17,8 +17,8 @@ body {
 main {
   width: 80%;
   margin: 0 auto;
-  margin-left:15.5%;
-  margin-right: 50%;
+  margin-left:10.5%;
+  margin-right: 60%;
   margin-top:5%;
   background-color: rgb(255, 255, 255);
   padding: 2rem;
@@ -57,6 +57,13 @@ header h1 {
   text-align: center;
 }
 
+hr{
+  margin-bottom: 30px;
+  margin-top: 10px;
+  border-style: none;
+  border: 1px solid #f3a853;
+}
+
 header h1:first-of-type {
   margin-bottom: 0.5rem;
 }
@@ -67,6 +74,7 @@ header h1 span.caixa {
 
   color: rgb(0, 0, 0);
   font-size: 1rem;
+  
 }
 
 /* Área de busca de produto */
@@ -82,6 +90,9 @@ header h1 span.caixa {
   color: #000;
 }
 
+.input-medida {
+  width: 50px; /* ou ajuste conforme o layout, 60px se quiser mais compacto */
+}
 
 .area-busca input[type="text"] {
   padding: 8px 12px;
@@ -101,21 +112,28 @@ header h1 span.caixa {
 }
 .botaoME {
   background-color: #fc5050;
-  width: 60px;
+  width: 40px;
   height: 40px;
+  padding: 0;
   font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 50%;
+  border: none;
+  cursor: pointer;
   text-align: center;
 }
 .botaoMA {
   background-color: #4a9a2e;
-  width: 60px;
+  width: 38px;
   height: 40px;
   font-size: 20px;
   border-radius: 50%;
   padding: 0 auto;
   transition: 0.9s;
 }
+
 
 .botaoADD {
   background-color: #f3a852;

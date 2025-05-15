@@ -13,59 +13,59 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="icon" href="../img/icon.png" type="image/png">
-    <script src="../Js/menu.js"></script>
 </head>
 
 <body>
-
+    
     <div id="menu"></div>
-
-
+    
+    
     <main>
         <header>
             <div class="titulo-de-pagina">
-            <h1>Histórico de Vendas</h1>
-        </header>
-        
-        <hr>
-        <h5>Filtros para consulta:</h5>
-        <form action="post">
-            <input id="data-form" type="datetime" name="data-form" placeholder="Data">
-            <input id="id-form" min="0" type="number" name="id-form" placeholder="ID Item">
-            <input id="nome-form" type="text" name="nome-form" placeholder="Nome funcionario">
-            <input id="metodo-pagamento-form" type="text" name="metodo-pagamento-form" placeholder="Método de pagamento">
-
-
-            <a href="#" id="mais-filtros">Mais filtros</a>
+                <h1>Histórico de Vendas</h1>
+            </header>
             
-            <button id="filtrar">Filtrar</button>
-        </form>
-
-        <div class="tabela-container">
-            <table id="tabelaUsuarios">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>CPF</th>
-                        <th>E-mail</th>
-                        <th>Cargo</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Linhas via JS -->
-                </tbody>
-            </table>
-            <button class="export">Exportar</button>
-        </div>
-    </main>
-
-    <footer>
-        <div class="footer-esquerdo">Usuário: João Mbembe Gerente</div>
-        <div class="footer-direito">Copyright 2025-2025</div>
-    </footer>
-</body>
-<script src="../js/js_usuario.js"></script>
-
-</html>
+            <hr>
+            <h5>Filtros para consulta:</h5>
+            <form action="post">
+                <input id="data-form" type="datetime" name="data-form" placeholder="Data">
+                <input id="id-form" min="0" type="number" name="id-form" placeholder="ID Item">
+                <input id="nome-form" type="text" name="nome-form" placeholder="Nome funcionario">
+                <input id="metodo-pagamento-form" type="text" name="metodo-pagamento-form" placeholder="Método de pagamento">
+                
+                
+                <a href="#" id="mais-filtros">Mais filtros</a>
+                
+                <button id="filtrar">Filtrar</button>
+            </form>
+            
+            <div class="tabela-container">
+                <table id="tabelaUsuarios">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>CPF</th>
+                            <th>E-mail</th>
+                            <th>Cargo</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Linhas via JS -->
+                    </tbody>
+                </table>
+                <button class="export">Exportar</button>
+            </div>
+        </main>
+        
+        <footer>
+            <div class="footer-esquerdo">Usuário: João Mbembe Gerente</div>
+            <div class="footer-direito">Copyright 2025-2025</div>
+        </footer>
+    </body>
+    <script src="../js/menu.js"></script>
+    <script src="../js/js_historico-vendas.js"
+    
+    </html>

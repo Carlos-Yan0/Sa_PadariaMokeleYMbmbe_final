@@ -7,7 +7,7 @@
 
     <link rel="stylesheet" href="../css/config_usuario.css">
     <link rel="stylesheet" href="../css/menu.css">
-    <script src="../js/js_usuario.js"></script>
+    <script src="../js/js_usuario.js" defer></script>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
@@ -111,16 +111,18 @@
                         <th>Ações</th>
                     </tr>
                 </thead>
+                <tbody></tbody>
             </table>
         </div>
         <div id="popup_usuario" style="display: none;">
-            <form action="/gestao-usuarios" method="post">
-                <input type="text" name="nomeForm" placeholder="Nome do usuario">
-                <input type="text" name="cpfForm" placeholder="CPF">
-                <input type="email" name="emailForm" placeholder="Email">
-                <input type="text" name="telefoneForm" placeholder="Telefone" >
-                <input type="text" name="senhaForm" placeholder="Senha">
-                <input type="text" name="salarioForm" placeholder="Salario">
+            <form id="formUsuario">
+                <input type="text" name="nomeForm" placeholder="Nome do usuario" id="nomeForm">
+                <input type="text" name="cpfForm" placeholder="CPF" id="cpfForm">
+                <input type="email" name="emailForm" placeholder="Email" id="emailForm">
+                <input type="text" name="telefoneForm" placeholder="Telefone" id="telefoneForm">
+                <input type="text" name="senhaForm" placeholder="Senha" id="senhaForm">
+                <input type="text" name="salarioForm" placeholder="Salario" id="salarioForm">
+                <button type="button" onclick="criar_usuario(event)">Salvar usuario</button>
             </form>
             <button type="button" onclick="fechar_popup()">Fechar</button>
         </div>

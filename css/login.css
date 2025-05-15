@@ -175,3 +175,18 @@ a {
     left: 735px;
     bottom: 207px
 }
+/* ----------------------------------!!Animação do "campo_amarelo"!!----------------------------------- */
+@keyframes slideIn {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  .Campo_amarelo {
+    animation: slideIn 1s ease-out forwards;
+  }
+

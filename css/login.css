@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100dvh;
+}
+
+.container {
+    position: relative;
+    width: 850px;
+    height: 550px;
+    background: #fff;
+    margin: 20px;
+    border-radius: 30px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, .2);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+
+}
+
+.Campo_amarelo {
+    background: linear-gradient(#edb06a, #f3a852);
+    border-radius: 25px;
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.Campo_amarelo h1 {
+    position: relative;
+    top: 20px;
+    color: white
+}
+
+.Campo_amarelo h2 {
+    position: relative;
+    color: white
+}
+
+.Campo_amarelo h3 {
+    position: relative;
+    bottom: 50px;
+    color: white
+}
+
+
+.campo_identificador {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
+
+.campo_identificador h1 {
+    position: relative;
+    bottom: 120px;
+    left: 20px
+}
+
+.campo_identificador form button {
+    background-color: #f3a853;
+    color: white;
+    font-weight: 500;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 18px;
+    position: relative;
+    width: 300px;
+    top: 150px;
+    height: 45px;
+    transition: 0.45s;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.288);
+}
+
+button:hover {
+    transform: scale(1.098);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.288);
+
+}
+
+.campo_identificador form input {
+    border: 1px solid #967345;
+    border-radius: 18px;
+    padding: 10px;
+    width: 300px;
+    margin-bottom: 10px;
+}
+
+
+input::placeholder {
+    color: #967345;
+}
+
+h2 {
+    font-size: 2rem;
+    color: #967345;
+    margin: 20px 0;
+}
+
+h3 {
+    font-size: 1.5rem;
+    color: #967345;
+    margin: 20px 0;
+}
+
+a {
+    text-decoration: none;
+    color: #967345;
+    font-weight: 700;
+    position: relative;
+    top: 140px;
+    left: 35px;
+}
+
+#nome_funcionario {
+    position: relative;
+    width: 300px;
+    top: 40px;
+
+}
+
+#senha_funcionario {
+    position: relative;
+    width: 300px;
+    top: 70px
+}
+
+.login-header {
+    position: relative;
+    bottom: 150px;
+    padding-bottom: 10px;
+
+}
+
+.login-header img {
+    height: 150px;
+    position: absolute;
+    left: 290px;
+    bottom: -50px
+}
+
+.login-header h1 {
+    position: relative;
+    left: 30px;
+    top: 20px
+}
+
+#pessoa_simbolo {
+    position: absolute;
+    left: 735px;
+    bottom: 289px
+}
+
+#senha_simbolo {
+    position: absolute;
+    left: 735px;
+    bottom: 207px
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/padrao.css">
+  <link rel="stylesheet" href="../css/login.css">
+  <link rel="stylesheet" href="../css/recu-senha.css">
+  <script src="../js/popup.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+  <title>Login-Mokele!</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="Campo_amarelo">
+      <h1>Padaria</h1>
+      <h2>Mokele Y Mbembe</h2>
+      <h3>Bem-Vindo</h3>
+    </div>
+
+    <div class="login-header">
+      <h1>Login</h1>
+      <img src="../img/icon.png" id="mokele_logo" />
+    </div>
+
+    <div class="campo_identificador">
+      <form action="get">
+        <input type="text" id="nome_funcionario" placeholder="Nome" />
+
+        <span class="material-symbols-outlined" id="pessoa_simbolo">person</span>
+
+        <input type="password" id="senha_funcionario" placeholder="Senha" />
+
+        <span class="material-symbols-outlined" id="senha_simbolo">key</span>
+
+        <a href="#" onclick="mostrarPopup()">
+          <p>Esqueceu sua senha?</p>
+        </a>
+
+        <button>Login</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="backdrop-popup" class="backdrop-popup"></div>
+
+  <main class="recu-senha" id="popup-1">
+    <header class="titulo-de-pagina">
+      <a href="#" onclick="fecharTodosPopups()">
+        <span class="material-symbols-outlined icon">close</span>
+      </a>
+      <div class="titulo-centralizado">
+        <h1>Código de Verificação</h1>
+      </div>
+    </header>
+    <div class="conteudo">
+      <p>Para solicitar a redefinição de senha, enviaremos um <br> código por e-mail para que possa redefinir sua senha.
+        <br> Preencha o campo abaixo e clique em "Enviar Código"</p>
+      <form>
+        <input type="email" placeholder="E-mail" name="email" class="campo" />
+        <button class="btn" type="button" onclick="mostrarPopup2()">Enviar Código</button>
+      </form>
+    </div>
+  </main>
+
+  <main class="recu-senha" id="popup-2">
+    <header class="titulo-de-pagina">
+      <a href="#" onclick="voltarParaPopup1()">
+        <span class="material-symbols-outlined icon">arrow_back</span>
+      </a>   
+      <div class="titulo-centralizado">
+        <h1>Digite o Código</h1>
+      </div>
+    </header>
+    <div class="conteudo">
+      <p>Verifique seu e-mail e insira o código:</p>
+      <form>
+        <input type="number" placeholder="Código" name="code" class="campo sem-spinners"/>
+        <button class="btn">Reenviar Código</button>
+        <button class="btn" type="button" onclick="mostrarPopup3()">Continuar</button>
+      </form>
+    </div>
+  </main>
+
+  <main class="recu-senha" id="popup-3">
+    <header class="titulo-de-pagina">
+      <a href="#" onclick="cancelar()">
+        <span class="material-symbols-outlined icon">cancel</span>
+      </a>   
+      <div class="titulo-centralizado">
+        <h1>Redefinir Senha</h1>
+      </div>
+    </header>
+    <div class="conteudo">
+      <p>Preencha os campos abaixo com sua nova senha e clique em "Redefinir Senha".</p>
+      <form>
+        <input type="text" placeholder="Nova senha" name="password" class="campo"/>
+        <input type="text" placeholder="Repetir senha" name="repassword" class="campo"/>
+        <button class="btn" type="button" onclick="fecharTodosPopups()">Redefinir Senha</button>
+      </form>
+    </div>
+  </main>
+</body>
+</html>

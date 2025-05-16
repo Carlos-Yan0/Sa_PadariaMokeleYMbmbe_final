@@ -1,0 +1,47 @@
+main {
+    display: flex;
+    flex-direction: column; /* Alinha os elementos verticalmente */
+    overflow-y: auto; /* Adiciona rolagem vertical */
+    overflow-x: hidden; /* Evita rolagem horizontal */
+    width: 100%; /* Define a largura total do elemento */
+    margin-top: auto;
+}
+
+main header {
+    position: sticky; /* Fixa o header no topo */
+    background-color: white; /* Define uma cor de fundo para evitar sobreposição visual */
+    top: 0;
+    z-index: 100; /* Garante que o header fique acima de outros elementos */
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h1{
+    margin: 0 auto;
+}
+
+section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ajusta dinamicamente o número de colunas */
+    gap: 20px; /* Adiciona um espaçamento entre os gráficos */
+    justify-items: center; /* Centraliza os gráficos horizontalmente */
+    align-items: center; /* Centraliza os gráficos verticalmente */
+    padding: 20px; /* Adiciona um espaçamento interno ao section */
+}
+
+@media (min-width: 1024px) {
+    section {
+        grid-template-columns: repeat(3, 1fr); /* Define até 3 colunas em telas grandes */
+    }
+}
+
+
+section canvas {
+    min-width: 200px;
+    max-width: 400px; /* Define um tamanho máximo para os gráficos */
+    height: auto; /* Mantém a proporção do gráfico */
+    margin: 0 auto; /* Centraliza os gráficos */
+    display: block; /* Garante que o canvas seja tratado como um bloco */
+}

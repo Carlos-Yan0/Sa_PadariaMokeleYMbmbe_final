@@ -7,13 +7,16 @@
   <title>Sistema de Vendas</title>
   <link rel="stylesheet" href="../css/pdv.css">
   <link rel="stylesheet" href="../css/menu.css">
+  <!-- <script src="../js/menu.js"></script> -->
   <script src="../js/pdv.js"></script>
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="icon" href="../img/icon.png" type="image/png">
+</head>
 
+<body>
   <nav class="menu-lateral">
     <div class="cabeca-do-menu">
       <img src="../img/icon.png" alt="Logo Da Padaria Mokele y Mbembe" class="logo">
@@ -22,7 +25,7 @@
 
     <ul>
       <li class="item-menu">
-        <a href="/menu">
+        <a href="./home.html">
           <span class="icon">
             <span class="material-symbols-outlined">home</span>
           </span>
@@ -30,7 +33,7 @@
         </a>
       </li>
       <li class="item-menu">
-        <a href="/pvd">
+        <a href="./pdv.html">
           <span class="icon">
             <span class="material-symbols-outlined">shopping_cart</span>
           </span>
@@ -38,15 +41,15 @@
         </a>
       </li>
       <li class="item-menu">
-        <a href="/dashboard">
+        <a href="./dashboard.html">
           <span class="icon">
             <span class="material-symbols-outlined">dashboard</span>
           </span>
-          <span class="nome-do-link">Dashboard</span>
+          <span class="nome-do-link">Graphic</span>
         </a>
       </li>
       <li class="item-menu">
-        <a href="/historico-vendas">
+        <a href="./historico-vendas.html">
           <span class="icon">
             <span class="material-symbols-outlined">receipt_long</span>
           </span>
@@ -54,7 +57,7 @@
         </a>
       </li>
       <li class="item-menu">
-        <a href="/estoque">
+        <a href="./estoque.html">
           <span class="icon">
             <span class="material-symbols-outlined">inventory_2</span>
           </span>
@@ -62,7 +65,7 @@
         </a>
       </li>
       <li class="item-menu">
-        <a href="/gestao-usuarios">
+        <a href="./ge_usuarios.html">
           <span class="icon">
             <span class="material-symbols-outlined">groups</span>
           </span>
@@ -70,7 +73,7 @@
         </a>
       </li>
       <li class="item-menu">
-        <a href="/comandas">
+        <a href="./comanda.html">
           <span class="icon">
             <span class="material-symbols-outlined">confirmation_number</span>
           </span>
@@ -78,7 +81,7 @@
         </a>
       </li>
       <li class="item-menu">
-        <a href="/">
+        <a href="./login.html">
           <span class="icon">
             <span class="material-symbols-outlined">logout</span>
           </span>
@@ -87,24 +90,20 @@
       </li>
     </ul>
   </nav>
-
-
-  <!-- <script src="menu.js"></script> --> <!--Vai ser adicionado ainda-->
-
-<body>
-
+  <!-- <div id="menu"></div> -->
   <main>
     <h1>Produtos</h1>
+    <hr>
     <div class="area-busca">
-        <form action="#">
-          <label for="produto"><span class="material-symbols-outlined">Barcode</span></label>
-          <input type="text" id="produto" placeholder="Nome, Cód ou comanda" />
-          <label for="qtde" style="margin-left: 15px;">Quantidade:</label>
-          <input type="text" id="qtde" placeholder="Quantidade" />
-          <button class="botaoME">-</button>
-          <button class="botaoMA">+</button>
-          <button type="submit" class="botaoADD">Adicionar</button>
-        </form>
+      <form action="#">
+        <label for="produto"><span class="material-symbols-outlined">Barcode</span></label>
+        <input type="text" id="produto" placeholder="Nome, Cód ou comanda" />
+        <label for="qtde" style="margin-left: 15px;">Quantidade:</label>
+        <input type="text" id="qtde" placeholder="Quantidade" />
+        <button class="botaoME">-</button>
+        <button class="botaoMA">+</button>
+        <button type="submit" class="botaoADD">Adicionar</button>
+      </form>
     </div>
 
     <table>

@@ -174,6 +174,11 @@ table tbody td {
   text-align: center;
   border-bottom: 1px solid rgba(255, 153, 51, 0.3);
 }
+/* Alinha a coluna de total e valor unitário à direita */
+td:nth-child(6),
+td:nth-child(7) {
+  text-align: right;
+}
 
 /* Botões de ação na tabela */
 .btn-acao {
@@ -282,4 +287,19 @@ footer.rodape-venda {
 
 body > footer .footer-esquerdo, footer .footer-direito {
   margin: 0;
+}
+
+table td:first-child {
+  text-align: left;
+  padding-left: 16px; /* ou o valor que preferir */
+}
+
+
+#total-geral {
+  font-size: 1.5rem; /* Aumenta o número — ajuste como quiser */
+  font-weight: bold; /* Deixa mais destacado */
+}
+
+tfoot td strong {
+  font-size: 1.5rem;
 }

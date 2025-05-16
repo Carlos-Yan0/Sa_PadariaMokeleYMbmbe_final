@@ -31,10 +31,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function atualizarTotal() {
       let soma = 0;
       tabelaBody.querySelectorAll('tr').forEach(tr => {
-        soma += parseFloat(tr.dataset.subtotal);
+        const val = parseFloat(tr.dataset.subtotal?.replace(',', '.') || '0');
+        soma += isNaN(val) ? 0 : val;
       });
       totalEl.textContent = `R$${soma.toFixed(2).replace('.', ',')}`;
     }
+    
+    
+    
   
     // ➖ e ➕ controles
     btnMinus.addEventListener('click', () => {
@@ -49,42 +53,50 @@ document.addEventListener('DOMContentLoaded', () => {
     // ➕ Adicionar produto
     btnAdd.addEventListener('click', () => {
       const termo = inputProduto.value.trim().toLowerCase();
-      const qtde  = parseFloat(inputQtde.value);
+      const qtde  = parseFloat(inputQtde.value.replace(',', '.'));
       const med   = inputMed.value.trim().toUpperCase();
-  
+    
       if (!termo || isNaN(qtde) || qtde <= 0) {
         return alert('Informe produto válido e quantidade maior que zero! 🚨');
       }
-  
+    
       const prod = produtosDB.find(p =>
         p.nome.toLowerCase().includes(termo) || p.cod === termo
       );
       if (!prod) {
         return alert('Produto não encontrado! 🚨');
       }
-  
-      const subtotal = (prod.valor * qtde - prod.desconto).toFixed(2);
+    
+      const valorUni = prod.valor;
+      const desconto = prod.desconto;
+      const subtotal = valorUni * qtde - desconto;
+    
       const tr = document.createElement('tr');
-      tr.dataset.subtotal = subtotal;
+      tr.dataset.subtotal = subtotal.toFixed(2); // Aqui vai número com ponto (padrão)
+    
       tr.innerHTML = `
         <td>${prod.nome}</td>
         <td>${prod.cod}</td>
         <td>${qtde.toLocaleString('pt-BR')}</td>
-        <td>${prod.valor.toFixed(2).replace('.', ',')}</td>
+        <td>${valorUni.toFixed(2).replace('.', ',')}</td>
         <td>${med || prod.medida}</td>
-        <td>${prod.desconto.toFixed(2).replace('.', ',')}</td>
-        <td>R$${subtotal.replace('.', ',')}</td>
+        <td>${desconto.toFixed(2).replace('.', ',')}</td>
+        <td>R$${subtotal.toFixed(2).replace('.', ',')}</td>
         <td>
           <button class="btn-acao editar"><span class="material-symbols-outlined">edit</span></button>
           <button class="btn-acao excluir"><span class="material-symbols-outlined">delete</span></button>
-        </td>`;
+        </td>
+      `;
+    
       tabelaBody.appendChild(tr);
-  
       atualizarTotal();
+    
+      // Limpar campos
       inputProduto.value = '';
-      inputQtde.value    = '';
-      inputMed.value     = '';
+      inputQtde.value = '';
+      inputMed.value = '';
     });
+    
   
     // ✏️🗑️ Editar & Excluir via delegation
     tabelaBody.addEventListener('click', e => {

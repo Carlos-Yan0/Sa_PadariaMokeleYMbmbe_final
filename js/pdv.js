@@ -10,7 +10,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const spanDesconto = document.querySelector(".valor-desconto");
 
     const itens = [];
-    const PRECO_UNIT = 1.00;
+    const PRECO_UNIT = parseFloat(gerarPrecoAleatorio());
+    function gerarPrecoAleatorio() {
+        return (Math.random() * (10 - 1) + 1).toFixed(2); // Preço entre 1.00 e 10.00
+    }
 
     btnMais.addEventListener("click", () => {
         let v = parseFloat(inputQtde.value) || 0;

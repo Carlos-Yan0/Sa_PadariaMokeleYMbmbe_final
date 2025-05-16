@@ -59,6 +59,9 @@ span.icon {
     font-size: 2em;
     color: white;
     cursor: pointer;
+    position: relative;
+    bottom: 136px;
+    right: 35px;
 }
 
 .conteudo {
@@ -85,7 +88,7 @@ main form input{
 
 button.btn {
     width: 80%;
-    line-height: 3em;
+    line-height: 2em;
     font-size: 1.1em;
     padding: 1px;
 }

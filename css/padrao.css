@@ -110,22 +110,4 @@ h6 {
     margin: 20px 0;
 }
 
-body > footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #f3a853;
-    color: white;
-    display: flex; /* FLEX para alinhar */
-    justify-content: space-between; /* Extremidades */
-    align-items: center; /* Centralizar verticalmente */
-    padding: 10px 20px;
-    font-size: 0.9rem;
-    z-index: 10;
-}
-
-body > footer .footer-esquerdo, footer .footer-direito {
-    margin: 0;
-}
 

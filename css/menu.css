@@ -1,7 +1,7 @@
 /* Cabeçalho do menu */
 
 nav{
-    z-index: 10000;
+    z-index: 1000;
 }
 .cabeca-do-menu {
     background-color: #f3a853;
@@ -117,4 +117,8 @@ ul li.item-menu:hover {
 ul li.item-menu:hover a,
 ul li.item-menu:hover .icon {
     color: white;
+}
+
+footer{
+    z-index: 1000;
 }

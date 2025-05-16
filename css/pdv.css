@@ -11,6 +11,7 @@ body {
   font-family: 'Poppins', sans-serif;
   color: #000;
   padding: 2rem;
+  position:relative;
 }
 
 /* Container principal centralizado */
@@ -28,11 +29,16 @@ main {
 main h1{
   color:#f3a853
 }
+main:first-child {
+  flex: 2 1 65%; /* cresce e ocupa 65% da largura */
+  margin-right: 1rem;
+}
 .main-total{
-  margin-top: -25%;
-  margin-left:69%;
+  position: fixed;
+  top: 5%;
+  left: 65%;
   width: 30%;
-  height: 100%;
+  height: auto;
   padding: 10px 90px;
 }
 .info-total{

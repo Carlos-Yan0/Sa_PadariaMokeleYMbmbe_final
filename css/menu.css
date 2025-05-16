@@ -1,4 +1,8 @@
 /* Cabeçalho do menu */
+
+nav{
+    z-index: 10000;
+}
 .cabeca-do-menu {
     background-color: #f3a853;
     display: flex;

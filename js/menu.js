@@ -4,6 +4,11 @@
 fetch('menu.html')
     .then(res => res.text())
     .then(html => {
-        document.getElementById('menu').innerHTML = html;
+        const menuElement = document.getElementById('menu');
+        if (menuElement) {
+            menuElement.innerHTML = html;
+        } else {
+            console.warn('Elemento com id "menu" não encontrado.');
+        }
     })
     .catch(err => console.warn('Erro ao carregar menu:', err));

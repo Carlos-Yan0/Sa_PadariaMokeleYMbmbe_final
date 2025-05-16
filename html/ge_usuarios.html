@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Usuário</title>
+
+    <link rel="stylesheet" href="../css/config_usuario.css">
+    <script src="../js/js_usuario.js" defer></script>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="icon" href="../img/icon.png" type="image/png">
+    <script src="../js/menu.js"></script>
+</head>
+<body>
+
+    <div id="menu"></div>
+
+    
+    <main>
+        <div class="titulo-de-pagina">
+            <h1>Gestão de Usuário</h1>
+            <button class="add" onclick="abrir_popup()">Cadastrar Usuário</button>
+        </div>
+        <hr>
+        
+        <div class="tabela-container">
+            <table id="tabelaUsuarios">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>CPF</th>
+                        <th>E-mail</th>
+                        <th>Cargo</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div id="popup_usuario" style="display: none;">
+            <form id="formUsuario">
+                <input type="text" name="nomeForm" placeholder="Nome do usuario" id="nomeForm">
+                <input type="text" name="cpfForm" placeholder="CPF" id="cpfForm">
+                <input type="email" name="emailForm" placeholder="Email" id="emailForm">
+                <input type="text" name="telefoneForm" placeholder="Telefone" id="telefoneForm">
+                <input type="text" name="senhaForm" placeholder="Senha" id="senhaForm">
+                <input type="text" name="salarioForm" placeholder="Salario" id="salarioForm">
+                <select name="curintia" id="curintiaCARgo">
+                    <option value="Gerente">Gerente</option>
+                    <option value="Controlador de estoque">Controlador de Estoque</option>
+                    <option value="Analista de vendas">Analista de vendas</option>
+                    <option value="Caixa">Caixa</option>
+                </select>
+                <button type="button" onclick="criar_usuario(event)">Salvar usuario</button>
+            </form>
+            <button type="button" onclick="fechar_popup()">Fechar</button>
+        </div>
+
+
+        <button class="export">Exportar</button>
+    </main>
+    
+</body>
+</html>

@@ -35,11 +35,17 @@ main:first-child {
 }
 .main-total{
   position: fixed;
-  top: 5%;
+  top: 4.2%;
   left: 65%;
   width: 30%;
   height: auto;
   padding: 10px 90px;
+}
+hr{
+  border-style: none;
+  border: 1px solid #f3a853;
+  margin-top: 10px;
+  margin-bottom: 30px;
 }
 .info-total{
   justify-content: left;
@@ -106,7 +112,7 @@ header h1 span.caixa {
 }
 .botaoME {
   background-color: #fc5050;
-  width: 60px;
+  width: 40px;
   height: 40px;
   font-size: 20px;
   border-radius: 50%;
@@ -114,7 +120,7 @@ header h1 span.caixa {
 }
 .botaoMA {
   background-color: #4a9a2e;
-  width: 60px;
+  width: 40px;
   height: 40px;
   font-size: 20px;
   border-radius: 50%;
@@ -126,6 +132,12 @@ header h1 span.caixa {
   background-color: #f3a852;
   padding: 1000px;
   height: 40px;
+}
+form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }
 
 .botaoME:hover,
@@ -268,5 +280,5 @@ footer.rodape-venda {
 }
 
 body > footer .footer-esquerdo, footer .footer-direito {
-  margin: 0;
+  margin-left: 4.5%;
 }

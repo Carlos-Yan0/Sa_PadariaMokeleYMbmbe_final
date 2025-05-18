@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estoque</title>
 
-    <link rel="stylesheet" href="../css/estoque.css">
     <link rel="stylesheet" href="../css/menu.css">
+    <link rel="stylesheet" href="../css/padrao.css">
     <link rel="stylesheet" href="../css/popups.css">
+    <link rel="stylesheet" href="../css/estoque.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
@@ -96,18 +97,21 @@
             </li>
         </ul>
     </nav>
-
+    
     <main>
-        <div class="titulo-de-pagina">
+        <header class="titulo-de-pagina">
             <h1>Estoque</h1>
+        </header>
+
+        <div id="campoTabela">
+            <button class="export">Exportar</button>
             <button class="add" onclick="mostrarPopup()">Adicionar Item</button>
         </div>
-        <hr>
 
         <div class="tabela-container">
             <table id="tabelaEstoque">
                 <thead>
-                    <!-- BASEADO NA JUNÇÃO DE PRODUTOS + ESTOQUE DO BANCO DE DADOS -->
+                    <!-- Cabeçalho da tabela -->
                     <tr>
                         <th>Id</th>
                         <th>Nome</th>
@@ -115,20 +119,61 @@
                         <th>Medida</th>
                         <th>Val Uni</th>
                         <th>Qtde</th>
-                        <th>Val Inventário</th> <!-- Val Uni * Qtde-->
-                        <th>Status</th> <!-- Baseado no quão próximo está do limite -->
-                        <th>Ações</th> <!-- Editar e Excluir -->
+                        <th>Val Inventário</th>
+                        <th>Status</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Linhas via JS -->
+                    <!-- Itens fictícios -->
+                    <tr>
+                        <td>1</td>
+                        <td>Pão Francês</td>
+                        <td>Produto</td>
+                        <td>UN</td>
+                        <td>0,50</td>
+                        <td>200</td>
+                        <td>100,00</td>
+                        <td><span class="status-ok">OK</span></td>
+                        <td>
+                            <button class="edit-btn"><span class="material-symbols-outlined">edit</span></button>
+                            <button class="delete-btn"><span class="material-symbols-outlined">delete</span></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Farinha de Trigo</td>
+                        <td>Insumo</td>
+                        <td>Kg</td>
+                        <td>3,00</td>
+                        <td>50</td>
+                        <td>150,00</td>
+                        <td><span class="status-atencao">Atenção</span></td>
+                        <td>
+                            <button class="edit-btn"><span class="material-symbols-outlined">edit</span></button>
+                            <button class="delete-btn"><span class="material-symbols-outlined">delete</span></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Leite</td>
+                        <td>Insumo</td>
+                        <td>L</td>
+                        <td>4,50</td>
+                        <td>10</td>
+                        <td>45,00</td>
+                        <td><span class="status-baixo">Baixo</span></td>
+                        <td>
+                            <button class="edit-btn"><span class="material-symbols-outlined">edit</span></button>
+                            <button class="delete-btn"><span class="material-symbols-outlined">delete</span></button>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
-        <button class="export">Exportar</button>
     </main>
 
-    <footer>
+    <footer id="footer-principal">
         <span class="footer-esquerdo">Usuário: João Mbembe Gerente</span>
         <span class="footer-direito">Copyright 2025-2025</span>
     </footer>
@@ -152,18 +197,21 @@
                 <option value="L">L</option>
             </select>
             <label for="valor-unitario-produto">Valor Unitário do Produto:</label>
-            <input type="number" id="valor-unitario-produto" placeholder="Valor Unitário do Produto" required min="0" step="0.01">
+            <input type="number" id="valor-unitario-produto" placeholder="Valor Unitário do Produto" required min="0"
+                step="0.01" class="sem-spinners">
 
             <label for="quantidade-produto">Quantidade do Produto:</label>
-            <input type="number" id="quantidade-produto" placeholder="Quantidade do Produto" required min="0">
+            <input type="number" id="quantidade-produto" placeholder="Quantidade do Produto" required min="0"
+                class="sem-spinners">
 
             <label for="quantidade-minima">Quantidade Mínima:</label>
-            <input type="number" id="quantidade-minima" placeholder="Quantidade Mínima" required min="0">
+            <input type="number" id="quantidade-minima" placeholder="Quantidade Mínima" required min="0"
+                class="sem-spinners">
             <label for="validade">Validade</label>
-            <input type="datetime-local" id="validade" required title="Escolha uma data e hora">
+            <input type="date" id="validade" required title="Escolha uma data e hora">
+            <button type="reset" id="cancelar">Cancelar</button>
             <button type="submit" id="adicionar-produto">Adicionar Produto</button>
             <!-- Adicione aqui futuramente uma função para adicionar o produto -->
-            <button type="reset" id="cancelar">Cancelar</button>
 
         </form>
     </div>

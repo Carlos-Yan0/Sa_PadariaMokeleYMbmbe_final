@@ -1,6 +1,7 @@
 /* Cabeçalho do menu */
 
 nav{
+    font-family: Poppins;
     z-index: 1000;
 }
 .cabeca-do-menu {
@@ -119,6 +120,17 @@ ul li.item-menu:hover .icon {
     color: white;
 }
 
-footer{
+#footer-principal {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f3a853;
+    color: white;
+    display: flex; /* FLEX para alinhar */
+    justify-content: space-between; /* Extremidades */
+    align-items: center; /* Centralizar verticalmente */
+    padding: 10px 20px;
+    font-size: 0.9rem;
     z-index: 1000;
 }

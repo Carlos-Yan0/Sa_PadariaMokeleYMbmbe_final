@@ -5,7 +5,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>tela emitir comanda</title>
-  <!-- Link para o CSS externo -->
   <link rel="stylesheet" href="../css/comanda.css">
   <link rel="stylesheet" href="../css/menu.css">
   <script src="../js/js_comanda.js"></script>
@@ -14,8 +13,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="icon" href="../img/icon.png" type="image/png">
-  <link rel="icon" href="img/icon.png" type="image/png">
 
+</head>
+
+<body>
   <nav class="menu-lateral">
     <div class="cabeca-do-menu">
       <img src="../img/icon.png" alt="Logo Da Padaria Mokele y Mbembe" class="logo">
@@ -24,7 +25,7 @@
 
     <ul>
       <li class="item-menu">
-        <a href="/menu">
+        <a href="./home.html">
           <span class="icon">
             <span class="material-symbols-outlined">home</span>
           </span>
@@ -32,7 +33,7 @@
         </a>
       </li>
       <li class="item-menu">
-        <a href="/pvd">
+        <a href="./pdv.html">
           <span class="icon">
             <span class="material-symbols-outlined">shopping_cart</span>
           </span>
@@ -40,15 +41,15 @@
         </a>
       </li>
       <li class="item-menu">
-        <a href="/dashboard">
+        <a href="./dashboard.html">
           <span class="icon">
             <span class="material-symbols-outlined">dashboard</span>
           </span>
-          <span class="nome-do-link">Dashboard</span>
+          <span class="nome-do-link">Graphic</span>
         </a>
       </li>
       <li class="item-menu">
-        <a href="/historico-vendas">
+        <a href="./historico-vendas.html">
           <span class="icon">
             <span class="material-symbols-outlined">receipt_long</span>
           </span>
@@ -56,7 +57,7 @@
         </a>
       </li>
       <li class="item-menu">
-        <a href="/estoque">
+        <a href="./estoque.html">
           <span class="icon">
             <span class="material-symbols-outlined">inventory_2</span>
           </span>
@@ -64,7 +65,7 @@
         </a>
       </li>
       <li class="item-menu">
-        <a href="/gestao-usuarios">
+        <a href="./ge_usuarios.html">
           <span class="icon">
             <span class="material-symbols-outlined">groups</span>
           </span>
@@ -72,7 +73,7 @@
         </a>
       </li>
       <li class="item-menu">
-        <a href="/comandas">
+        <a href="./comanda.html">
           <span class="icon">
             <span class="material-symbols-outlined">confirmation_number</span>
           </span>
@@ -80,7 +81,7 @@
         </a>
       </li>
       <li class="item-menu">
-        <a href="/">
+        <a href="./login.html">
           <span class="icon">
             <span class="material-symbols-outlined">logout</span>
           </span>
@@ -89,11 +90,6 @@
       </li>
     </ul>
   </nav>
-
-
-  <!-- <script src="menu.js"></script> --> <!--Vai ser adicionado ainda-->
-
-<body>
 
   <main>
     <h1>Emitir Comandas</h1>
@@ -104,10 +100,10 @@
 
       <label for="qtde" style="margin-left: 15px;">Quantidade:</label>
       <input type="text" id="qtde" placeholder="Quantidade" />
-      
+
       <button class="botaoME">-</button>
       <button class="botaoMA">+</button>
-      
+
 
       <label for="med" style="margin-left: 15px;">Medida:</label>
       <input type="text" id="med" placeholder="UN" class="input-medida" />
@@ -165,12 +161,11 @@
           </td>
         </tr>
       </tfoot>
-            
+
     </table>
   </main>
 
-
-  <footer class="rodape2">
+  <footer id="footer-principal">
     <span class="footer-esquerdo">Usuário: João Mbembe Gerente</span>
     <span class="footer-direito">Copyright 2025-2025</span>
   </footer>

@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <link rel="icon" href="../img/icon.png" type="image/png">
+
+
+    
     <title>Painel Gerente</title>
 </head>
 
@@ -94,7 +97,7 @@
 
     <div class="back">
         <header>
-            <h1>Bem-vindo Gerente!</h1>
+            <h1>Bem-vindo, <span id="nomeUsuarioDisplay"></span>!</h1>
         </header>
         <main class="container">
             <a href="sistema-vendas.html">
@@ -139,4 +142,12 @@
         <span class="footer-esquerdo">Usuário: João Mbembe Gerente</span>
         <span class="footer-direito">Copyright 2025-2025</span>
     </footer>
+    
+    <script>
+        const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+        if (usuarioLogado) {
+          document.getElementById('nomeUsuarioDisplay').textContent = usuarioLogado.nome;
+        }
+    </script>
+    
 </body>

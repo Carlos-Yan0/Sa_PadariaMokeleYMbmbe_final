@@ -1,6 +1,4 @@
-// Verifica se existe algum usuário cadastrado no localStorage
 if (!localStorage.getItem('usuarios')) {
-    // Cria usuário padrão
     const usuarioPadrao = [
       {
         id: 1,

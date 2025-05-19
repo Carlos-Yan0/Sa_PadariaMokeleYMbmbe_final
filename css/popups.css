@@ -10,7 +10,7 @@
     /* Inicialmente escondido */
 }
 
-#popup-add {
+.popup {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -32,27 +32,29 @@
     max-height: 90vh;
 }
 
-#popup-add h2 {
+.popup h2 {
     font-size: 1.8rem;
-    color: #f3a853;
-    margin-bottom: 20px;
+    font-weight: bold;
+    margin-bottom: 16px;
+    color: #333;
     text-align: center;
 }
 
-#popup-add p {
+.popup p {
     font-size: 1rem;
-    color: #967345;
-    margin-bottom: 20px;
-    text-align: center;
+    line-height: 1.5;
+    color: #555;
+    margin-bottom: 16px;
+    text-align: justify;
 }
 
-#popup-add .popup-actions {
+.popup .popup-actions {
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
 }
 
-#popup-add button {
+.popup button {
     background-color: #f3a853;
     color: white;
     font-weight: 500;
@@ -65,12 +67,12 @@
     margin: 0 5px;
 }
 
-#popup-add button.cancel {
+.popup button.cancel {
     background-color: #967345;
 }
 
-#popup-add input,
-#popup-add select {
+.popup input,
+.popup select {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -80,11 +82,11 @@
     color: #967345;
 }
 
-#popup-add input::placeholder {
+.popup input::placeholder {
     color: #967345;
 }
 
-#popup-add form {
+.popup form {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 16px 24px;
@@ -92,13 +94,23 @@
     align-items: start;
 }
 
-#popup-add form label,
-#popup-add form input,
-#popup-add form select,
-#popup-add form button {
+.popup form label,
+.popup form input,
+.popup form select,
+.popup form button {
     grid-column: span 1;
 }
 
+div.botoes-popup {
+    display: flex;
+    justify-content: space-between;
+    grid-column: span 2;
+}
+
+div.campo-informacoes {
+    display: flex;
+    flex-direction: column;
+}
 
 #cancelar-produto {
     grid-column: 2;
@@ -108,12 +120,13 @@
     grid-column: 1;
 }
 
+
 @media (max-width: 600px) {
-    #popup-add form {
+    .popup form {
         grid-template-columns: 1fr;
     }
-    #popup-add form button[type="submit"],
-    #popup-add form button[type="reset"] {
+    .popup form button[type="submit"],
+    .popup form button[type="reset"] {
         grid-column: 1;
     }
 }

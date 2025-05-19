@@ -65,6 +65,7 @@ button.delete-btn {
 
 /* Tabela de estoque */
 .tabela-container {
+    overflow: auto;
     padding: 12px;
 }
 

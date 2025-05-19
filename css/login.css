@@ -91,7 +91,7 @@ body {
     border-radius: 18px;
     position: relative;
     width: 300px;
-    top: 150px;
+    top: 90px;
     height: 45px;
     transition: 0.45s;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.288);
@@ -134,10 +134,11 @@ h3 {
 a {
     text-decoration: none;
     color: #967345;
-    font-weight: 700;
+    font-weight: 70;
     position: relative;
-    top: 140px;
-    left: 35px;
+    top: 100px;
+    left: 60px;
+    width: 60%;
 }
 
 #senha_funcionario {
@@ -168,14 +169,23 @@ a {
 
 #pessoa_simbolo {
     position: absolute;
-    left: 735px;
-    bottom: 289px
+    left: 775px;
+    bottom: 308px
 }
 
 #senha_simbolo {
     position: absolute;
-    left: 735px;
-    bottom: 207px
+    left: 775px;
+    bottom: 210px
+}
+
+#mensagemErro{
+    position: absolute;
+    top: 350px;
+    color: red;
+    margin-top: 5px;
+    display: none;
+    font-size: 0.8rem;
 }
 
 /* ----------------------------------!!Animação do "campo_amarelo"!!----------------------------------- */
@@ -193,4 +203,8 @@ a {
 
 .Campo_amarelo {
     animation: slideIn 1s ease-out;
+}
+
+.titulo-centralizado{
+    text-align: center;
 }

@@ -10,13 +10,6 @@ function verificarLogin() {
 
   const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
 
-  // Garante que o usuário "Yan" fique em primeiro lugar
-  usuarios.sort((a, b) => {
-    if (a.nome === "Yan") return -1;
-    if (b.nome === "Yan") return 1;
-    return 0;
-  });
-
   const usuarioValido = usuarios.find(u =>
     u.nome === nomeFuncionario &&
     u.senha === senhaFuncionario &&

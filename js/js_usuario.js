@@ -1,15 +1,5 @@
-let usuario = [
-  {
-    nome: "Yan",
-    email: "YanMeninadoCirco@Karina.Muito.Linda.br",
-    telefone: "slk num compensa",
-    cpf: "Oloco dog",
-    senha: "SDDS KARINA",
-    salario: "100000",
-    cargo: "Curintia",
-    status: "Hiperativo"
-  }
-];
+let usuario = JSON.parse(localStorage.getItem('usuarios')) || [];
+
 let indiceEditando = null;
 
 function abrir_popup() {
@@ -22,9 +12,7 @@ function fechar_popup() {
 }
 
 function criar_usuario(event) {
-  if (event) {
-    event.preventDefault();
-  }
+  if (event) event.preventDefault();
 
   let nome = document.getElementById('nomeForm').value;
   let senha = document.getElementById('senhaForm').value;
@@ -51,10 +39,14 @@ function criar_usuario(event) {
     usuario.push(novo_usuario);
   }
 
+  // Salvar no localStorage
+  localStorage.setItem('usuarios', JSON.stringify(usuario));
+
   limparFormulario();
   fechar_popup();
   atualizarTabelaUsuarios();
 }
+
 
 function atualizarTabelaUsuarios() {
   const tabelaUsuarios = document.getElementById('tabelaUsuarios').getElementsByTagName('tbody')[0];
@@ -103,8 +95,10 @@ function editarUsuario(indice) {
 
 function inativarUsuario(indice) {
   usuario[indice].status = usuario[indice].status === 'ativo' ? 'inativo' : 'ativo';
+  localStorage.setItem('usuarios', JSON.stringify(usuario));
   atualizarTabelaUsuarios();
 }
+
 
 function limparFormulario() {
   document.getElementById('nomeForm').value = '';

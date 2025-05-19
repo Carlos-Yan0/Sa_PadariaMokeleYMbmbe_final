@@ -12,8 +12,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const itens = [];
     const PRECO_UNIT = parseFloat(gerarPrecoAleatorio());
     function gerarPrecoAleatorio() {
-        return (Math.random() * (10 - 1) + 1).toFixed(2); // Preço entre 1.00 e 10.00
+        return (Math.random() * (50 - 1) + 1).toFixed(2); // Preço entre 1.00 e 50.00
     }
+    const cod = [];
+    const cod_prod = parseFloat(gerarCodAleatorio());
+    function gerarCodAleatorio() {
+        return (Math.random() * (50 - 1) + 1);}
 
     btnMais.addEventListener("click", () => {
         let v = parseFloat(inputQtde.value) || 0;
@@ -27,10 +31,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     btnAdd.addEventListener("click", () => {
         const nome = inputNome.value.trim();
-        const qtde = parseFloat(inputQtde.value.replace(",", ".")) || 0;
+        const qtde = parseFloat(inputQtde.value) || 0;
+
+        // Limpa mensagens de erro antes de validar
+        inputNome.setCustomValidity("");
+        inputQtde.setCustomValidity("");
 
         if (!nome || qtde <= 0) {
-            alert("🙏 Preencha nome e quantidade corretamente!");
+            if (!nome) {
+                inputNome.setCustomValidity("Preencha o nome corretamente!");
+                inputNome.reportValidity();
+                inputNome.focus();
+            } else if (qtde <= 0) {
+                inputQtde.setCustomValidity("Preencha a quantidade corretamente!");
+                inputQtde.reportValidity();
+                inputQtde.focus();
+            }
             return;
         }
 
@@ -38,6 +54,24 @@ document.addEventListener("DOMContentLoaded", () => {
         itens.push({ nome, qtde, preco: PRECO_UNIT, subtotal });
 
         renderTabela();
+    });
+    function limparCampos() {
+        inputNome.value = "";
+        inputQtde.value = "";
+    }
+    // Faz o Enter funcionar como o botão de adicionar nos campos de entrada
+    inputNome.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            btnAdd.click(); // Simula o clique no botão de adicionar
+        }
+    });
+
+    inputQtde.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            btnAdd.click(); // Simula o clique no botão de adicionar
+        }
     });
 
     function renderTabela() {
@@ -48,13 +82,13 @@ document.addEventListener("DOMContentLoaded", () => {
             tr.innerHTML = `
           <td>${item.nome}</td>
           <td>${String(1000 + idx).slice(1)}</td>
-          <td>${item.qtde.toFixed(3)}</td>
+          <td>${item.qtde}</td>
           <td>${item.preco.toFixed(2)}</td>
           <td>un</td>
           <td>0.00</td>
           <td>R$${item.subtotal.toFixed(2)}</td>
           <td>
-            <button class="btn-acao editar"><span class="material-symbols-outlined">edit</span></button>
+            <button class="btn-acao editar" onclick="mostrarPopup()"><span class="material-symbols-outlined">edit</span></button>
             <button class="btn-acao excluir"><span class="material-symbols-outlined">delete</span></button>
           </td>
         `;
@@ -63,6 +97,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         atualizarTotal();
     }
+
+    const popup = document.getElementById("popup-add");
+    const backdrop = document.getElementById("backdrop-popup");
+    const btnCancelar = document.getElementById("cancelar");
+
+    let itemEditandoIndex = null; // Índice do item que está sendo editado
 
     document.addEventListener("click", (e) => {
         const excluirBtn = e.target.closest(".excluir");
@@ -80,12 +120,66 @@ document.addEventListener("DOMContentLoaded", () => {
             const idx = Array.from(tbody.children).indexOf(row);
             const item = itens[idx];
 
-            inputNome.value = item.nome;
-            inputQtde.value = item.qtde.toFixed(3);
+            // Preenche os campos do popup com os dados do item
+            document.getElementById("nome-produto").value = item.nome;
+            document.getElementById("valor-unitario-produto").value = item.preco.toFixed(2);
+            document.getElementById("quantidade-produto").value = item.qtde;
+            document.getElementById("quantidade-minima").value = 0; // Ajuste conforme necessário
+            document.getElementById("validade").value = ""; // Ajuste conforme necessário
 
-            itens.splice(idx, 1);
-            renderTabela();
+            // Salva o índice do item que está sendo editado
+            itemEditandoIndex = idx;
+
+            // Exibe o popup
+            popup.style.display = "block";
+            backdrop.style.display = "block";
         }
+    });
+
+    // Adiciona ou atualiza o item ao clicar no botão "Adicionar Produto"
+    document.getElementById("adicionar-produto").addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const nome = document.getElementById("nome-produto").value.trim();
+        const preco = parseFloat(document.getElementById("valor-unitario-produto").value) || 0;
+        const qtde = parseFloat(document.getElementById("quantidade-produto").value) || 0;
+
+        if (!nome || preco <= 0 || qtde <= 0) {
+            alert("Preencha todos os campos corretamente!");
+            return;
+        }
+
+        const subtotal = preco * qtde;
+
+        if (itemEditandoIndex !== null) {
+            // Atualiza o item existente
+            itens[itemEditandoIndex] = { nome, qtde, preco, subtotal };
+            itemEditandoIndex = null; // Reseta o índice
+        } else {
+            // Adiciona um novo item (caso necessário)
+            itens.push({ nome, qtde, preco, subtotal });
+        }
+
+        // Fecha o popup
+        popup.style.display = "none";
+        backdrop.style.display = "none";
+
+        // Re-renderiza a tabela
+        renderTabela();
+    });
+
+    // Fecha o popup ao clicar no botão "Cancelar"
+    btnCancelar.addEventListener("click", (e) => {
+        e.preventDefault();
+        popup.style.display = "none";
+        backdrop.style.display = "none";
+        itemEditandoIndex = null; // Reseta o índice
+    });
+
+    // Fecha o popup ao clicar fora dele
+    backdrop.addEventListener("click", () => {
+        popup.style.display = "none";
+        backdrop.style.display = "none";
     });
 
     function atualizarTotal() {
@@ -98,4 +192,11 @@ document.addEventListener("DOMContentLoaded", () => {
         inputNome.value = "";
         inputQtde.value = "";
     }
+
+    const form = document.querySelector(".area-busca form");
+
+    // Previne o comportamento padrão de submissão do formulário
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+    });
 });

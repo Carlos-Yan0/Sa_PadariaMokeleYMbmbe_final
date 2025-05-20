@@ -51,25 +51,39 @@ function criarLinhaTabela(tabela, valores, novoId) {
   const celulaValUni = novaLinha.insertCell(4);
   const celulaQtdeProd = novaLinha.insertCell(5);
   const celulaValInv = novaLinha.insertCell(6);
-  const celulaStatus = novaLinha.insertCell(7);
-  const celulaAcoes = novaLinha.insertCell(8);
+  const celulaQtdeMin = novaLinha.insertCell(7); // Nova célula para Quantidade Mínima
+  const celulaValidade = novaLinha.insertCell(8); // Nova célula para Validade
+  const celulaStatus = novaLinha.insertCell(9);
+  const celulaAcoes = novaLinha.insertCell(10);
 
   // Adiciona os valores capturados às células
   celulaId.textContent = novoId; // ID da nova linha
   celulaNome.textContent = valores.nome_prod;
   celulaCategoria.textContent = valores.categoria;
   celulaMedida.textContent = valores.medida;
+  celulaValUni.textContent = parseFloat(valores.val_uni).toFixed(2); // Valor unitário formatado
   celulaQtdeProd.textContent = valores.qtde_prod;
-  celulaValUni.textContent = valores.val_uni;
-  celulaValInv.textContent = valores.qtde_prod * valores.val_uni; // Valor total do estoque
-  celulaStatus.textContent = valores.qtde_prod < valores.qtde_min ? 'Abaixo do mínimo' : 'OK'; // Status baseado na quantidade mínima
-  celulaAcoes.innerHTML = '<button class="edit-btn"><span class="material-symbols-outlined">edit</span></button> <button class="delete-btn" onclick="removerLinha(this)"><span class="material-symbols-outlined">delete</span></button>';
+  celulaValInv.textContent = (parseFloat(valores.qtde_prod) * parseFloat(valores.val_uni)).toFixed(2); // Valor total do estoque
+  celulaQtdeMin.textContent = valores.qtde_min; // Adiciona a Quantidade Mínima
+  celulaValidade.textContent = valores.validade; // Adiciona a Validade
 
+  // Define o status baseado na quantidade mínima
+  const status = parseInt(valores.qtde_prod) < parseInt(valores.qtde_min) ? 'Abaixo do mínimo' : 'OK';
+  celulaStatus.textContent = status;
+
+  // Adiciona os botões de ação
+  celulaAcoes.innerHTML = `
+    <button class="edit-btn" onclick="mostrarPopupEditar(this)">
+      <span class="material-symbols-outlined">edit</span>
+    </button>
+    <button class="delete-btn" onclick="mostrarPopupRemover(this)">
+      <span class="material-symbols-outlined">delete</span>
+    </button>
+  `;
 }
 
+// Função para adicionar uma nova linha na tabela
 function novalinha() {
-  // Função chamada quando o botão "Adicionar Produto" é clicado
-
   // Captura os valores dos campos
   const valores = capturarValores();
 

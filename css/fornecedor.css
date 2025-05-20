@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Variáveis de cor para fácil manutenção */
+:root {
+    --cor-primaria: #f3a853;
+    --cor-primaria-clara: #f7c77a;
+    --cor-secundaria: #967345;
+    --cor-header-bg: #fff8f0;
+    --cor-header-bg-grad: #f3a85322;
+    --cor-tabela-bg: #fff8f0;
+    --cor-tabela-linha-hover: #ffe7c1;
+    --cor-tabela-borda: #f3a85333;
+    --cor-texto-secundario: #252522;
+    --cor-delete: #f73a2e;
+    --cor-edit: #2e53f7;
+    --cor-delete-bg: #f73a2e22;
+    --cor-edit-bg: #f3a85322;
+    --cor-shadow: #f3a85322;
+    --cor-shadow-strong: #f3a85355;
+}
+
+/* Título e header */
+header.titulo-de-pagina {
+    padding: 18px 24px;
+}
+
+/* Exportar botão */
+.export {
+    background: transparent;
+    color: var(--cor-primaria);
+    border: 2px solid var(--cor-primaria);
+    font-weight: bold;
+    transition: 0.2s;
+}
+.export:hover {
+    background: var(--cor-primaria);
+    color: white;
+}
+
+/* Botões de ação na tabela */
+button.edit-btn,
+button.delete-btn {
+    padding: 6px 12px;
+    margin: 0 2px;
+    border-radius: 12px;
+    border: none;
+    font-size: 1em;
+    background: transparent;
+    transition: 0.2s;
+}
+button.edit-btn {
+    color: var(--cor-edit);
+}
+
+button.delete-btn {
+    color: var(--cor-delete);
+}
+
+#campoTabela {
+    margin: 0 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/* Tabela de estoque */
+.tabela-container {
+    overflow: auto;
+    padding: 12px;
+}
+
+#tabelaEstoque {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#tabelaEstoque th, #tabelaEstoque td {
+    padding: 12px 10px;
+    text-align: center;
+}
+#tabelaEstoque th {
+    background-color: var(--cor-primaria);
+    color: white;
+    font-weight: bold;
+
+}
+#tabelaEstoque tbody tr {
+    color: #101010;
+    border-bottom: 1px solid var(--cor-tabela-borda);
+    transition: 0.2s;
+}
+#tabelaEstoque tbody tr:hover {
+    background: var(--cor-tabela-linha-hover);
+}
+
+.sem-spinners::-webkit-inner-spin-button,
+.sem-spinners::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Responsividade específica para tabela/form */
+@media screen and (max-width: 900px) {
+    header.titulo-de-pagina {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 14px 10px 8px 10px;
+    }
+    .form-container {
+        padding: 10px 6px;
+    }
+    .tabela-container {
+        padding: 6px;
+    }
+    #tabelaEstoque th, #tabelaEstoque td {
+        padding: 8px 4px;
+        font-size: 0.98em;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .form-container form {
+        flex-direction: column;
+        gap: 8px;
+    }
+    #tabelaEstoque th,
+    #tabelaEstoque td {
+        font-size: 12px;
+    }
+    header.titulo-de-pagina h1 {
+        font-size: 1.3rem;
+    }
+    .add {
+        font-size: 1em;
+        padding: 10px 16px;
+    }
+    .export {
+        font-size: 0.95em;
+        padding: 7px 12px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    header.titulo-de-pagina {
+        padding: 8px 2px 4px 2px;
+    }
+    .form-container {
+        padding: 6px 2px;
+    }
+    .tabela-container {
+        padding: 2px;
+    }
+    #tabelaEstoque th, #tabelaEstoque td {
+        padding: 5px 2px;
+        font-size: 0.9em;
+    }
+    .add, .export {
+        width: 100%;
+        margin: 6px 0 0 0;
+        padding: 10px 0;
+    }
+}

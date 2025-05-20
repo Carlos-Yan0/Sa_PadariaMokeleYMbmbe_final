@@ -1,31 +1,38 @@
-function removerLinha(botao) {
-    const linha = botao.closest('tr'); // Acessa a linha inteira (<tr>) onde o botão está
-    const tbody = linha.parentNode; // Acessa o <tbody> que contém a linha
-    tbody.removeChild(linha); // Remove a linha inteira do <tbody>
+function confirmarIdentidade(linha, tbody) {
+    const usuario = document.getElementById('usuario').value;
+    const senha = document.getElementById('senha').value;
 
-    //removerLinha(this)
+    if (usuario === 'admin' && senha === '123') {
+        alert('Produto removido com sucesso!');
+        tbody.removeChild(linha);
+        fecharRemover();
+    } else {
+        alert('Usuário ou senha inválidos. Apenas administradores podem remover produtos.');
+    }
 }
 
 // Função para mostrar o popup
-function mostrarPopupRemover() {
+function mostrarPopupRemover(botao) {
+    const linha = botao.closest('tr'); // Acessa a linha inteira (<tr>) onde o botão está
+    const tbody = linha.parentNode; // Acessa o <tbody> que contém a linha
+
+    // Exibir o popup
     document.getElementById('popup-remove').style.display = 'flex';
     document.getElementById('backdrop-popup').style.display = 'block';
+
+    // Adiciona o evento de clique no botão #verificar-identidade
+    const verificarButton = document.getElementById('verificar-identidade');
+    if (verificarButton) {
+        verificarButton.onclick = function() {
+            confirmarIdentidade(linha, tbody); // Chama confirmarIdentidade ao clicar no botão
+        };
+    }
 }
 
 // Função para fechar o popup
 function fecharRemover() {
     document.getElementById('popup-remove').style.display = 'none';
     document.getElementById('backdrop-popup').style.display = 'none';
-}
-
-function confirmarRemover() {
-    const botaoRemover = document.getElementById('botao-remover');
-    if (botaoRemover) {
-        botaoRemover.addEventListener("click", function () {
-            removerLinha(this); // Chama a função para remover a linha
-            fecharRemover(); // Fecha o popup
-        });
-    }
 }
 
 // Adicionando evento de clique no backdrop (fundo)

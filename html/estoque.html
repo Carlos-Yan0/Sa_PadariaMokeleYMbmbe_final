@@ -17,20 +17,21 @@
 
     <script src="../js/add-estoque-popup.js"></script>
     <script src="../js/remove-estoque-popup.js"></script>
+    <script src="../js/edit-estoque-popup.js"></script>
     <script src="../js/acesso-paginas.js" defer></script>
-    
+
     <link rel="icon" href="../img/icon.png" type="image/png">
     <meta charset="UTF-8">
 </head>
 
 <body>
-    
+
     <nav class="menu-lateral">
         <div class="cabeca-do-menu">
             <img src="../img/icon.png" alt="Logo Da Padaria Mokele y Mbembe" class="logo">
             <h1>Padaria<br>Mokele y Mbembe</h1>
         </div>
-        
+
         <ul>
             <li class="item-menu">
                 <a href="./home.html">
@@ -98,17 +99,17 @@
             </li>
         </ul>
     </nav>
-    
+
     <main>
         <header class="titulo-de-pagina">
             <h1>Estoque</h1>
         </header>
-        
+
         <div id="campoTabela">
             <button class="export">Exportar</button>
             <button class="add" onclick="mostrarPopupAdicionar()">Adicionar Item</button>
         </div>
-        
+
         <div class="tabela-container">
             <table id="tabelaEstoque">
                 <thead>
@@ -121,6 +122,8 @@
                         <th>Val Uni</th>
                         <th>Qtde</th>
                         <th>Val Inventário</th>
+                        <th>Qtde Mínima</th>
+                        <th>Validade</th>
                         <th>Status</th>
                         <th>Ações</th>
                     </tr>
@@ -135,10 +138,16 @@
                         <td>0,50</td>
                         <td>200</td>
                         <td>100,00</td>
+                        <td>50</td>
+                        <td>2025-12-31</td>
                         <td><span class="status-ok">OK</span></td>
                         <td>
-                            <button class="edit-btn"><span class="material-symbols-outlined">edit</span></button>
-                            <button class="delete-btn"><span class="material-symbols-outlined" onclick="removerLinha(this)">delete</span></button>
+                            <button class="edit-btn" onclick="mostrarPopupEditar(this)">
+                                <span class="material-symbols-outlined">edit</span>
+                            </button>
+                            <button class="delete-btn" onclick="mostrarPopupRemover(this)">
+                                <span class="material-symbols-outlined">delete</span>
+                            </button>
                         </td>
                     </tr>
                     <tr id="row2">
@@ -149,10 +158,16 @@
                         <td>3,00</td>
                         <td>50</td>
                         <td>150,00</td>
+                        <td>10</td>
+                        <td>2025-11-30</td>
                         <td><span class="status-atencao">Atenção</span></td>
                         <td>
-                            <button class="edit-btn"><span class="material-symbols-outlined">edit</span></button>
-                            <button class="delete-btn"><span class="material-symbols-outlined" onclick="removerLinha(this)">delete</span></button>
+                            <button class="edit-btn" onclick="mostrarPopupEditar(this)">
+                                <span class="material-symbols-outlined">edit</span>
+                            </button>
+                            <button class="delete-btn" onclick="mostrarPopupRemover(this)">
+                                <span class="material-symbols-outlined">delete</span>
+                            </button>
                         </td>
                     </tr>
                     <tr id="row3">
@@ -163,32 +178,38 @@
                         <td>4,50</td>
                         <td>10</td>
                         <td>45,00</td>
+                        <td>5</td>
+                        <td>2025-10-15</td>
                         <td><span class="status-baixo">Baixo</span></td>
                         <td>
-                            <button class="edit-btn"><span class="material-symbols-outlined">edit</span></button>
-                            <button class="delete-btn"><span class="material-symbols-outlined" onclick="mostrarPopupRemover(this)">delete</span></button>
+                            <button class="edit-btn" onclick="mostrarPopupEditar(this)">
+                                <span class="material-symbols-outlined">edit</span>
+                            </button>
+                            <button class="delete-btn" onclick="mostrarPopupRemover(this)">
+                                <span class="material-symbols-outlined">delete</span>
+                            </button>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </main>
-    
+
     <footer id="footer-principal">
         <span class="footer-esquerdo">Usuário: João Mbembe Gerente</span>
         <span class="footer-direito">Copyright 2025-2025</span>
     </footer>
-    
+
     <div id="backdrop-popup"></div>
     <div class="popup" id="popup-add">
-        <form action="#">
+        <form action="#" id="form-adicionar">
             <label for="nome-produto">Nome do Produto:</label>
-            
+
             <input type="text" id="nome-produto" placeholder="Nome" required>
-            
+
             <label for="categoria">Categoria:</label>
             <select id="categoria" required>
-                <option value="insumo">Insumo</option>
+                <option value="Insumo">Insumo</option>
                 <option value="Produto">Produto</option>
             </select>
             <label for="medida">Unidade de Medida:</label>
@@ -199,20 +220,20 @@
             </select>
             <label for="valor-unitario-produto">Valor Unitário do Produto:</label>
             <input type="number" id="valor-unitario-produto" placeholder="Valor Unitário do Produto" required min="0"
-            step="0.01" class="sem-spinners">
-            
+                step="0.01" class="sem-spinners">
+
             <label for="quantidade-produto">Quantidade do Produto:</label>
             <input type="number" id="quantidade-produto" placeholder="Quantidade do Produto" required min="0"
-            class="sem-spinners">
-            
+                class="sem-spinners">
+
             <label for="quantidade-minima">Quantidade Mínima:</label>
             <input type="number" id="quantidade-minima" placeholder="Quantidade Mínima" required min="0"
-            class="sem-spinners">
+                class="sem-spinners">
             <label for="validade">Validade</label>
             <input type="date" id="validade" required title="Escolha uma data e hora">
             <div class="botoes-popup">
-                <button type="reset" id="cancelar" onclick="fecharAdicionar()">Cancelar</button>
-                <button type="submit" id="adicionar-produto">Adicionar Produto</button>
+                <button type="reset" id="cancelar-adicionar" onclick="fecharAdicionar()">Cancelar</button>
+                <button type="button" id="adicionar-produto" onclick="fecharAdicionar()">Adicionar Produto</button>
             </div>
             <!-- Adicione aqui futuramente uma função para adicionar o produto -->
         </form>
@@ -220,17 +241,53 @@
     <div class="popup" id="popup-remove">
         <div class="campo-informacoes">
             <h2>Remover Produto</h2>
-            <p>Para remover um produto, é necessária a autenticação de um usuário com permissões administradoras (Gerente)</p>
+            <p>Para remover um produto, é necessária a autenticação de um usuário com permissões administradoras
+                (Gerente)</p>
         </div>
-        <form action="#">
+        <form action="#" id="form-remover">
             <label for="usuario">Usuário:</label>
             <input type="text" id="usuario" placeholder="Usuário" required>
             <label for="senha">Senha:</label>
             <input type="password" id="senha" placeholder="Senha" required>
-            
+
             <div class="botoes-popup">
-                <button type="reset" id="cancelar" onclick="fecharRemover()">Cancelar</button>
-                <button type="submit" id="verificar-identidade" onclick="confirmarRemover()">Continuar</button>
+                <button type="reset" id="cancelar-remover" onclick="fecharRemover()">Cancelar</button>
+                <button type="button" id="verificar-identidade" onclick="confirmarIdentidade()">Continuar</button>
+            </div>
+        </form>
+    </div>
+    <div class="popup" id="popup-editar">
+        <form action="#" id="form-editar-editar">
+            <label for="nome-produto-editar">Nome do Produto:</label>
+            <input type="text" id="nome-produto-editar" placeholder="Nome" required>
+
+            <label for="categoria-editar">Categoria:</label>
+            <select id="categoria-editar" required>
+            <option value="Insumo">Insumo</option>
+            <option value="Produto">Produto</option>
+            </select>
+            <label for="medida-editar">Unidade de Medida:</label>
+            <select id="medida-editar" required>
+            <option value="UN">UN</option>
+            <option value="Kg">Kg</option>
+            <option value="L">L</option>
+            </select>
+            <label for="valor-unitario-produto-editar">Valor Unitário do Produto:</label>
+            <input type="number" id="valor-unitario-produto-editar" placeholder="Valor Unitário do Produto" required min="0"
+            step="0.01" class="sem-spinners">
+
+            <label for="quantidade-produto-editar">Quantidade do Produto:</label>
+            <input type="number" id="quantidade-produto-editar" placeholder="Quantidade do Produto" required min="0"
+            class="sem-spinners">
+
+            <label for="quantidade-minima-editar">Quantidade Mínima:</label>
+            <input type="number" id="quantidade-minima-editar" placeholder="Quantidade Mínima" required min="0"
+            class="sem-spinners">
+            <label for="validade-editar">Validade</label>
+            <input type="date" id="validade-editar" required title="Escolha uma data e hora">
+            <div class="botoes-popup">
+            <button type="reset" id="cancelar-editar" onclick="fecharEditar()">Cancelar</button>
+            <button type="button" id="editar-produto" onclick="">Salvar</button>
             </div>
         </form>
     </div>

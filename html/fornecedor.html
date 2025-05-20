@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fornecedor</title>
+
+    <link rel="stylesheet" href="../css/menu.css">
+    <link rel="stylesheet" href="../css/padrao.css">
+    <link rel="stylesheet" href="../css/popups.css">
+    <link rel="stylesheet" href="../css/fornecedor.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+    <script src="../js/add-fornecedor-popup.js"></script>
+    <script src="../js/remove-fornecedor-popup.js"></script>
+    <script src="../js/acesso-paginas.js" defer></script>
+    
+    <link rel="icon" href="../img/icon.png" type="image/png">
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    
+    <nav class="menu-lateral">
+        <div class="cabeca-do-menu">
+            <img src="../img/icon.png" alt="Logo Da Padaria Mokele y Mbembe" class="logo">
+            <h1>Padaria<br>Mokele y Mbembe</h1>
+        </div>
+        
+        <ul>
+            <li class="item-menu">
+                <a href="./home.html">
+                    <span class="icon">
+                        <span class="material-symbols-outlined">home</span>
+                    </span>
+                    <span class="nome-do-link">Home</span>
+                </a>
+            </li>
+            <li class="item-menu">
+                <a href="./pdv.html">
+                    <span class="icon">
+                        <span class="material-symbols-outlined">shopping_cart</span>
+                    </span>
+                    <span class="nome-do-link">Sistema de Vendas</span>
+                </a>
+            </li>
+            <li class="item-menu">
+                <a href="./dashboard.html">
+                    <span class="icon">
+                        <span class="material-symbols-outlined">dashboard</span>
+                    </span>
+                    <span class="nome-do-link">Graphic</span>
+                </a>
+            </li>
+            <li class="item-menu">
+                <a href="./historico-vendas.html">
+                    <span class="icon">
+                        <span class="material-symbols-outlined">receipt_long</span>
+                    </span>
+                    <span class="nome-do-link">Histórico de Vendas</span>
+                </a>
+            </li>
+            <li class="item-menu">
+                <a href="./estoque.html">
+                    <span class="icon">
+                        <span class="material-symbols-outlined">inventory_2</span>
+                    </span>
+                    <span class="nome-do-link">Estoque</span>
+                </a>
+            </li>
+            <li class="item-menu">
+                <a href="./ge_usuarios.html">
+                    <span class="icon">
+                        <span class="material-symbols-outlined">groups</span>
+                    </span>
+                    <span class="nome-do-link">Gestão de Usuários</span>
+                </a>
+            </li>
+            <li class="item-menu">
+                <a href="./comanda.html">
+                    <span class="icon">
+                        <span class="material-symbols-outlined">confirmation_number</span>
+                    </span>
+                    <span class="nome-do-link">Emissão de Comandas</span>
+                </a>
+            </li>
+            <li class="item-menu">
+                <a href="./fornecedor.html">
+                    <span class="icon">
+                        <span class="material-symbols-outlined">local_shipping</span>
+                    </span>
+                    <span class="nome-do-link">Fornecedores</span>
+                </a>
+            </li>
+            <li class="item-menu">
+                <a href="./login.html">
+                    <span class="icon">
+                        <span class="material-symbols-outlined">logout</span>
+                    </span>
+                    <span class="nome-do-link">Logout</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    
+    <main>
+        <header class="titulo-de-pagina">
+            <h1>Fornecedores</h1>
+        </header>
+        
+        <div id="campoTabela">
+            <button class="export">Exportar</button>
+            <button id="adicionar-produto" class="add" onclick="mostrarPopupAdicionar()">Adicionar Fornecedor</button>
+        </div>
+        
+        <div class="tabela-container">
+            <table id="tabelaEstoque">
+                <thead>
+                    <!-- Cabeçalho da tabela -->
+                    <tr>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>Telefone</th>
+                        <th>Logradouro</th>
+                        <th>Cidade</th>
+                        <th>Tipo de Produto</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Itens fictícios -->
+                    <tr id="row1">
+                        <td>1</td>
+                        <td>Eric Jacquin</td>
+                        <td>(99) 99999-9999</td>
+                        <td>Avenida Paulista</td>
+                        <td>São Paulo</td>
+                        <td>produto</td>
+                        <td>
+                            <button class="edit-btn"><span class="material-symbols-outlined">edit</span></button>
+                            <button class="delete-btn"><span class="material-symbols-outlined" onclick="removerLinha(this)">delete</span></button>
+                        </td>
+                    </tr>
+                    <tr id="row2">
+                        <td>2</td>
+                        <td>Maria do Pão</td>
+                        <td>(21) 98888-1234</td>
+                        <td>Rua das Laranjeiras</td>
+                        <td>Rio de Janeiro</td>
+                        <td>insumo</td>
+                        <td>
+                            <button class="edit-btn"><span class="material-symbols-outlined">edit</span></button>
+                            <button class="delete-btn"><span class="material-symbols-outlined" onclick="removerLinha(this)">delete</span></button>
+                        </td>
+                    </tr>
+                    <tr id="row3">
+                        <td>3</td>
+                        <td>João do Queijo</td>
+                        <td>(31) 97777-4321</td>
+                        <td>Avenida Afonso Pena</td>
+                        <td>Belo Horizonte</td>
+                        <td>produto</td>
+                        <td>
+                            <button class="edit-btn"><span class="material-symbols-outlined">edit</span></button>
+                            <button class="delete-btn"><span class="material-symbols-outlined" onclick="mostrarPopupRemover(this)">delete</span></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+    
+    <footer id="footer-principal">
+        <span class="footer-esquerdo">Usuário: João Mbembe Gerente</span>
+        <span class="footer-direito">Copyright 2025-2025</span>
+    </footer>
+    
+    
+    
+    <script src="../js/fornecedor.js"></script>
+</body>
+
+</html>

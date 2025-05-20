@@ -182,6 +182,17 @@
       <button type="submit" id="adicionar-produto">Adicionar Produto</button>
     </form>
   </div>
-        <!--Fim do PopUp-->
+  
+  <footer id="footer-principal">
+    <span class="footer-esquerdo">Usuário: <span id="nomeUsuarioFooter"></span></span>
+    <span class="footer-direito">Copyright 2025-2025</span>
+</footer>
+
+<script>
+    const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+    if (usuarioLogado) {
+      document.getElementById('nomeUsuarioFooter').textContent = usuarioLogado.nome;
+    }
+</script>
 </body>
 </html>

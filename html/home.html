@@ -140,7 +140,7 @@
     </div>
     </main>
     <footer id="footer-principal">
-        <span class="footer-esquerdo">Usuário: João Mbembe Gerente</span>
+        <span class="footer-esquerdo">Usuário: <span id="nomeUsuarioFooter"></span></span>
         <span class="footer-direito">Copyright 2025-2025</span>
     </footer>
 
@@ -148,6 +148,7 @@
         const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
         if (usuarioLogado) {
           document.getElementById('nomeUsuarioDisplay').textContent = usuarioLogado.nome;
+          document.getElementById('nomeUsuarioFooter').textContent = usuarioLogado.nome;
         }
     </script>
     

@@ -52,13 +52,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const subtotal = PRECO_UNIT * qtde;
         itens.push({ nome, qtde, preco: PRECO_UNIT, subtotal });
-
+        
+        function limparCampos() {
+            inputNome.value = "";
+            inputQtde.value = "";
+        }
+        limparCampos(); // Limpa os campos após adicionar o item
         renderTabela();
     });
-    function limparCampos() {
-        inputNome.value = "";
-        inputQtde.value = "";
-    }
     // Faz o Enter funcionar como o botão de adicionar nos campos de entrada
     inputNome.addEventListener("keydown", (e) => {
         if (e.key === "Enter") {
@@ -80,15 +81,14 @@ document.addEventListener("DOMContentLoaded", () => {
         itens.forEach((item, idx) => {
             const tr = document.createElement("tr");
             tr.innerHTML = `
-          <td>${item.nome}</td>
-          <td>${String(1000 + idx).slice(1)}</td>
+            <td>${String(1000 + idx).slice(1)}</td>
+            <td>${item.nome}</td>
           <td>${item.qtde}</td>
-          <td>${item.preco.toFixed(2)}</td>
-          <td>un</td>
-          <td>0.00</td>
-          <td>R$${item.subtotal.toFixed(2)}</td>
+          <td>R$${item.preco.toFixed(2).replace(".",",")}</td>
+          <td>Un</td>
+          <td>R$${item.subtotal.toFixed(2).replace(".",",")}</td>
           <td>
-            <button class="btn-acao editar" onclick="mostrarPopup()"><span class="material-symbols-outlined">edit</span></button>
+            <button class="btn-acao editar" onclick="mostrarPopup(this)"><span class="material-symbols-outlined">edit</span></button>
             <button class="btn-acao excluir"><span class="material-symbols-outlined">delete</span></button>
           </td>
         `;
@@ -164,8 +164,8 @@ document.addEventListener("DOMContentLoaded", () => {
         popup.style.display = "none";
         backdrop.style.display = "none";
 
-        // Re-renderiza a tabela
         renderTabela();
+        limparCampos(); // Limpa os campos após adicionar ou atualizar o item
     });
 
     // Fecha o popup ao clicar no botão "Cancelar"
@@ -174,6 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
         popup.style.display = "none";
         backdrop.style.display = "none";
         itemEditandoIndex = null; // Reseta o índice
+        limparCampos(); // Limpa os campos ao cancelar
     });
 
     // Fecha o popup ao clicar fora dele
@@ -184,13 +185,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function atualizarTotal() {
         const total = itens.reduce((acc, i) => acc + i.subtotal, 0);
-        spanTotal.textContent = `R$${total.toFixed(2)}`;
+        spanTotal.textContent = `R$${total.toFixed(2).replace(".", ",")}`;
         spanDesconto.textContent = `R$0.00`;
-    }
-
-    function limparCampos() {
-        inputNome.value = "";
-        inputQtde.value = "";
     }
 
     const form = document.querySelector(".area-busca form");

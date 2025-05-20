@@ -11,7 +11,7 @@
   <!-- <script src="../js/menu.js"></script> -->
   <script src="../js/pdv.js"></script>
   <script src="../js/pdv-popup.js"></script>
-  <script src="../js/acesso-paginas.js" defer></script>
+  <script src="../js/acesso-paginas.js"></script>
  
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -106,19 +106,18 @@
         <input type="text" id="qtde" placeholder="Quantidade" />
         <button class="botaoME">-</button>
         <button class="botaoMA">+</button>
-        <button type="button" class="botaoADD">Adicionar</button> <!-- Alterado para type="button" -->
+        <button type="button" class="botaoADD" onclick="limparCampos()">Adicionar</button> <!-- Alterado para type="button" -->
       </form>
     </div>
 
     <table>
       <thead>
         <tr>
+          <th>ID</th>
           <th>Produto</th>
-          <th>Cod</th>
-          <th>Qtde</th>
-          <th>Val Uni</th>
+          <th>Quantidade</th>
+          <th>Valor Uni</th>
           <th>Medida</th>
-          <th>Desconto</th>
           <th>Subtotal</th>
           <th>Ações</th>
         </tr>
@@ -179,7 +178,7 @@
         class="sem-spinners">
 
       <button type="reset" id="cancelar">Cancelar</button>
-      <button type="submit" id="adicionar-produto">Adicionar Produto</button>
+      <button type="submit" id="adicionar-produto">Editar</button>
     </form>
   </div>
   

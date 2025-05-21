@@ -173,6 +173,40 @@
             </table>
         </div>
     </main>
+
+    <div id="backdrop-popup"></div>
+    <div class="popup" id="popup-add">
+        <form action="#" id="form-adicionar">
+            <label for="nome-produto">Id</label>
+
+            <input type="text" id="nome-produto" placeholder="id" required>
+
+            <label for="categoria">Nome do Fornecedor</label>
+            <input type="text" id="nome-produto" placeholder="Nome" required>
+                
+
+            <label for="medida">Telefone:</label>
+            <input type="text" id="nome-produto" placeholder="Telefone" required>
+
+            <label for="medida">Logradouro:</label>
+            <input type="text" id="nome-produto" placeholder="Logradouro" required>
+
+            <label for="medida">Cidade:</label>
+            <input type="text" id="nome-produto" placeholder="Cidade" required>
+
+            <label for="medida">Tipo de Produto:</label>
+            <select id="medida" required>
+                <option value="UN">Produto</option>
+                <option value="Kg">Insumo</option>
+            </select>
+
+            <div class="botoes-popup">
+                <button type="reset" id="cancelar-adicionar" onclick="fecharAdicionar()">Cancelar</button>
+                <button type="button" id="adicionar-produto" onclick="fecharAdicionar()">Adicionar Fornecedor</button>
+            </div>
+            <!-- Adicione aqui futuramente uma função para adicionar o produto -->
+        </form>
+    </div>
     
     <footer id="footer-principal">
         <span class="footer-esquerdo">Usuário: <span id="nomeUsuarioFooter"></span></span>

@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'Gerente': ['*'],
     'Caixa': ['home.html', 'comanda.html', 'pdv.html'],
     'Analista de vendas': ['home.html', 'historico-vendas.html', 'dashboard.html'],
-    'Controlador de estoque': ['home.html', 'estoque.html']
+    'Controlador de estoque': ['home.html', 'estoque.html', 'forncedor.html']
   };
 
   const paginasPermitidas = permissoes[usuario.cargo] || [];

@@ -1,154 +1,163 @@
-// ===== js/js_comanda.js =====
-/**
- * js_comanda.js
- *
- * CRUD de itens de comanda + geração de comanda (salva em localStorage)
- * Produtos embutidos em array JS (normalização de nomes)
- */
-
-const STORAGE_COMANDAS = 'comandasSalvas';
-
-// Lista de produtos padrão (até 60 itens)
 const produtos = [
-  { nome: 'Pão Francês',    cod: '0001', valor: 12.15, medida: 'KG', desconto: 0.20 },
-  { nome: 'Cuca de Banana',  cod: '0002', valor: 30.00, medida: 'UN', desconto: 0.20 },
-  { nome: 'Broa de Milho',   cod: '0003', valor: 5.00,  medida: 'UN', desconto: 0.10 },
-  { nome: 'Pão de Queijo',   cod: '0004', valor: 18.00, medida: 'KG', desconto: 0.00 },
-  { nome: 'Rosquinha',       cod: '0005', valor: 10.00, medida: 'KG', desconto: 0.15 },
-  { nome: 'Bolo de Cenoura', cod: '0006', valor: 25.00, medida: 'UN', desconto: 0.10 },
-  { nome: 'Pão Integral',    cod: '0007', valor: 14.00, medida: 'KG', desconto: 0.20 },
-  { nome: 'Sonho',           cod: '0008', valor: 8.50,  medida: 'UN', desconto: 0.10 },
-  { nome: 'Pão de Forma',    cod: '0009', valor: 7.00,  medida: 'UN', desconto: 0.05 },
-  { nome: 'Pão de Batata',   cod: '0010', valor: 15.00, medida: 'KG', desconto: 0.00 },
-  // ... complete até 60 produtos seguindo este padrão
-];
+  { nome: 'Pão Francês',    cod: '0001', valor: 12.15, medida: 'KG', fornecedor: 'Panificadora Sul' },
+  { nome: 'Cuca de Banana', cod: '0002', valor: 30.00, medida: 'UN', fornecedor: 'Doces da Serra' },
+  { nome: 'Broa de Milho',  cod: '0003', valor: 5.00,  medida: 'UN', fornecedor: 'Milharal Ltda' },
+  { nome: 'Pão de Queijo',  cod: '0004', valor: 18.00, medida: 'KG', fornecedor: 'Queijos Minas' },
+  { nome: 'Rosquinha',      cod: '0005', valor: 10.00, medida: 'KG', fornecedor: 'Delícias Caseiras' },
+  { nome: 'Bolo de Cenoura',cod: '0006', valor: 25.00, medida: 'UN', fornecedor: 'Bolos da Vó' },
+  { nome: 'Pão Integral',   cod: '0007', valor: 14.00, medida: 'KG', fornecedor: 'Vida Leve' },
+  { nome: 'Sonho',          cod: '0008', valor: 8.50,  medida: 'UN', fornecedor: 'Doce Encanto' },
+  { nome: 'Pão de Forma',   cod: '0009', valor: 7.00,  medida: 'UN', fornecedor: 'Fornos Brasil' },
+  { nome: 'Pão de Batata',  cod: '0010', valor: 15.00, medida: 'KG', fornecedor: 'Panificadora Sul' },
+  { nome: 'Croissant',      cod: '0011', valor: 20.00, medida: 'KG', fornecedor: 'Delícias Francesas' },
+  { nome: 'Brioche',        cod: '0012', valor: 22.00, medida: 'KG', fornecedor: 'Delícias Francesas' },
+  { nome: 'Pão Doce',       cod: '0013', valor: 9.00,  medida: 'UN', fornecedor: 'Padaria Central' },
+  { nome: 'Baguete',        cod: '0014', valor: 13.50, medida: 'KG', fornecedor: 'Padaria Central' },
+  { nome: 'Bolo de Fubá',   cod: '0015', valor: 24.00, medida: 'UN', fornecedor: 'Bolos da Vó' },
+  { nome: 'Pão de Centeio', cod: '0016', valor: 16.00, medida: 'KG', fornecedor: 'Vida Leve' },
+  { nome: 'Enroladinho',    cod: '0017', valor: 5.50,  medida: 'UN', fornecedor: 'Delícias Caseiras' },
+  { nome: 'Biscoito de Polvilho', cod: '0018', valor: 4.00, medida: 'UN', fornecedor: 'Queijos Minas' },
+  { nome: 'Torta de Limão', cod: '0019', valor: 28.00, medida: 'UN', fornecedor: 'Doces da Serra' },
+  { nome: 'Pão Australiano',cod: '0020', valor: 17.00, medida: 'KG', fornecedor: 'Panificadora Sul' },
+  { nome: 'Pão de Alho',    cod: '0021', valor: 12.00, medida: 'UN', fornecedor: 'Fornos Brasil' },
+  { nome: 'Empadão',        cod: '0022', valor: 35.00, medida: 'UN', fornecedor: 'Delícias Caseiras' },
+  { nome: 'Pão Sírio',      cod: '0023', valor: 10.50, medida: 'KG', fornecedor: 'Vida Leve' },
+  { nome: 'Bolo de Chocolate', cod: '0024', valor: 27.00, medida: 'UN', fornecedor: 'Bolos da Vó' },
+  { nome: 'Quiche de Alho Poró', cod: '0025', valor: 32.00, medida: 'UN', fornecedor: 'Doces da Serra' },
+  { nome: 'Torta de Frango', cod: '0026', valor: 29.00, medida: 'UN', fornecedor: 'Delícias Caseiras' },
+  { nome: 'Bolo de Laranja', cod: '0027', valor: 23.00, medida: 'UN', fornecedor: 'Bolos da Vó' },
+  { nome: 'Pão de Leite',   cod: '0028', valor: 11.00, medida: 'KG', fornecedor: 'Panificadora Sul' },
+  { nome: 'Pão Recheado',   cod: '0029', valor: 19.00, medida: 'KG', fornecedor: 'Fornos Brasil' },
+  { nome: 'Focaccia',       cod: '0030', valor: 20.00, medida: 'KG', fornecedor: 'Delícias Francesas' },
+  { nome: 'Bolo Mesclado',  cod: '0031', valor: 26.00, medida: 'UN', fornecedor: 'Bolos da Vó' },
+  { nome: 'Pão Rústico',    cod: '0032', valor: 18.50, medida: 'KG', fornecedor: 'Padaria Central' },
+  { nome: 'Cookie',         cod: '0033', valor: 6.50,  medida: 'UN', fornecedor: 'Doces da Serra' },
+  { nome: 'Brownie',        cod: '0034', valor: 7.50,  medida: 'UN', fornecedor: 'Doces da Serra' },
+  { nome: 'Muffin',         cod: '0035', valor: 8.00,  medida: 'UN', fornecedor: 'Doces da Serra' },
+  { nome: 'Torta Holandesa',cod: '0036', valor: 30.00, medida: 'UN', fornecedor: 'Doces da Serra' },
+  { nome: 'Mini Pão Francês',cod: '0037', valor: 6.00, medida: 'KG', fornecedor: 'Panificadora Sul' },
+  { nome: 'Pão com Calabresa', cod: '0038', valor: 21.00, medida: 'KG', fornecedor: 'Fornos Brasil' },
+  { nome: 'Pão de Abóbora', cod: '0039', valor: 13.00, medida: 'KG', fornecedor: 'Vida Leve' },
+  { nome: 'Bolo de Coco',   cod: '0040', valor: 25.50, medida: 'UN', fornecedor: 'Bolos da Vó' },
+  { nome: 'Biscoito Amanteigado', cod: '0041', valor: 9.00, medida: 'UN', fornecedor: 'Doces da Serra' },
+  { nome: 'Esfiha de Carne', cod: '0042', valor: 5.00, medida: 'UN', fornecedor: 'Delícias Caseiras' },
+  { nome: 'Pizza Broto',    cod: '0043', valor: 18.00, medida: 'UN', fornecedor: 'Fornos Brasil' },
+  { nome: 'Torta de Maçã',  cod: '0044', valor: 28.00, medida: 'UN', fornecedor: 'Doces da Serra' },
+  { nome: 'Pão de Azeitona',cod: '0045', valor: 16.50, medida: 'KG', fornecedor: 'Padaria Central' },
+  { nome: 'Bolo Red Velvet',cod: '0046', valor: 35.00, medida: 'UN', fornecedor: 'Bolos da Vó' },
+  { nome: 'Bolo de Amendoim',cod: '0047', valor: 27.50, medida: 'UN', fornecedor: 'Bolos da Vó' },
+  { nome: 'Croissant de Chocolate', cod: '0048', valor: 22.00, medida: 'KG', fornecedor: 'Delícias Francesas' },
+  { nome: 'Torta de Morango', cod: '0049', valor: 31.00, medida: 'UN', fornecedor: 'Doces da Serra' },
+  { nome: 'Pão de Ervas',   cod: '0050', valor: 15.00, medida: 'KG', fornecedor: 'Vida Leve' },
+  { nome: 'Rosca Doce',     cod: '0051', valor: 11.50, medida: 'KG', fornecedor: 'Padaria Central' },
+  { nome: 'Torrada Temperada', cod: '0052', valor: 9.50, medida: 'KG', fornecedor: 'Vida Leve' },
+  { nome: 'Bolo Formigueiro', cod: '0053', valor: 24.00, medida: 'UN', fornecedor: 'Bolos da Vó' },
+  { nome: 'Bolo Inglês',    cod: '0054', valor: 25.00, medida: 'UN', fornecedor: 'Bolos da Vó' },
+  { nome: 'Biscoito Integral', cod: '0055', valor: 8.00, medida: 'UN', fornecedor: 'Vida Leve' },
+  { nome: 'Pão Multigrãos', cod: '0056', valor: 17.00, medida: 'KG', fornecedor: 'Vida Leve' },
+  { nome: 'Bolo de Maracujá', cod: '0057', valor: 26.00, medida: 'UN', fornecedor: 'Bolos da Vó' },
+  { nome: 'Bolo de Limão',  cod: '0058', valor: 23.50, medida: 'UN', fornecedor: 'Bolos da Vó' },
+  { nome: 'Cuca de Uva',    cod: '0059', valor: 30.00, medida: 'UN', fornecedor: 'Doces da Serra' },
+  { nome: 'Biscoito de Gengibre', cod: '0060', valor: 7.50, medida: 'UN', fornecedor: 'Doces da Serra' }
+]; 
 
-// Normalize nomes para facilitar busca (remove acentos)
-produtos.forEach(p => {
-  p.nomeNorm = p.nome
-    .normalize('NFD')
-    .replace(/\p{Diacritic}/gu, '')
-    .toLowerCase();
-  p.codNorm = p.cod.toLowerCase();
-});
 
-// Comandas salvas no localStorage
-let comandas = JSON.parse(localStorage.getItem(STORAGE_COMANDAS)) || [];
+// Lista de produtos já existe no seu arquivo como "produtos"
+let listaComandas = JSON.parse(localStorage.getItem("comandas")) || [];
+let itensAtuais = [];
 
-window.addEventListener('DOMContentLoaded', () => {
-  const inputProduto = document.getElementById('produto');
-  const inputQtde    = document.getElementById('qtde');
-  const inputMed     = document.getElementById('med');
-  const btnMinus     = document.querySelector('.botaoME');
-  const btnPlus      = document.querySelector('.botaoMA');
-  const btnAdd       = document.querySelector('.botaoADD');
-  const btnGerar     = document.getElementById('btnGerarComanda');
-  const tbody        = document.querySelector('table tbody');
-  const totalEl      = document.getElementById('total-geral');
+document.querySelector(".botaoADD").addEventListener("click", () => {
+  const entrada = document.getElementById("produto").value.trim().toLowerCase();
+  const qtde = parseFloat(document.getElementById("qtde").value);
+  const medidaInput = document.getElementById("med").value.trim();
 
-  function atualizarTotal() {
-    const soma = Array.from(tbody.children)
-      .reduce((acc, tr) => acc + parseFloat(tr.dataset.subtotal || 0), 0);
-    totalEl.textContent = `R$${soma.toFixed(2).replace('.', ',')}`;
+  if (!entrada || isNaN(qtde) || qtde <= 0) {
+    alert("Preencha os campos corretamente.");
+    return;
   }
 
-  btnMinus.addEventListener('click', () => {
-    let v = parseFloat(inputQtde.value) || 0;
-    if (v > 0) inputQtde.value = (v - 1).toString();
-  });
-  btnPlus.addEventListener('click', () => {
-    let v = parseFloat(inputQtde.value) || 0;
-    inputQtde.value = (v + 1).toString();
-  });
+  // Tentar encontrar por nome ou código
+  const produto = produtos.find(p =>
+  p.nome.toLowerCase().includes(entrada) || p.cod.includes(entrada)
+);
 
-  function criarLinha(prod, qtde, med) {
-    const subtotal = prod.valor * qtde - prod.desconto;
-    const tr = document.createElement('tr');
-    tr.dataset.subtotal = subtotal.toFixed(2);
-    tr.innerHTML = `
-      <td>${prod.nome}</td>
-      <td>${prod.cod}</td>
-      <td>${qtde.toLocaleString('pt-BR')}</td>
-      <td>${prod.valor.toFixed(2).replace('.', ',')}</td>
-      <td>${med || prod.medida}</td>
-      <td>${prod.desconto.toFixed(2).replace('.', ',')}</td>
-      <td>R$${subtotal.toFixed(2).replace('.', ',')}</td>
-      <td>
-        <button class="editar">✏️</button>
-        <button class="excluir">🗑️</button>
-      </td>
+
+  if (!produto) {
+    alert("Produto não encontrado.");
+    return;
+  }
+
+  const medida = medidaInput || produto.medida;
+  const total = (produto.valor * qtde).toFixed(2);
+
+  const item = {
+    nome: produto.nome,
+    cod: produto.cod,
+    qtde,
+    medida,
+    valorUnitario: produto.valor,
+    total
+  };
+
+  itensAtuais.push(item);
+  atualizarTabela();
+  limparCampos();
+});
+
+function atualizarTabela() {
+  const tbody = document.querySelector("tbody");
+  tbody.innerHTML = "";
+  let totalGeral = 0;
+
+  itensAtuais.forEach((item, index) => {
+    totalGeral += parseFloat(item.total);
+    const linha = `
+      <tr>
+        <td>${item.nome}</td>
+        <td>${item.cod}</td>
+        <td>${item.qtde}</td>
+        <td>R$${item.valorUnitario.toFixed(2)}</td>
+        <td>${item.medida}</td>
+        <td>R$0,00</td>
+        <td>R$${parseFloat(item.total).toFixed(2)}</td>
+        <td><button onclick="removerItem(${index})">🗑️</button></td>
+      </tr>
     `;
-    tbody.appendChild(tr);
-    atualizarTotal();
+    tbody.innerHTML += linha;
+  });
+
+  document.getElementById("total-geral").textContent = `R$${totalGeral.toFixed(2)}`;
+}
+
+function removerItem(index) {
+  itensAtuais.splice(index, 1);
+  atualizarTabela();
+}
+
+function limparCampos() {
+  document.getElementById("produto").value = "";
+  document.getElementById("qtde").value = "";
+  document.getElementById("med").value = "";
+}
+
+document.getElementById("btnGerarComanda").addEventListener("click", () => {
+  if (itensAtuais.length === 0) {
+    alert("Adicione itens à comanda primeiro.");
+    return;
   }
 
-  btnAdd.addEventListener('click', () => {
-    let termo = inputProduto.value.trim();
-    termo = termo
-      .normalize('NFD')
-      .replace(/\p{Diacritic}/gu, '')
-      .toLowerCase();
-    const qtde = parseFloat(inputQtde.value.replace(',', '.'));
-    const med  = inputMed.value.trim().toUpperCase();
+  const novaComanda = {
+    id: Date.now(),
+    data: new Date().toLocaleString(),
+    itens: itensAtuais,
+    total: itensAtuais.reduce((acc, item) => acc + parseFloat(item.total), 0).toFixed(2)
+  };
 
-    if (!termo || isNaN(qtde) || qtde <= 0) {
-      return alert('Informe produto válido e quantidade maior que zero!');
-    }
+  listaComandas.push(novaComanda);
+  localStorage.setItem("comandas", JSON.stringify(listaComandas));
+  alert("Comanda gerada com sucesso!");
 
-    // Permitir busca por parte do código ou completo
-    const prod = produtos.find(p =>
-      p.nomeNorm.includes(termo) || p.codNorm.includes(termo)
-    );
-    if (!prod) {
-      return alert('Produto não encontrado!');
-    }
-
-    criarLinha(prod, qtde, med);
-    inputProduto.value = '';
-    inputQtde.value    = '';
-    inputMed.value     = '';
-  });
-
-  tbody.addEventListener('click', e => {
-    const tr = e.target.closest('tr'); if (!tr) return;
-    if (e.target.classList.contains('excluir')) {
-      tr.remove(); atualizarTotal(); return;
-    }
-    if (e.target.classList.contains('editar')) {
-      const [tdNome, tdCod, tdQtde, , tdMed] = tr.querySelectorAll('td');
-      inputProduto.value = tdNome.textContent;
-      inputQtde.value    = tdQtde.textContent.replace(',', '.');
-      inputMed.value     = tdMed.textContent;
-      tr.remove(); atualizarTotal();
-    }
-  });
-
-  btnGerar.addEventListener('click', () => {
-    const itens = Array.from(tbody.children).map(tr => {
-      const [tn, tc, tq, tv, tm, td] = tr.querySelectorAll('td');
-      return {
-        nome:      tn.textContent,
-        cod:       tc.textContent,
-        qtde:      parseFloat(tq.textContent.replace(',', '.')),
-        valorUni:  parseFloat(tv.textContent.replace(',', '.')),
-        medida:    tm.textContent,
-        desconto:  parseFloat(td.textContent.replace(',', '.')),
-        total:     parseFloat(tr.dataset.subtotal)
-      };
-    });
-    if (itens.length === 0) return alert('Adicione ao menos um item!');
-    const comanda = {
-      id:    Date.now(),
-      data:  new Date().toISOString(),
-      itens,
-      total: itens.reduce((sum, i) => sum + i.total, 0)
-    };
-    comandas.push(comanda);
-    localStorage.setItem(STORAGE_COMANDAS, JSON.stringify(comandas));
-    tbody.innerHTML = '';
-    atualizarTotal();
-    alert('Comanda gerada e salva!');
-  });
-
-  atualizarTotal();
+  itensAtuais = [];
+  atualizarTabela();
 });
+

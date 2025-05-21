@@ -140,10 +140,16 @@ header h1 span.caixa {
   padding: 1000px;
   height: 40px;
 }
+.botaoGERAR {
+  background-color: #f3a852;
+  padding: 1000px;
+  height: 40px;
+}
 
 .botaoME:hover,
 .botaoMA:hover,
-.botaoADD:hover {
+.botaoADD:hover,
+.botaoGERAR:hover {
   filter: brightness(1.1);
 }
 .material-symbols-outlined{

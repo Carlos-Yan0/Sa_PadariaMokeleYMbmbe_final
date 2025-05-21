@@ -6,18 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestão de Usuário</title>
 
-    <link rel="stylesheet" href="../css/config_usuario.css">
     <link rel="stylesheet" href="../css/menu.css">
+    <link rel="stylesheet" href="../css/padrao.css">
+    <link rel="stylesheet" href="../css/tabelas.css">
+    <link rel="stylesheet" href="../css/popups.css">
+    <link rel="stylesheet" href="../css/config_usuario.css">
 
-    <script src="../js/js_usuario.js" defer></script>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+    
     <link rel="icon" href="../img/icon.png" type="image/png">
     <script src="../js/acesso-paginas.js" defer></script>
+    <script src="../js/usuario.js" defer></script>
 
 </head>
 
@@ -107,11 +110,14 @@
 
 
     <main>
-        <div class="titulo-de-pagina">
-            <h1>Gestão de Usuário</h1>
+        <header class="titulo-de-pagina">
+            <h1>Estoque</h1>
+        </header>
+
+        <div id="campoTabela">
+            <button class="export">Exportar</button>
             <button class="add" onclick="abrir_popup()">Cadastrar Usuário</button>
         </div>
-        <hr>
 
         <div class="tabela-container">
             <table id="tabelaUsuarios">
@@ -128,27 +134,43 @@
                 <tbody></tbody>
             </table>
         </div>
-        <div id="popup_usuario" style="display: none;">
+        <div id="backdrop-popup"></div>
+        <div class="popup" id="popup_usuario" style="display: none;">
             <form id="formUsuario">
-                <input type="text" name="nomeForm" placeholder="Nome do usuario" id="nomeForm">
-                <input type="text" name="cpfForm" placeholder="CPF" id="cpfForm">
-                <input type="email" name="emailForm" placeholder="Email" id="emailForm">
-                <input type="text" name="telefoneForm" placeholder="Telefone" id="telefoneForm">
-                <input type="text" name="senhaForm" placeholder="Senha" id="senhaForm">
-                <input type="text" name="salarioForm" placeholder="Salario" id="salarioForm">
-                <select name="curintia" id="curintiaCARgo">
-                    <option value="Gerente">Gerente</option>
-                    <option value="Controlador de estoque">Controlador de Estoque</option>
-                    <option value="Analista de vendas">Analista de vendas</option>
-                    <option value="Caixa">Caixa</option>
-                </select>
-                <button type="button" onclick="criar_usuario(event)">Salvar usuario</button>
+            <label for="nomeForm">Nome do Usuário:</label>
+            <input type="text" name="nomeForm" id="nomeForm" placeholder="Nome do Usuário" required>
+
+            <label for="cpfForm">CPF:</label>
+            <input type="text" name="cpfForm" id="cpfForm" placeholder="CPF" required>
+
+            <label for="emailForm">E-mail:</label>
+            <input type="email" name="emailForm" id="emailForm" placeholder="E-mail" required>
+
+            <label for="telefoneForm">Telefone:</label>
+            <input type="text" name="telefoneForm" id="telefoneForm" placeholder="Telefone" required>
+
+            <label for="senhaForm">Senha:</label>
+            <input type="password" name="senhaForm" id="senhaForm" placeholder="Senha" required>
+
+            <label for="salarioForm">Salário:</label>
+            <input type="number" name="salarioForm" id="salarioForm" placeholder="Salário" required min="0" step="0.01">
+
+            <label for="cargo">Cargo:</label>
+            <select name="cargo" id="cargo" required>
+                <option value="Gerente">Gerente</option>
+                <option value="Controlador de estoque">Controlador de Estoque</option>
+                <option value="Analista de vendas">Analista de Vendas</option>
+                <option value="Caixa">Caixa</option>
+            </select>
+
+            <div class="botoes-popup">
+                <button type="reset" onclick="fechar_popup()">Cancelar</button>
+                <button type="button" onclick="criar_usuario(event)">Salvar Usuário</button>
+            </div>
             </form>
-            <button type="button" onclick="fechar_popup()">Fechar</button>
         </div>
 
 
-        <button class="export">Exportar</button>
     </main>
 
     <footer id="footer-principal">
@@ -159,7 +181,7 @@
     <script>
         const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
         if (usuarioLogado) {
-          document.getElementById('nomeUsuarioFooter').textContent = usuarioLogado.nome;
+            document.getElementById('nomeUsuarioFooter').textContent = usuarioLogado.nome;
         }
     </script>
 </body>

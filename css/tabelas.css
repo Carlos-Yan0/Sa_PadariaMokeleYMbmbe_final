@@ -1,0 +1,66 @@
+/* Variáveis de cor para fácil manutenção */
+:root {
+    --cor-primaria: #f3a853;
+    --cor-tabela-bg: #fff8f0;
+    --cor-tabela-linha-hover: #ffe7c1;
+    --cor-tabela-borda: #f3a85333;
+}
+
+/* Tabela de estoque */
+.tabela-container {
+    overflow: auto;
+    padding: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 12px 10px;
+    text-align: center;
+}
+
+table th {
+    background-color: var(--cor-primaria);
+    color: white;
+    font-weight: bold;
+}
+
+table tbody tr {
+    color: #101010;
+    border-bottom: 1px solid var(--cor-tabela-borda);
+    transition: 0.2s;
+}
+
+table tbody tr:hover {
+    background: var(--cor-tabela-linha-hover);
+}
+
+/* Responsividade específica para tabelas */
+@media screen and (max-width: 900px) {
+    .tabela-container {
+        padding: 6px;
+    }
+    table th, table td {
+        padding: 8px 4px;
+        font-size: 0.98em;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    table th, table td {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .tabela-container {
+        padding: 2px;
+    }
+    table th, table td {
+        padding: 5px 2px;
+        font-size: 0.9em;
+    }
+}

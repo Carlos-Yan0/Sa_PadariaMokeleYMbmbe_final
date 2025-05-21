@@ -1,3 +1,5 @@
+let linhaEditando = null;
+
 // Adicionando o evento de clique ao botão
 document.getElementById('adicionar-produto').addEventListener('click', function (event) {
   event.preventDefault(); // Impede o envio do formulário
@@ -19,8 +21,34 @@ document.getElementById('adicionar-produto').addEventListener('click', function 
     return; // Interrompe a execução se algum campo estiver vazio
   }
 
-  // Adiciona a nova linha na tabela
-  novalinha();
+  // Se estiver editando uma linha, atualiza a linha da tabela com os novos dados do formulário
+
+  if (linhaEditando) {
+    // Atualiza os valores da linha com os novos dados do formulário
+    linhaEditando.cells[1].innerHTML = valores.nome_prod;
+    linhaEditando.cells[2].innerHTML = valores.categoria;
+    linhaEditando.cells[3].innerHTML = valores.medida;
+    linhaEditando.cells[4].innerHTML = valores.val_uni;
+    linhaEditando.cells[5].innerHTML = valores.qtde_prod;
+    linhaEditando.cells[7].innerHTML = valores.qtde_min;
+    linhaEditando.cells[8].innerHTML = valores.validade;
+
+    // Recalcula o valor do inventário e atualiza a célula correspondente
+    const valorInventario = (parseFloat(valores.qtde_prod) * parseFloat(valores.val_uni)).toFixed(2);
+    linhaEditando.cells[6].innerHTML = valorInventario;
+
+    // Atualiza o status baseado na quantidade mínima
+    const status = parseInt(valores.qtde_prod) < parseInt(valores.qtde_min) ? 'Abaixo do mínimo' : 'OK';
+    linhaEditando.cells[9].innerHTML = status;
+
+    // Reseta a variável de edição e o texto do botão
+    linhaEditando = null;
+    document.getElementById("adicionar-produto").innerText = "Adicionar";
+  } else {// se não estiver em modo de edição, adiciona uma nova linha
+
+    // Adiciona a nova linha na tabela
+    novalinha();
+  }
 });
 
 function capturarValores() {
@@ -73,7 +101,7 @@ function criarLinhaTabela(tabela, valores, novoId) {
 
   // Adiciona os botões de ação
   celulaAcoes.innerHTML = `
-    <button class="edit-btn" onclick="mostrarPopupEditar(this)">
+    <button class="edit-btn" onclick="editarLinha(this)">
       <span class="material-symbols-outlined">edit</span>
     </button>
     <button class="delete-btn" onclick="mostrarPopupRemover(this)">
@@ -88,7 +116,7 @@ function novalinha() {
   const valores = capturarValores();
 
   // Pega a tabela e a última linha
-  const tabela = document.getElementById('tabelaEstoque').getElementsByTagName('tbody')[0];
+  const tabela = document.getElementById('tabelaEstoque');
   const ultimaLinha = tabela.rows[tabela.rows.length - 1];
 
   // Pega o ID da última linha e incrementa para gerar o novo ID
@@ -97,4 +125,24 @@ function novalinha() {
 
   // Cria uma nova linha com o ID incrementado
   criarLinhaTabela(tabela, valores, novoId);
+}
+
+function editarLinha(botao) {
+  mostrarPopupAdicionar();
+  // o botao é o primeiro filho do td, então pegamos o parentNode duas vezes
+  // para pegar o tr
+  linhaEditando = botao.parentNode.parentNode;
+
+  // pega o valor das celulas da linha
+  // e coloca no formulário
+  document.getElementById("nome-produto").value = linhaEditando.cells[1].innerText;
+  document.getElementById("categoria").value = linhaEditando.cells[2].innerText;
+  document.getElementById("medida").value = linhaEditando.cells[3].innerText;
+  document.getElementById("valor-unitario-produto").value = linhaEditando.cells[4].innerText;
+  document.getElementById("quantidade-produto").value = linhaEditando.cells[5].innerText;
+  document.getElementById("quantidade-minima").value = linhaEditando.cells[7].innerText;
+  document.getElementById("validade").value = linhaEditando.cells[8].innerText;
+
+  // muda o texto do botão de adicionar para salvar
+  document.getElementById("adicionar-produto").innerText = "Salvar";
 }

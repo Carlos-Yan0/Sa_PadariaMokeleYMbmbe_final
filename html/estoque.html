@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="../css/menu.css">
     <link rel="stylesheet" href="../css/padrao.css">
+    <link rel="stylesheet" href="../css/tabelas .css">
     <link rel="stylesheet" href="../css/popups.css">
     <link rel="stylesheet" href="../css/estoque.css">
 
@@ -17,7 +18,6 @@
 
     <script src="../js/add-estoque-popup.js"></script>
     <script src="../js/remove-estoque-popup.js"></script>
-    <script src="../js/edit-estoque-popup.js"></script>
     <script src="../js/acesso-paginas.js" defer></script>
 
     <link rel="icon" href="../img/icon.png" type="image/png">
@@ -150,7 +150,7 @@
                         <td>2025-12-31</td>
                         <td><span class="status-ok">OK</span></td>
                         <td>
-                            <button class="edit-btn" onclick="mostrarPopupEditar(this)">
+                            <button class="edit-btn" onclick="editarLinha(this)">
                                 <span class="material-symbols-outlined">edit</span>
                             </button>
                             <button class="delete-btn" onclick="mostrarPopupRemover(this)">
@@ -170,7 +170,7 @@
                         <td>2025-11-30</td>
                         <td><span class="status-atencao">Atenção</span></td>
                         <td>
-                            <button class="edit-btn" onclick="mostrarPopupEditar(this)">
+                            <button class="edit-btn" onclick="editarLinha(this)">
                                 <span class="material-symbols-outlined">edit</span>
                             </button>
                             <button class="delete-btn" onclick="mostrarPopupRemover(this)">
@@ -190,7 +190,7 @@
                         <td>2025-10-15</td>
                         <td><span class="status-baixo">Baixo</span></td>
                         <td>
-                            <button class="edit-btn" onclick="mostrarPopupEditar(this)">
+                            <button class="edit-btn" onclick="editarLinha(this)">
                                 <span class="material-symbols-outlined">edit</span>
                             </button>
                             <button class="delete-btn" onclick="mostrarPopupRemover(this)">
@@ -264,51 +264,17 @@
             </div>
         </form>
     </div>
-    <div class="popup" id="popup-editar">
-        <form action="#" id="form-editar-editar">
-            <label for="nome-produto-editar">Nome do Produto:</label>
-            <input type="text" id="nome-produto-editar" placeholder="Nome" required>
 
-            <label for="categoria-editar">Categoria:</label>
-            <select id="categoria-editar" required>
-            <option value="Insumo">Insumo</option>
-            <option value="Produto">Produto</option>
-            </select>
-            <label for="medida-editar">Unidade de Medida:</label>
-            <select id="medida-editar" required>
-            <option value="UN">UN</option>
-            <option value="Kg">Kg</option>
-            <option value="L">L</option>
-            </select>
-            <label for="valor-unitario-produto-editar">Valor Unitário do Produto:</label>
-            <input type="number" id="valor-unitario-produto-editar" placeholder="Valor Unitário do Produto" required min="0"
-            step="0.01" class="sem-spinners">
-
-            <label for="quantidade-produto-editar">Quantidade do Produto:</label>
-            <input type="number" id="quantidade-produto-editar" placeholder="Quantidade do Produto" required min="0"
-            class="sem-spinners">
-
-            <label for="quantidade-minima-editar">Quantidade Mínima:</label>
-            <input type="number" id="quantidade-minima-editar" placeholder="Quantidade Mínima" required min="0"
-            class="sem-spinners">
-            <label for="validade-editar">Validade</label>
-            <input type="date" id="validade-editar" required title="Escolha uma data e hora">
-            <div class="botoes-popup">
-            <button type="reset" id="cancelar-editar" onclick="fecharEditar()">Cancelar</button>
-            <button type="button" id="editar-produto" onclick="">Salvar</button>
-            </div>
-        </form>
-    </div>
     <script src="../js/estoque.js"></script>
     <footer id="footer-principal">
         <span class="footer-esquerdo">Usuário: <span id="nomeUsuarioFooter"></span></span>
         <span class="footer-direito">Copyright 2025-2025</span>
     </footer>
-    
+
     <script>
         const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
         if (usuarioLogado) {
-          document.getElementById('nomeUsuarioFooter').textContent = usuarioLogado.nome;
+            document.getElementById('nomeUsuarioFooter').textContent = usuarioLogado.nome;
         }
     </script>
 </body>

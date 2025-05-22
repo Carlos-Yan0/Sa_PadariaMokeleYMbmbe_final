@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const tbody = document.querySelector("table tbody");
     const spanTotal = document.querySelector(".valor-total");
-    const spanDesconto = document.querySelector(".valor-desconto");
 
     const itens = [];
     const PRECO_UNIT = parseFloat(gerarPrecoAleatorio());

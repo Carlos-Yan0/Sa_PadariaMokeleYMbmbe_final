@@ -5,9 +5,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sistema de Vendas</title>
-  <link rel="stylesheet" href="../css/pdv.css">
-  <link rel="stylesheet" href="../css/pdv-popup.css">
+
   <link rel="stylesheet" href="../css/menu.css">
+  <link rel="stylesheet" href="../css/pdv-popup.css">
+  <link rel="stylesheet" href="../css/popups.css">
+  <link rel="stylesheet" href="../css/pdv.css">
   <!-- <script src="../js/menu.js"></script> -->
   <script src="../js/pdv.js" defer></script>
   <script src="../js/pdv-popup.js"></script>
@@ -102,7 +104,7 @@
       </li>
     </ul>
   </nav>
-  <!-- <div id="menu"></div> -->
+  
   <main>
     <h1>Produtos</h1>
     <hr>
@@ -137,6 +139,7 @@
 
     </table>
   </main>
+
   <main class="main-total">
     <header>
       <h1>Sistema de Vendas</h1>
@@ -155,15 +158,10 @@
       </div>
       <div class="botoes-venda">
         <button class="botao-cancelar">Cancelar</button>
-        <button class="botao-finalizar">Finalizar Venda</button>
+        <button class="botao-finalizar" onclick="finalizarVenda()">Finalizar Venda</button>
       </div>
     </footer>
   </main>
-
-  <footer id="footer-principal">
-    <span class="footer-esquerdo">Usuário: João Mbembe Gerente</span>
-    <span class="footer-direito">Copyright 2025-2025</span>
-  </footer>
 
   <!-- PopUp de Editar -->
   <div id="backdrop-popup" style="display: none;"></div>
@@ -190,6 +188,87 @@
       <button type="submit" id="adicionar-produto">Editar</button>
     </form>
   </div>
+
+  <!-- Popup para confirmar o método de pagamento -->
+
+  <div class="popup" id="popup-met-pag" style="display: none;">
+    <h2>Escolha o Método de Pagamento</h2>
+    <div class="popup-actions">
+      <button type="button" id="btn-debito">Cartão de Débito</button>
+      <button type="button" id="btn-credito">Cartão de Crédito</button>
+      <button type="button" id="btn-dinheiro">Dinheiro</button>
+      <button type="button" id="btn-cheque">Cheque</button>
+    </div>
+    <div class="botoes-popup" style="margin-top: 20px;">
+      <button type="button" id="cancelar-finalizar" class="cancel">Cancelar</button>
+    </div>
+  </div>
+
+  <!-- Popups para cada método -->
+
+  <div class="popup" id="popup-credito" style="display: none;">
+    <h1>Cartão de Crédito</h1>
+    <form action="#">
+      <label for="bandeira-cartao">Bandeira do Cartão:</label>
+      <select id="bandeira-cartao" required>
+        <option value="Visa">Visa</option>
+        <option value="Mastercard">Mastercard</option>
+        <option value="Elo">Elo</option>
+        <option value="American Express">American Express</option>
+      </select>
+
+      <label for="valor-cartao">Valor do Cartão:</label>
+      <input type="number" id="valor-cartao" placeholder="Valor do Cartão" required min="0" step="0.01"
+        class="sem-spinners">
+
+      <button type="reset" id="cancelar-credito">Cancelar</button>
+      <button type="submit" id="confirmar_pagamento">Confirmar</button>
+  </div>
+
+  <div class="popup" id="popup-debito" style="display: none;">
+    <h1>Cartão de Débito</h1>
+    <form action="#">
+      <label for="bandeira-cartao">Bandeira do Cartão:</label>
+      <select id="bandeira-cartao" required>
+        <option value="Visa">Visa</option>
+        <option value="Mastercard">Mastercard</option>
+        <option value="Elo">Elo</option>
+        <option value="American Express">American Express</option>
+      </select>
+
+      <label for="valor-cartao">Valor do Cartão:</label>
+      <input type="number" id="valor-cartao" placeholder="Valor do Cartão" required min="0" step="0.01"
+        class="sem-spinners">
+
+      <button type="reset" id="cancelar-debito">Cancelar</button>
+      <button type="submit" id="confirmar_pagamento">Confirmar</button>
+    </form>
+  </div>
+
+  <div class="popup" id="popup-dinheiro" style="display: none;">
+    <h1>Dinheiro</h1>
+    <form action="#">
+      <label for="valor-dinheiro">Valor em Dinheiro:</label>
+      <input type="number" id="valor-dinheiro" placeholder="Valor em Dinheiro" required min="0" step="0.01"
+        class="sem-spinners">
+
+      <button type="reset" id="cancelar-dinheiro">Cancelar</button>
+      <button type="submit" id="confirmar_pagamento">Confirmar</button>
+    </form>
+  </div>
+
+  <div class="popup" id="popup-cheque" style="display: none;">
+    <h1>Cheque</h1>
+    <form action="#">
+      <label for="valor-cheque">Valor do Cheque:</label>
+      <input type="number" id="valor-cheque" placeholder="Valor do Cheque" required min="0" step="0.01"
+        class="sem-spinners">
+
+      <button type="reset" id="cancelar-cheque">Cancelar</button>
+      <button type="submit" id="confirmar_pagamento">Confirmar</button>
+    </form>
+
+  <script src="../js/finalizar_venda.js"></script>
 
   <footer id="footer-principal">
     <span class="footer-esquerdo">Usuário: <span id="nomeUsuarioFooter"></span></span>

@@ -110,27 +110,27 @@ header h1 span.caixa {
   font-weight: bold;
   cursor: pointer;
 }
-.botaoME {
+#btn-menos {
   background-color: #fc5050;
   width: 40px;
   height: 40px;
   font-size: 20px;
-  border-radius: 50%;
+  border-radius: 30%;
   text-align: center;
 }
-.botaoMA {
+#btn-mais {
   background-color: #4a9a2e;
   width: 40px;
   height: 40px;
   font-size: 20px;
-  border-radius: 50%;
+  border-radius: 30%;
   padding: 0 auto;
   transition: 0.9s;
 }
 
-.botaoADD {
+#botao-add {
   background-color: #f3a852;
-  padding: 1000px;
+  padding: 10px;
   height: 40px;
 }
 form{
@@ -279,10 +279,6 @@ footer.rodape-venda {
   padding: 10px 20px;
   font-size: 0.9rem;
   z-index: 10;
-}
-
-body > footer .footer-esquerdo, footer .footer-direito {
-  margin-left: 4.5%;
 }
 
 #popup-add {

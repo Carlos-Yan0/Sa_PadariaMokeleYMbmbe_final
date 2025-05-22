@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="../css/pdv-popup.css">
   <link rel="stylesheet" href="../css/menu.css">
   <!-- <script src="../js/menu.js"></script> -->
-  <script src="../js/pdv.js"></script>
+  <script src="../js/pdv.js" defer></script>
   <script src="../js/pdv-popup.js"></script>
   <script src="../js/acesso-paginas.js"></script>
 
@@ -112,9 +112,9 @@
         <input type="text" id="produto" placeholder="Nome, Cód ou Comanda" />
         <label for="qtde" style="margin-left: 15px;">Quantidade:</label>
         <input type="text" id="qtde" placeholder="Quantidade" />
-        <button class="botaoME">-</button>
-        <button class="botaoMA">+</button>
-        <button type="button" id="botao-add" onclick="mostrarAlert(document.getElementById('produto'), document.getElementById('qtde'))">Adicionar</button>
+        <button type="button" id="btn-menos">-</button>
+        <button type="button" id="btn-mais">+</button>
+        <button type="button" id="botao-add" onclick="mostrarAlert(produto, qtde)">Adicionar</button>
         <!-- Alterado para type="button" -->
       </form>
     </div>
@@ -142,7 +142,7 @@
       <h1>Sistema de Vendas</h1>
       <h1>
         <div class="info-total">
-          <span class="data"><span>Data: 22/04/25 - 19:04</span><br><!--Usaremos JS pra a data ser atual-->
+          <span class="data"><span>Data: --/--/-- - --:--</span><br>
             <span class="atend">Atendente: Josias</span><br>
             <span class="caixa">Caixa: 0-00001</span><br>
             <img src="../img/icon.png" alt="Logo Da Padaria Mokele y Mbembe" class="img">

@@ -133,7 +133,7 @@
           <th>Ações</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="tabela-corpo">
         <!-- JS faz essa parte aqui -->
       </tbody>
 
@@ -146,9 +146,9 @@
       <h1>
         <div class="info-total">
           <span class="data"><span>Data: --/--/-- - --:--</span><br>
-            <span class="atend">Atendente: Josias</span><br>
-            <span class="caixa">Caixa: 0-00001</span><br>
-            <img src="../img/icon.png" alt="Logo Da Padaria Mokele y Mbembe" class="img">
+          <span class="atend">Atendente: Josias</span><br>
+          <span class="caixa">Caixa: 0-00001</span><br>
+          <img src="../img/icon.png" alt="Logo Da Padaria Mokele y Mbembe" class="img">
         </div>
       </h1>
     </header>
@@ -157,7 +157,7 @@
         <p>Total: <span class="valor-total">R$00,00</span></p>
       </div>
       <div class="botoes-venda">
-        <button class="botao-cancelar">Cancelar</button>
+        <button class="botao-cancelar" onclick="limparVenda()">Cancelar</button>
         <button class="botao-finalizar" onclick="finalizarVenda()">Finalizar Venda</button>
       </div>
     </footer>
@@ -198,8 +198,6 @@
       <button type="button" id="btn-credito">Cartão de Crédito</button>
       <button type="button" id="btn-dinheiro">Dinheiro</button>
       <button type="button" id="btn-cheque">Cheque</button>
-    </div>
-    <div class="botoes-popup" style="margin-top: 20px;">
       <button type="button" id="cancelar-finalizar" class="cancel">Cancelar</button>
     </div>
   </div>
@@ -216,13 +214,12 @@
         <option value="Elo">Elo</option>
         <option value="American Express">American Express</option>
       </select>
-
-      <label for="valor-cartao">Valor do Cartão:</label>
-      <input type="number" id="valor-cartao" placeholder="Valor do Cartão" required min="0" step="0.01"
+      <label for="valor-cartao-credito">Valor do Cartão:</label>
+      <input type="number" id="valor-cartao-credito" placeholder="Valor do Cartão" required min="0" step="0.01"
         class="sem-spinners">
-
       <button type="reset" id="cancelar-credito">Cancelar</button>
-      <button type="submit" id="confirmar_pagamento">Confirmar</button>
+      <button type="submit" id="confirmar_pagamento_credito">Confirmar</button>
+    </form>
   </div>
 
   <div class="popup" id="popup-debito" style="display: none;">
@@ -235,13 +232,11 @@
         <option value="Elo">Elo</option>
         <option value="American Express">American Express</option>
       </select>
-
-      <label for="valor-cartao">Valor do Cartão:</label>
-      <input type="number" id="valor-cartao" placeholder="Valor do Cartão" required min="0" step="0.01"
+      <label for="valor-cartao-debito">Valor do Cartão:</label>
+      <input type="number" id="valor-cartao-debito" placeholder="Valor do Cartão" required min="0" step="0.01"
         class="sem-spinners">
-
       <button type="reset" id="cancelar-debito">Cancelar</button>
-      <button type="submit" id="confirmar_pagamento">Confirmar</button>
+      <button type="submit" id="confirmar_pagamento_debito">Confirmar</button>
     </form>
   </div>
 
@@ -251,9 +246,8 @@
       <label for="valor-dinheiro">Valor em Dinheiro:</label>
       <input type="number" id="valor-dinheiro" placeholder="Valor em Dinheiro" required min="0" step="0.01"
         class="sem-spinners">
-
       <button type="reset" id="cancelar-dinheiro">Cancelar</button>
-      <button type="submit" id="confirmar_pagamento">Confirmar</button>
+      <button type="submit" id="confirmar_pagamento_dinheiro">Confirmar</button>
     </form>
   </div>
 
@@ -263,10 +257,26 @@
       <label for="valor-cheque">Valor do Cheque:</label>
       <input type="number" id="valor-cheque" placeholder="Valor do Cheque" required min="0" step="0.01"
         class="sem-spinners">
-
       <button type="reset" id="cancelar-cheque">Cancelar</button>
-      <button type="submit" id="confirmar_pagamento">Confirmar</button>
+      <button type="submit" id="confirmar_pagamento_cheque">Confirmar</button>
     </form>
+  </div>
+
+  <div id="venda-info" class="popup" style="display: none;">
+    <div class="header">
+      <h1>Venda Finalizada</h1>
+      <button type="button" id="fechar-popup">Fechar</button>
+    </div>
+    <p><strong>Data/Hora:</strong> <span id="data-venda"></span></p>
+    <p><strong>Atendente:</strong> <span id="atendente-venda"></span></p>
+    <p><strong>Caixa:</strong> <span id="caixa-venda"></span></p>
+    <p><strong>ID da Venda:</strong> <span id="id-venda"></span></p>
+    <p><strong>Método de Pagamento:</strong> <span id="metodo-pagamento"></span></p>
+    <p><strong>Subtotal:</strong> R$<span id="subtotal-venda"></span></p>
+    <p><strong>Troco:</strong> R$<span id="troco-venda"></span></p>
+    <p><strong>Descontos:</strong> R$<span id="descontos-venda"></span></p>
+    <p><strong>Total Final:</strong> R$<span id="total-venda"></span></p>
+  </div>
 
   <script src="../js/finalizar_venda.js"></script>
 

@@ -140,9 +140,9 @@ form{
   gap: 1rem;
 }
 
-.botaoME:hover,
-.botaoMA:hover,
-.botaoADD:hover {
+#btn-menos:hover,
+#btn-mais:hover,
+#botao-add:hover {
   filter: brightness(1.1);
 }
 .material-symbols-outlined{

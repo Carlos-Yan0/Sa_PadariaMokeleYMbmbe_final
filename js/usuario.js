@@ -72,11 +72,11 @@ function atualizarTabelaUsuarios() {
         colunaCargo.textContent = u.cargo;
 
         colunaAcoes.innerHTML = `
-            <button onclick="editarUsuario(${i})">
-                <span class='material-symbols-outlined'>edit</span>
+            <button class="btn-acao" onclick="editarUsuario(${i})">
+                <span class='material-symbols-outlined edit'>edit</span>
             </button>
-            <button onclick="inativarUsuario(${i})">
-                <span class='material-symbols-outlined'>delete</span>
+            <button class = "btn-acao" onclick="inativarUsuario(${i})">
+                <span class='material-symbols-outlined delete'>delete</span>
             </button>
         `;
     });

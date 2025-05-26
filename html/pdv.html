@@ -5,9 +5,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sistema de Vendas</title>
-  <link rel="stylesheet" href="../css/pdv.css">
-  <link rel="stylesheet" href="../css/pdv-popup.css">
+
   <link rel="stylesheet" href="../css/menu.css">
+  <link rel="stylesheet" href="../css/pdv-popup.css">
+  <link rel="stylesheet" href="../css/popups.css">
+  <link rel="stylesheet" href="../css/pdv.css">
   <!-- <script src="../js/menu.js"></script> -->
   <script src="../js/pdv.js" defer></script>
   <script src="../js/pdv-popup.js"></script>
@@ -102,7 +104,7 @@
       </li>
     </ul>
   </nav>
-  <!-- <div id="menu"></div> -->
+  
   <main>
     <h1>Produtos</h1>
     <hr>
@@ -131,21 +133,22 @@
           <th>Ações</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="tabela-corpo">
         <!-- JS faz essa parte aqui -->
       </tbody>
 
     </table>
   </main>
+
   <main class="main-total">
     <header>
       <h1>Sistema de Vendas</h1>
       <h1>
         <div class="info-total">
           <span class="data"><span>Data: --/--/-- - --:--</span><br>
-            <span class="atend">Atendente: Josias</span><br>
-            <span class="caixa">Caixa: 0-00001</span><br>
-            <img src="../img/icon.png" alt="Logo Da Padaria Mokele y Mbembe" class="img">
+          <span class="atend">Atendente: Josias</span><br>
+          <span class="caixa">Caixa: 0-00001</span><br>
+          <img src="../img/icon.png" alt="Logo Da Padaria Mokele y Mbembe" class="img">
         </div>
       </h1>
     </header>
@@ -154,16 +157,11 @@
         <p>Total: <span class="valor-total">R$00,00</span></p>
       </div>
       <div class="botoes-venda">
-        <button class="botao-cancelar">Cancelar</button>
-        <button class="botao-finalizar">Finalizar Venda</button>
+        <button class="botao-cancelar" onclick="limparVenda()">Cancelar</button>
+        <button class="botao-finalizar" onclick="finalizarVenda()">Finalizar Venda</button>
       </div>
     </footer>
   </main>
-
-  <footer id="footer-principal">
-    <span class="footer-esquerdo">Usuário: João Mbembe Gerente</span>
-    <span class="footer-direito">Copyright 2025-2025</span>
-  </footer>
 
   <!-- PopUp de Editar -->
   <div id="backdrop-popup" style="display: none;"></div>
@@ -190,6 +188,97 @@
       <button type="submit" id="adicionar-produto">Editar</button>
     </form>
   </div>
+
+  <!-- Popup para confirmar o método de pagamento -->
+
+  <div class="popup" id="popup-met-pag" style="display: none;">
+    <h2>Escolha o Método de Pagamento</h2>
+    <div class="popup-actions">
+      <button type="button" id="btn-debito">Cartão de Débito</button>
+      <button type="button" id="btn-credito">Cartão de Crédito</button>
+      <button type="button" id="btn-dinheiro">Dinheiro</button>
+      <button type="button" id="btn-cheque">Cheque</button>
+      <button type="button" id="cancelar-finalizar" class="cancel">Cancelar</button>
+    </div>
+  </div>
+
+  <!-- Popups para cada método -->
+
+  <div class="popup" id="popup-credito" style="display: none;">
+    <h1>Cartão de Crédito</h1>
+    <form action="#">
+      <label for="bandeira-cartao">Bandeira do Cartão:</label>
+      <select id="bandeira-cartao" required>
+        <option value="Visa">Visa</option>
+        <option value="Mastercard">Mastercard</option>
+        <option value="Elo">Elo</option>
+        <option value="American Express">American Express</option>
+      </select>
+      <label for="valor-cartao-credito">Valor do Cartão:</label>
+      <input type="number" id="valor-cartao-credito" placeholder="Valor do Cartão" required min="0" step="0.01"
+        class="sem-spinners">
+      <button type="reset" id="cancelar-credito">Cancelar</button>
+      <button type="submit" id="confirmar_pagamento_credito">Confirmar</button>
+    </form>
+  </div>
+
+  <div class="popup" id="popup-debito" style="display: none;">
+    <h1>Cartão de Débito</h1>
+    <form action="#">
+      <label for="bandeira-cartao">Bandeira do Cartão:</label>
+      <select id="bandeira-cartao" required>
+        <option value="Visa">Visa</option>
+        <option value="Mastercard">Mastercard</option>
+        <option value="Elo">Elo</option>
+        <option value="American Express">American Express</option>
+      </select>
+      <label for="valor-cartao-debito">Valor do Cartão:</label>
+      <input type="number" id="valor-cartao-debito" placeholder="Valor do Cartão" required min="0" step="0.01"
+        class="sem-spinners">
+      <button type="reset" id="cancelar-debito">Cancelar</button>
+      <button type="submit" id="confirmar_pagamento_debito">Confirmar</button>
+    </form>
+  </div>
+
+  <div class="popup" id="popup-dinheiro" style="display: none;">
+    <h1>Dinheiro</h1>
+    <form action="#">
+      <label for="valor-dinheiro">Valor em Dinheiro:</label>
+      <input type="number" id="valor-dinheiro" placeholder="Valor em Dinheiro" required min="0" step="0.01"
+        class="sem-spinners">
+      <button type="reset" id="cancelar-dinheiro">Cancelar</button>
+      <button type="submit" id="confirmar_pagamento_dinheiro">Confirmar</button>
+    </form>
+  </div>
+
+  <div class="popup" id="popup-cheque" style="display: none;">
+    <h1>Cheque</h1>
+    <form action="#">
+      <label for="valor-cheque">Valor do Cheque:</label>
+      <input type="number" id="valor-cheque" placeholder="Valor do Cheque" required min="0" step="0.01"
+        class="sem-spinners">
+      <button type="reset" id="cancelar-cheque">Cancelar</button>
+      <button type="submit" id="confirmar_pagamento_cheque">Confirmar</button>
+    </form>
+  </div>
+
+  <div id="venda-info" class="popup" style="display: none;">
+    <div class="header">
+      <h1>Venda Finalizada</h1>
+      <button type="button" id="fechar-popup">Fechar</button>
+    </div>
+    <p><strong>Data/Hora:</strong> <span id="data-venda"></span></p>
+    <p><strong>Atendente:</strong> <span id="atendente-venda"></span></p>
+    <p><strong>Caixa:</strong> <span id="caixa-venda"></span></p>
+    <p><strong>ID da Venda:</strong> <span id="id-venda"></span></p>
+    <p><strong>Método de Pagamento:</strong> <span id="metodo-pagamento"></span></p>
+    <p><strong>Subtotal:</strong> R$<span id="subtotal-venda"></span></p>
+    <p><strong>Troco:</strong> R$<span id="troco-venda"></span></p>
+    <p><strong>Descontos:</strong> R$<span id="descontos-venda"></span></p>
+    <p><strong>Total Final:</strong> R$<span id="total-venda"></span></p>
+  </div>
+
+  <script src="../js/finalizar_venda.js"></script>
 
   <footer id="footer-principal">
     <span class="footer-esquerdo">Usuário: <span id="nomeUsuarioFooter"></span></span>

@@ -104,9 +104,41 @@
       </li>
     </ul>
   </nav>
-  
+
   <main>
     <h1>Produtos</h1>
+    <div id="comandas-abertas">Comandas em aberto: </div>
+
+    <script>
+      const comandas = JSON.parse(localStorage.getItem('comandas')) || [];
+
+      const comandasAbertasDiv = document.getElementById('comandas-abertas');
+
+      // Limpa o conteúdo atual (mantendo o texto fixo "Comandas em aberto:")
+      comandasAbertasDiv.innerHTML = 'Comandas em aberto: ';
+
+      if (comandas.length === 0) {
+      // Exibe mensagem caso não existam comandas
+      const mensagem = document.createElement('span');
+      mensagem.textContent = 'Nenhuma comanda aberta no momento.';
+      comandasAbertasDiv.appendChild(mensagem);
+      } else {
+      // Pega as últimas 5
+      const ultimasComandas = comandas.slice(-5);
+
+      // Cria e adiciona spans
+      ultimasComandas.forEach((comanda, index) => {
+        const span = document.createElement('span');
+        span.textContent = comanda.idComanda;
+        if (index < ultimasComandas.length - 1) {
+        span.textContent += ' , ';
+        }
+        comandasAbertasDiv.appendChild(span);
+      });
+      }
+    </script>
+
+
     <hr>
     <div class="area-busca">
       <form action="#">
@@ -146,9 +178,9 @@
       <h1>
         <div class="info-total">
           <span class="data"><span>Data: --/--/-- - --:--</span><br>
-          <span class="atend">Atendente: <span id="nomeUsuarioVenda"></span></span><br>
-          <span class="caixa">Caixa: 0-00001</span><br>
-          <img src="../img/icon.png" alt="Logo Da Padaria Mokele y Mbembe" class="img">
+            <span class="atend">Atendente: <span id="nomeUsuarioVenda"></span></span><br>
+            <span class="caixa">Caixa: 0-00001</span><br>
+            <img src="../img/icon.png" alt="Logo Da Padaria Mokele y Mbembe" class="img">
         </div>
       </h1>
     </header>

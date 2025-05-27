@@ -208,7 +208,7 @@ p {
         padding: 10px;
     }
     header.titulo-de-pagina h1 {
-        font-size: 1.5rem;
+        font-size: 2rem;
         padding: 10px;
     }
     footer#footer-principal {
@@ -224,7 +224,7 @@ p {
         gap: 8px;
     }
     header.titulo-de-pagina h1 {
-        font-size: 1.1rem;
+        font-size: 1.6rem;
         padding: 20px;
     }
     h1, h2, h3, h4, h5, h6 {

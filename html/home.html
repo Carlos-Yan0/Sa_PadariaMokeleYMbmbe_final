@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/menu.css">
     <link rel="stylesheet" href="../css/padrao.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="../css/home.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
@@ -15,9 +16,10 @@
 
     <link rel="icon" href="../img/icon.png" type="image/png">
     <script src="../js/acesso-paginas.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
-    
+
     <title>Painel Gerente</title>
 </head>
 
@@ -147,7 +149,22 @@
                 </div>
             </a>
         </div>
+
+        <h1 style="margin: 0 auto; font-size: 3em;">Gráficos</h1>
+
+        <section id="graficos">
+            <div>
+                <canvas id="vendasPorCategoria"></canvas>
+            </div>
+            <div>
+                <canvas id="vendasMensais"></canvas>
+            </div>
+            <div>
+                <canvas id="estoqueBaixo"></canvas>
+            </div>
+        </section>
     </main>
+
     <footer id="footer-principal">
         <span class="footer-esquerdo">Usuário: <span id="nomeUsuarioFooter"></span></span>
         <span class="footer-direito">Copyright 2025-2025</span>
@@ -156,9 +173,77 @@
     <script>
         const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
         if (usuarioLogado) {
-          document.getElementById('nomeUsuarioDisplay').textContent = usuarioLogado.nome;
-          document.getElementById('nomeUsuarioFooter').textContent = usuarioLogado.nome;
+            document.getElementById('nomeUsuarioDisplay').textContent = usuarioLogado.nome;
+            document.getElementById('nomeUsuarioFooter').textContent = usuarioLogado.nome;
         }
     </script>
-    
+
+    <script>
+        // Gráfico de Vendas por Categoria
+        const ctx1 = document.getElementById('vendasPorCategoria').getContext('2d');
+        new Chart(ctx1, {
+            type: 'pie',
+            data: {
+                labels: ['Pães', 'Bolos', 'Bebidas', 'Doces'],
+                datasets: [{
+                    data: [40, 25, 20, 15],
+                    backgroundColor: ['#f3a853', '#4a9a2e', '#fc5050', '#967345']
+                }]
+            },
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Vendas por Categoria'
+                    }
+                }
+            }
+        });
+
+        // Gráfico de Vendas Mensais
+        const ctx2 = document.getElementById('vendasMensais').getContext('2d');
+        new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                datasets: [{
+                    label: 'Vendas (R$)',
+                    data: [1200, 1500, 1800, 2000, 2200, 2500, 2700, 3000, 3200, 3500, 3700, 4000],
+                    backgroundColor: '#f3a853'
+                }]
+            },
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Vendas Mensais'
+                    }
+                },
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+
+        // Gráfico de Estoque Baixo
+        const ctx3 = document.getElementById('estoqueBaixo').getContext('2d');
+        new Chart(ctx3, {
+            type: 'doughnut',
+            data: {
+                labels: ['Farinha', 'Açúcar', 'Manteiga', 'Ovos'],
+                datasets: [{
+                    data: [5, 8, 3, 2],
+                    backgroundColor: ['#fc5050', '#f3a853', '#4a9a2e', '#967345']
+                }]
+            },
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Produtos com Estoque Baixo'
+                    }
+                }
+            }
+        });
+    </script>
+
 </body>

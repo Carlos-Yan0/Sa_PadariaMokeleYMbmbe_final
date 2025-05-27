@@ -149,7 +149,8 @@ div.campo-informacoes {
     width: 100%;
 }
 
-#venda-info h1 {
+#venda-info h1,
+#resumo-comanda h1 {
     color: #f3a853;
     font-size: 2.1rem;
     margin-bottom: 18px;
@@ -161,7 +162,8 @@ div.campo-informacoes {
     padding-bottom: 8px;
 }
 
-#venda-info p {
+#venda-info p,
+#resumo-comanda p {
     font-size: 1.13rem;
     color: #967345;
     margin: 8px 0;
@@ -173,19 +175,22 @@ div.campo-informacoes {
     gap: 8px;
 }
 
-#venda-info p strong {
+#venda-info p strong,
+#resumo-comanda p strong {
     min-width: 170px;
     display: inline-block;
     color: #222;
     font-weight: 600;
 }
 
-#venda-info span {
+#venda-info span,
+#resumo-comanda span {
     color: #222;
     font-weight: 500;
 }
 
-#venda-info button {
+#venda-info button,
+#resumo-comanda button {
     align-self: center;
     background: #f3a853;
     color: #fff;
@@ -200,7 +205,9 @@ div.campo-informacoes {
 }
 
 #venda-info button:hover,
-#venda-info button:focus {
+#venda-info button:focus,
+#resumo-comanda button:hover,
+#resumo-comanda button:focus {
     background: #967345;
     color: #fff;
 }

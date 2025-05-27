@@ -99,6 +99,17 @@ button.delete-btn {
     margin: 0;
 }
 
+#form-filtros {
+    margin: 0 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+button#filtrar {
+    margin-bottom: 12px;
+}
+
 /* Responsividade específica para tabela/form */
 @media screen and (max-width: 900px) {
     header.titulo-de-pagina {

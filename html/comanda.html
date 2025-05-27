@@ -2,24 +2,25 @@
 <html lang="pt-br">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>tela emitir comanda</title>
-  <link rel="stylesheet" href="../css/comanda.css">
-  <link rel="stylesheet" href="../css/menu.css">
-  
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="icon" href="../img/icon.png" type="image/png">
-  <script src="../js/acesso-paginas.js" defer></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Comanda</title>
+    <link rel="stylesheet" href="../css/menu.css">
+    <link rel="stylesheet" href="../css/popups.css">
+    <link rel="stylesheet" href="../css/comanda.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="icon" href="../img/icon.png" type="image/png">
+    <script src="../js/acesso-paginas.js" defer></script>
 
 
 </head>
 
 <body>
-  <nav class="menu-lateral">
+    <nav class="menu-lateral">
         <div class="cabeca-do-menu">
             <img src="../img/icon.png" alt="Logo Da Padaria Mokele y Mbembe" class="logo">
             <h1>Padaria<br>Mokele y Mbembe</h1>
@@ -101,68 +102,70 @@
         </ul>
     </nav>
 
-  <main>
-    <h1>Emitir Comandas</h1>
-    <hr>
-    <div class="area-busca">
-      <label for="produto"><span>Buscar Produto</span></label>
-      <input type="text" id="produto" placeholder="Nome, Cód interno" />
+    <main>
+        <h1>Emitir Comandas</h1>
+        <hr>
+        <div class="area-busca">
+            <label for="produto"><span>Buscar Produto</span></label>
+            <input type="text" id="produto" placeholder="Nome, Cód interno" />
 
-      <label for="qtde" style="margin-left: 15px;">Quantidade:</label>
-      <input type="text" id="qtde" placeholder="Quantidade" />
+            <label for="qtde" style="margin-left: 15px;">Quantidade:</label>
+            <input type="text" id="qtde" placeholder="Quantidade" />
+            
+            <button class="botaoADD">Adicionar</button>
+            <button id="btnGerarComanda" type="button" class="botaoGERAR">Gerar Comanda</button>
+            <strong>Total: <span id="total-geral">R$0,00</span></strong>
+            
+            
+        </div>
 
-      <button class="botaoME">-</button>
-      <button class="botaoMA">+</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th>Cod</th>
+                    <th>Qtde</th>
+                    <th>Val Uni</th>
+                    <th>Medida</th>
+                    <th>Total</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
 
+        </table>
+    </main>
 
-      <label for="med" style="margin-left: 15px;">Medida:</label>
-      <input type="text" id="med" placeholder="UN" class="input-medida" />
-      <button class="botaoADD">Adicionar</button>
-      <button id="btnGerarComanda" type="button" class="botaoGERAR">Gerar Comanda</button>
-
-
+    <div id="backdrop-popup"></div>
+    <div id="resumo-comanda" class="popup">
+        <div class="header">
+            <h1>Resumo da Comanda</h1>
+            <button type="button" id="fechar-resumo-comanda">Fechar</button>
+        </div>
+        <p><strong>Data/Hora:</strong> <span id="data-comanda"></span></p>
+        <p><strong>Atendente:</strong> <span id="atendente-comanda"></span></p>
+        <p><strong>ID da Comanda:</strong> <span id="id-comanda"></span></p>
+        <p><strong>Itens:</strong></p>
+        <ul id="itens-comanda">
+            <!-- Lista de itens será preenchida via JS -->
+        </ul>
+        <p><strong>Total:</strong> R$<span id="total-comanda"></span></p>
     </div>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Produto</th>
-          <th>Cod</th>
-          <th>Qtde</th>
-          <th>Val Uni</th>
-          <th>Medida</th>
-          <th>Desconto</th>
-          <th>Total</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        
-      </tbody>
-      <tfoot>
-        <tr>
-          <td colspan="7" style="text-align: left; padding-top: 10px;">
-            <strong>Total: <span id="total-geral">R$0,00</span></strong>
-          </td>
-        </tr>
-      </tfoot>
+    <footer id="footer-principal">
+        <span class="footer-esquerdo">Usuário: <span id="nomeUsuarioFooter"></span></span>
+        <span class="footer-direito">Copyright 2025-2025</span>
+    </footer>
 
-    </table>
-  </main>
-
-  <footer id="footer-principal">
-    <span class="footer-esquerdo">Usuário: <span id="nomeUsuarioFooter"></span></span>
-    <span class="footer-direito">Copyright 2025-2025</span>
-</footer>
-
-<script>
-    const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
-    if (usuarioLogado) {
-      document.getElementById('nomeUsuarioFooter').textContent = usuarioLogado.nome;
-    }
-</script>
-<script src="../js/js_comanda.js"></script>
+    <script>
+        const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+        if (usuarioLogado) {
+            document.getElementById('nomeUsuarioFooter').textContent = usuarioLogado.nome;
+        }
+    </script>
+    <script src="../js/js_comanda.js"></script>
 
 </body>
-</html>
 
+</html>

@@ -4,6 +4,7 @@ nav{
     font-family: Poppins;
     z-index: 1000;
 }
+
 .cabeca-do-menu {
     background-color: #f3a853;
     display: flex;
@@ -40,9 +41,10 @@ nav{
     height: 100dvh;
     background-color: rgba(189, 159, 120, 0.45);
     backdrop-filter: blur(5px);
-    padding-top: 10px;
+    padding-bottom: 20px;
     box-shadow: 3px 0 0 #f3a853;
     overflow: hidden;
+    overflow-y: auto;
     position: fixed;
     top: 0;
     left: 0;
@@ -61,7 +63,7 @@ nav{
     flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 0 5px;
+    padding: 5px 0;
 }
 
 .menu-lateral ul li {
@@ -133,4 +135,9 @@ ul li.item-menu:hover .icon {
     padding: 10px 20px;
     font-size: 0.9rem;
     z-index: 1000;
+}
+
+.menu-lateral::-webkit-scrollbar {
+    scrollbar-width: none; /* Firefox */
+    display: none; /* Chrome, Safari, Opera */
 }

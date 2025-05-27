@@ -94,6 +94,55 @@ function mostrarAlert(produto, qtde) {
     const produtoValue = produto.value.trim();
     const qtdeValue = parseFloat(qtde.value) || 0;
 
+    // Se #produto tiver 'C-' antes do id, buscar por comandas com esse id
+    // Se não achar comanda com esse ID, retornar erro
+    // Caso contrário, puxar item por item da comanda e preencher a tabela
+
+    if (produtoValue.startsWith("C-")) {
+        // Extrai o ID da comanda guardada em 'comandas' no armazenamento local (JSON)
+        const idComanda = produtoValue;
+        const comandas = JSON.parse(localStorage.getItem("comandas")) || [];
+        const comanda = comandas.find(c => c.idComanda === idComanda);
+
+        if (comanda) {
+        console.log(`[INFO] Buscando comanda com ID '${idComanda}'...`);
+            const tabela = document.getElementById("tabela").getElementsByTagName("tbody")[0];
+            tabela.innerHTML = ""; // Limpa a tabela antes de preencher com os itens da comanda
+
+            comanda.itens.forEach((item, index) => {
+                const linha = tabela.insertRow(index);
+
+                const celulaId = linha.insertCell(0);
+                const celulaProduto = linha.insertCell(1);
+                const celulaQtde = linha.insertCell(2);
+                const celulaValorUni = linha.insertCell(3);
+                const celulaMedida = linha.insertCell(4);
+                const celulaSubtotal = linha.insertCell(5);
+                const celulaAcoes = linha.insertCell(6);
+
+                celulaId.innerText = index + 1;
+                celulaProduto.innerText = item.nome;
+                celulaQtde.innerText = item.qtde;
+                celulaValorUni.innerText = `R$${parseFloat(item.valorUnitario).toFixed(2)}`;
+                celulaMedida.innerText = item.medida;
+                celulaSubtotal.innerText = `R$${parseFloat(item.total).toFixed(2)}`;
+                celulaAcoes.innerHTML = `
+                    <button type="button" class="btn-acao editar" onclick="prepararEdicao(this)">
+                        <span class="material-symbols-outlined">Edit</span>
+                    </button>
+                    <button type="button" class="btn-acao excluir" onclick="excluirLinha(this)">
+                        <span class="material-symbols-outlined">Delete</span>
+                    </button>
+                `;
+            });
+
+            atualizarTotal(); // Atualiza o total após preencher a tabela
+        } else {
+            alert(`[ERRO] Nenhuma comanda com ID '${idComanda}' encontrada! Por favor, verifique o ID da comanda.`);
+        }
+        return; // Retorna para evitar que o código abaixo seja executado
+    }
+
     // Chama buscarProduto e mostra no console o resultado
     const resultadoBusca = buscarProduto(produtoValue);
     console.log("Resultado da busca:", resultadoBusca);

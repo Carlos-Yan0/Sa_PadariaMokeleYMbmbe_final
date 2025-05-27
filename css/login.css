@@ -208,3 +208,229 @@ a {
 .titulo-centralizado{
     text-align: center;
 }
+
+@media (max-width: 600px) {
+    body {
+        height: auto;
+        min-height: 100dvh;
+        padding: 0;
+        margin: 0;
+        background: #fff7ef;
+    }
+
+    .container {
+        flex-direction: column;
+        width: 100vw;
+        height: auto;
+        min-height: 100dvh;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 0;
+        align-items: stretch;
+    }
+
+    .Campo_amarelo, .campo_identificador {
+        width: 100%;
+        height: auto;
+        border-radius: 0;
+        min-height: 140px;
+        padding: 32px 16px 24px 16px;
+        box-sizing: border-box;
+    }
+
+    .Campo_amarelo {
+        background: linear-gradient(120deg, #edb06a 60%, #f3a852 100%);
+        align-items: flex-start;
+        justify-content: flex-end;
+        text-align: left;
+        padding-bottom: 16px;
+    }
+
+    .Campo_amarelo h1,
+    .Campo_amarelo h2,
+    .Campo_amarelo h3 {
+        position: static;
+        margin: 0 0 6px 0;
+        font-size: 1.25rem;
+        color: #fff;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        letter-spacing: 0.5px;
+    }
+
+    .Campo_amarelo h1 {
+        font-size: 1.4rem;
+        font-weight: 600;
+    }
+    .Campo_amarelo h2 {
+        font-size: 1.1rem;
+        font-weight: 400;
+    }
+    .Campo_amarelo h3 {
+        font-size: 1rem;
+        font-weight: 300;
+        margin-bottom: 0;
+    }
+
+    .login-header {
+        position: static;
+        text-align: center;
+        margin: 0 0 10px 0;
+        padding: 0;
+        background: none;
+        box-shadow: none;
+    }
+
+    .login-header img {
+        position: static;
+        height: 70px;
+        margin: 0 auto 8px auto;
+        display: block;
+        border-radius: 16px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        background: #fff;
+        padding: 6px;
+    }
+
+    .login-header h1 {
+        position: static;
+        left: 0;
+        top: 0;
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: #967345;
+        margin-bottom: 6px;
+        letter-spacing: 0.5px;
+    }
+
+    .campo_identificador {
+        padding: 0 8vw 32px 8vw;
+        min-height: 320px;
+        background: #fff;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+        border-radius: 0 0 18px 18px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .campo_identificador form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .campo_identificador form input,
+    .campo_identificador form button {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        font-size: 1rem;
+        margin-bottom: 14px;
+        box-sizing: border-box;
+    }
+
+    .campo_identificador form input {
+        padding: 12px 14px;
+        border-radius: 14px;
+        border: 1px solid #e0c9a0;
+        background: #fdf6ee;
+        color: #967345;
+        font-size: 1rem;
+        transition: border 0.2s;
+    }
+    .campo_identificador form input:focus {
+        border: 1.5px solid #f3a853;
+        outline: none;
+        background: #fff;
+    }
+
+    .campo_identificador form button {
+        padding: 12px 0;
+        border-radius: 14px;
+        background: linear-gradient(90deg, #f3a853 60%, #edb06a 100%);
+        color: #fff;
+        font-weight: 600;
+        border: none;
+        box-shadow: 0 2px 8px rgba(243,168,83,0.08);
+        margin-top: 8px;
+        margin-bottom: 0;
+        transition: background 0.2s, transform 0.2s;
+    }
+    .campo_identificador form button:active {
+        transform: scale(0.98);
+        background: #edb06a;
+    }
+
+    #nome_funcionario,
+    #senha_funcionario {
+        top: 0;
+        width: 100%;
+    }
+
+    #pessoa_simbolo,
+    #senha_simbolo {
+        display: none;
+    }
+
+    a {
+        top: 0;
+        left: 0;
+        width: 100%;
+        display: block;
+        text-align: right;
+        font-size: 1rem;
+        color: #f3a853;
+        font-weight: 500;
+        margin-bottom: 12px;
+        margin-top: 0;
+        transition: color 0.2s;
+    }
+    a:hover {
+        color: #edb06a;
+        text-decoration: underline;
+    }
+
+    #mensagemErro {
+        position: static;
+        margin: 10px 0 0 0;
+        font-size: 0.98rem;
+        text-align: center;
+        color: #e74c3c;
+        background: #fff0ee;
+        border-radius: 8px;
+        padding: 6px 0;
+        display: none;
+    }
+
+    /* Ajustes para popups de redefinição de senha */
+    .recu-senha {
+        width: 96vw !important;
+        min-width: unset !important;
+        max-width: 98vw !important;
+        left: 2vw !important;
+        top: 4vw !important;
+        border-radius: 18px !important;
+        padding: 18px 8vw 24px 8vw !important;
+        box-sizing: border-box;
+    }
+    .recu-senha .conteudo {
+        padding: 0 !important;
+    }
+    .recu-senha input.campo {
+        font-size: 1rem;
+        padding: 12px 14px;
+        border-radius: 12px;
+        margin-bottom: 14px;
+    }
+    .recu-senha .btn {
+        font-size: 1rem;
+        padding: 12px 0;
+        border-radius: 12px;
+        margin-bottom: 8px;
+    }
+    .titulo-centralizado h1 {
+        font-size: 1.2rem;
+    }
+}

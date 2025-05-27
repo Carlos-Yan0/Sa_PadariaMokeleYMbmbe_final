@@ -6,23 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Histórico de Vendas</title>
 
-    <link rel="stylesheet" href="../css/historico-vendas.css">
     <link rel="stylesheet" href="../css/menu.css">
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link rel="stylesheet" href="../css/padrao.css">
+    <link rel="stylesheet" href="../css/tabelas.css">
+    <link rel="stylesheet" href="../css/historico-vendas.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
     <link rel="icon" href="../img/icon.png" type="image/png">
 
     <script src="../js/js_historico-vendas.js" defer></script>
     <script src="../js/acesso-paginas.js" defer></script>
-
 </head>
 
 <body>
-
     <nav class="menu-lateral">
         <div class="cabeca-do-menu">
             <img src="../img/icon.png" alt="Logo Da Padaria Mokele y Mbembe" class="logo">
@@ -106,28 +102,21 @@
     </nav>
 
     <main>
-        <header>
-            <div class="titulo-de-pagina">
-                <h1>Histórico de Vendas</h1>
+        <header class="titulo-de-pagina">
+            <h1>Histórico de Vendas</h1>
         </header>
-
-        <hr>
-        <h5>Filtros para consulta:</h5>
-        <form method="post">
-            <input id="data-form" type="datetime" name="data-form" placeholder="Data">
-            <input id="id-form" min="0" type="number" name="id-form" placeholder="ID Item">
-            <input id="nome-form" type="text" name="nome-form" placeholder="Nome funcionario">
-            <input id="metodo-pagamento-form" type="text" name="metodo-pagamento-form"
-                placeholder="Método de pagamento">
-
-
-            <a href="#" id="mais-filtros">Mais filtros</a>
-
-            <button id="filtrar">Filtrar</button>
-        </form>
+        <div class="filtros-container">
+            <form id="form-filtros" autocomplete="off">
+                <input id="data-form" type="text" name="data-form" placeholder="Data (ex: 12/04/25)">
+                <input id="id-form" type="text" name="id-form" placeholder="Código da Venda">
+                <input id="nome-form" type="text" name="nome-form" placeholder="Nome do Funcionário">
+                <input id="metodo-pagamento-form" type="text" name="metodo-pagamento-form" placeholder="Método de Pagamento">
+                <button id="filtrar">Filtrar</button>
+            </form>
+        </div>
 
         <div class="tabela-container">
-            <table id="tabelaUsuarios">
+            <table id="tabelaVendas">
                 <thead>
                     <tr>
                         <th>Data Compra</th>
@@ -140,11 +129,9 @@
                     </tr>
                 </thead>
                 <tbody id="tabelaVendasBody">
-
                     <!-- Linhas via JS -->
                 </tbody>
             </table>
-            <button class="export">Exportar</button>
         </div>
     </main>
 
@@ -152,11 +139,11 @@
         <span class="footer-esquerdo">Usuário: <span id="nomeUsuarioFooter"></span></span>
         <span class="footer-direito">Copyright 2025-2025</span>
     </footer>
-    
+
     <script>
         const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
         if (usuarioLogado) {
-          document.getElementById('nomeUsuarioFooter').textContent = usuarioLogado.nome;
+            document.getElementById('nomeUsuarioFooter').textContent = usuarioLogado.nome;
         }
     </script>
 </body>

@@ -1,44 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
-/*  */
-body {
-    background-image: url("https://i.pinimg.com/736x/76/86/ad/7686ad446150f50651b872aeedeca8e2.jpg");
-}
-
-header {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 10px;
-    margin-left: -1.5%;
-    margin-right: 5%;
-    margin-top: 10px;
-    background-color: #f3a853;
-    color: #fff;
-    padding: 5px;
-    border-radius: 20px;
-}
-
-header h1 {
-    font-family: "Poppins";
-
-}
-
-p {
-    font-family: "Poppins";
-    font-size: 15px;
-}
 
 .back {
-    border-radius: 36px;
-    padding: 5px 20px 20px 20px;
-    background-color: #f3a85300;
-    margin: 60px auto 30px auto;
-    /* Topo 60px, base 30px */
-    max-width: 1050px;
-    max-height: 700px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.titulo-de-pagina {
+    width: 100%;
+    margin: -20px auto 0 auto;
+}
+
+.container h1, p {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: #252525;
+    font-weight: normal;
 }
 
 .container a {
@@ -47,100 +24,54 @@ p {
 }
 
 .container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas de larguras iguais */
+    gap: 20px; /* Espaço entre os cards */
+    padding: 20px 20px;
     background-color: #fffcf9;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    max-width: 1050px;
-    box-shadow: 0 10px 10px #f3a853;
-    height: 550px;
-    margin: auto;
-    margin-top: -10px;
-    border-bottom-left-radius: 36px;
-    border-bottom-right-radius: 36px;
-    align-content: flex-start;
+    width: 100%;
+    box-sizing: border-box;
+    
+    overflow-y: auto;
 }
 
 .card {
-    width: 300px;
-    /* pode manter esse valor */
     height: 200px;
     background-color: #f2f2f2;
     padding: 20px;
     border-radius: 12px;
     text-align: center;
     border: 2px solid #bd9f78;
-    margin-top: 30px;
     box-sizing: border-box;
     transition: 0.5s;
 }
 
 .card:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
     box-shadow: 0 4px 50px rgba(0, 0, 0, 0.363);
 }
 
 .card h1 {
-    margin-top: -1px;
-    font-family: "poppins";
     font-size: 25px;
 }
 
-/*#-------------#Botões#-----------#*/
-#button-vendas {
-    padding: 20px;
-    font-size: large;
-}
-
-#button-dashboard {
-    padding: 20px;
-    font-size: large;
-}
-
-#button-historico {
-    padding: 20px;
-    font-size: large;
-}
-
-#button-estoque {
-    padding: 20px;
-    font-size: large;
-}
-
-#button-usuario {
-    padding: 20px;
-    font-size: large;
-}
-
+#button-vendas,
+#button-dashboard,
+#button-historico,
+#button-estoque,
+#button-usuario,
 #button-comanda {
     padding: 20px;
     font-size: large;
 }
 
-/*#----------#Hover dos Botões#------------#*/
-#button-vendas:hover {
-    background-color: #f3a85369
-}
-
-#button-dashboard:hover {
-    background-color: #f3a85369
-}
-
-#button-historico:hover {
-    background-color: #f3a85369
-}
-
-#button-estoque:hover {
-    background-color: #f3a85369
-}
-
-#button-usuario:hover {
-    background-color: #f3a85369
-}
-
+#button-vendas:hover,
+#button-dashboard:hover,
+#button-historico:hover,
+#button-estoque:hover,
+#button-usuario:hover,
 #button-comanda:hover {
-    background-color: #f3a85369
+    background-color: #f3a85369;
 }
 
 .grid {
@@ -151,8 +82,29 @@ p {
 }
 
 .material-symbols-outlined {
-    /* cor do ícone */
     font-size: 25px;
     border-radius: 50%;
     padding: 10px;
+}
+
+@media (max-width: 1000px) {
+    .container {
+        grid-template-columns: repeat(2, 1fr); /* 2 colunas em telas menores */
+    }
+}
+
+@media (max-width: 690px) {
+    .container {
+        grid-template-columns: 1fr; /* 1 coluna em telas muito pequenas */
+    }
+    
+    #button-vendas,
+    #button-dashboard,
+    #button-historico,
+    #button-estoque,
+    #button-usuario,
+    #button-comanda {
+        padding: 10px;
+        font-size: medium;
+    }
 }

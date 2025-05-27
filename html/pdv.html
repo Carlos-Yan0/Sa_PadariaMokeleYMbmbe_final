@@ -146,7 +146,7 @@
       <h1>
         <div class="info-total">
           <span class="data"><span>Data: --/--/-- - --:--</span><br>
-          <span class="atend">Atendente: Josias</span><br>
+          <span class="atend">Atendente: <span id="nomeUsuarioVenda"></span></span><br>
           <span class="caixa">Caixa: 0-00001</span><br>
           <img src="../img/icon.png" alt="Logo Da Padaria Mokele y Mbembe" class="img">
         </div>
@@ -289,6 +289,7 @@
     const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
     if (usuarioLogado) {
       document.getElementById('nomeUsuarioFooter').textContent = usuarioLogado.nome;
+      document.getElementById('nomeUsuarioVenda').textContent = usuarioLogado.nome;
     }
   </script>
 </body>

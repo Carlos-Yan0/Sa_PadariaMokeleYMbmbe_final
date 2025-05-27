@@ -74,9 +74,14 @@
     flex: 1;
     margin: 0 5px;
 }
+.popup button:hover{
+    filter: brightness(1.1);
+    scale: 1.1;
+    transition: all 0.2s ease-in-out;
 
+}
 .popup button.cancel {
-    background-color: #967345;
+    background-color: #964545;
 }
 
 .popup input,

@@ -156,7 +156,6 @@ function mostrarResumoVenda(troco) {
     const caixaVenda = document.getElementById("caixa-venda");
     const idVenda = document.getElementById("id-venda");
     const metodoPagamento = document.getElementById("metodo-pagamento");
-    const itensVenda = document.getElementById("itens-venda");
     const subtotalVenda = document.getElementById("subtotal-venda");
     const trocoVenda = document.getElementById("troco-venda");
     const descontosVenda = document.getElementById("descontos-venda");
@@ -164,34 +163,60 @@ function mostrarResumoVenda(troco) {
 
     // Data/hora atual
     const agora = new Date();
-    dataVenda.textContent = agora.toLocaleString();
+    const dataFormatada = agora.toLocaleString();
+    let historico = JSON.parse(localStorage.getItem("historicoVendas")) || [];
+    const codVenda = (historico.length + 1).toString(); // ID sequencial
 
-    // Atendente e caixa (ajuste conforme seu sistema)
-    atendenteVenda.textContent = "Josias";
+
+    // Preenche os dados visuais
+    dataVenda.textContent = dataFormatada;
+    const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+    atendenteVenda.textContent = usuarioLogado ? usuarioLogado.nome : "Desconhecido";
+
     caixaVenda.textContent = "0-00001";
-    idVenda.textContent = Math.floor(Math.random() * 90000 + 10000);
+    idVenda.textContent = codVenda;
 
-    // Métodos de pagamento e valores
     metodoPagamento.textContent = pagamentos.map(p => `${capitalize(p.metodo)}: R$ ${p.valor.toFixed(2)}`).join(" | ");
-    
     trocoVenda.textContent = troco ? troco.toFixed(2) : "0,00";
-
-    // Itens vendidos (exemplo simples, ajuste conforme seu sistema)
-    // Aqui você pode buscar os itens da tabela de vendas, se desejar
     subtotalVenda.textContent = valorTotalVenda.toFixed(2);
     descontosVenda.textContent = "0,00";
     totalVenda.textContent = valorTotalVenda.toFixed(2);
 
+    // Calcular quantidade total de itens vendidos
+    const linhas = document.querySelectorAll("#tabela tbody tr");
+    let qtdTotal = 0;
+    linhas.forEach(linha => {
+        const qtd = parseInt(linha.cells[2].innerText) || 0;
+        qtdTotal += qtd;
+    });
+
+    // Monta objeto de venda
+    const venda = {
+        data: dataFormatada,
+        cod: codVenda,
+        nome: usuarioLogado ? usuarioLogado.nome : "Desconhecido",
+        metodo: pagamentos.map(p => capitalize(p.metodo)).join(" / "),
+        qtd: qtdTotal,
+        subtotal: valorTotalVenda
+    };
+
+    // Salvar no localStorage
+    historico.push(venda);
+    localStorage.setItem("historicoVendas", JSON.stringify(historico));
+
+
+    // Exibir popup
     vendaInfo.style.display = "flex";
     document.getElementById("backdrop-popup").style.display = "block";
 
-    // Botão de fechar
+    // Fechar popup
     document.getElementById("fechar-popup").onclick = function () {
         vendaInfo.style.display = "none";
         document.getElementById("backdrop-popup").style.display = "none";
         limparVenda();
     };
 }
+
 
 function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);

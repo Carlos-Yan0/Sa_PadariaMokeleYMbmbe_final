@@ -1,10 +1,6 @@
 // Dados de exemplo para o histórico de vendas
-let vendas = [
-  { data: "12/04/25 - 14:56", cod: "VEN-20250412-0001", nome: "Josias M. Junco", metodo: "Cartão", qtd: 8, subtotal: 45.99 },
-  { data: "12/04/25 - 15:02", cod: "VEN-20250412-0002", nome: "Josias M. Junco", metodo: "Pix", qtd: 12, subtotal: 12.89 },
-  { data: "12/04/25 - 15:07", cod: "VEN-20250412-0003", nome: "Josias M. Junco", metodo: "Cartão", qtd: 6, subtotal: 10.79 },
-  { data: "12/04/25 - 15:12", cod: "VEN-20250412-0004", nome: "Josias M. Junco", metodo: "Pix", qtd: 2, subtotal: 17.99 }
-];
+let vendas = JSON.parse(localStorage.getItem("historicoVendas")) || [];
+
 
 // Função para renderizar a tabela de vendas
 function renderVendas(vendasFiltradas) {
@@ -75,6 +71,7 @@ function exportarCSV() {
 
 // Função para inicializar os eventos e renderizar as vendas
 function inicializar() {
+  vendas = JSON.parse(localStorage.getItem("historicoVendas")) || [];
   renderVendas(vendas); // Renderiza a tabela com as vendas iniciais
 
   // Evento do botão de filtrar

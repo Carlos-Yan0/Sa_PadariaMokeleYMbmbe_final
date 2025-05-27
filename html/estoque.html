@@ -49,14 +49,14 @@
                     <span class="nome-do-link">Sistema de Vendas</span>
                 </a>
             </li>
-            <li class="item-menu">
+            <!-- <li class="item-menu">
                 <a href="./dashboard.html">
                     <span class="icon">
                         <span class="material-symbols-outlined">dashboard</span>
                     </span>
                     <span class="nome-do-link">Graphic</span>
                 </a>
-            </li>
+            </li> -->
             <li class="item-menu">
                 <a href="./historico-vendas.html">
                     <span class="icon">
@@ -73,14 +73,14 @@
                     <span class="nome-do-link">Estoque</span>
                 </a>
             </li>
-            <li class="item-menu">
+            <!-- <li class="item-menu">
                 <a href="./fornecedor.html">
                     <span class="icon">
                         <span class="material-symbols-outlined">local_shipping</span>
                     </span>
                     <span class="nome-do-link">fornecedor</span>
                 </a>
-            </li>
+            </li> -->
             <li class="item-menu">
                 <a href="./ge_usuarios.html">
                     <span class="icon">
@@ -117,6 +117,22 @@
             <button class="export">Exportar</button>
             <button class="add" onclick="mostrarPopupAdicionar()">Adicionar Item</button>
         </div>
+        <form id="form-filtros" autocomplete="off">
+            <input id="nome-form" type="text" name="nome-form" placeholder="Nome do Produto">
+            <select id="categoria-form" name="categoria-form">
+            <option value="">Categoria</option>
+            <option value="Insumo">Insumo</option>
+            <option value="Produto">Produto</option>
+            </select>
+            <input id="medida-form" type="text" name="medida-form" placeholder="Unidade de Medida">
+            <select id="status-form" name="status-form">
+            <option value="">Status</option>
+            <option value="OK">OK</option>
+            <option value="Atenção">Atenção</option>
+            <option value="Baixo">Baixo</option>
+            </select>
+            <button id="filtrar">Filtrar</button>
+        </form>
 
         <div class="tabela-container">
             <table id="tabelaEstoque">
@@ -200,6 +216,42 @@
                     </tr>
                 </tbody>
             </table>
+
+            <!-- Filtro -->
+
+            <script>
+                document.getElementById("form-filtros").addEventListener("submit", function (e) {
+                    e.preventDefault(); // Evita reload da página
+
+                    const nome = document.getElementById("nome-form").value.toLowerCase();
+                    const categoria = document.getElementById("categoria-form").value.toLowerCase();
+                    const medida = document.getElementById("medida-form").value.toLowerCase();
+                    const status = document.getElementById("status-form").value.toLowerCase();
+
+                    const linhas = document.querySelectorAll("#tabelaEstoque tbody tr");
+
+                    linhas.forEach(linha => {
+                        const colunas = linha.querySelectorAll("td");
+
+                        const colNome = colunas[1]?.textContent.toLowerCase() || "";
+                        const colCategoria = colunas[2]?.textContent.toLowerCase() || "";
+                        const colMedida = colunas[3]?.textContent.toLowerCase() || "";
+                        const colStatus = colunas[9]?.textContent.toLowerCase() || "";
+
+                        const matchNome = colNome.includes(nome);
+                        const matchCategoria = colCategoria.includes(categoria);
+                        const matchMedida = colMedida.includes(medida);
+                        const matchStatus = colStatus.includes(status);
+
+                        if (matchNome && matchCategoria && matchMedida && matchStatus) {
+                            linha.style.display = "";
+                        } else {
+                            linha.style.display = "none";
+                        }
+                    });
+                });
+            </script>
+
         </div>
     </main>
 

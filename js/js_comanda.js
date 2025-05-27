@@ -135,12 +135,15 @@ document.getElementById("btnGerarComanda").addEventListener("click", () => {
     return;
   }
 
+  let comandasLocal = JSON.parse(localStorage.getItem("comandas")) || [];
+  const idComanda = (comandasLocal.length + 1).toString(); // ID sequencial
+
   const novaComanda = {
     data: new Date().toLocaleString(),
     itens: itensAtuais,
     total: itensAtuais.reduce((acc, item) => acc + parseFloat(item.total), 0).toFixed(2),
     atendente: document.getElementById("nomeUsuarioFooter").textContent.trim() || "Atendente Padrão",
-    idVenda: `C-${Math.floor(Math.random() * 90000 + 10000)}`
+    idComanda: `C-${idComanda + 1}`
   };
 
   listaComandas.push(novaComanda);
@@ -159,7 +162,7 @@ function exibirResumo(comanda) {
   document.querySelector("#atendente-comanda").textContent = comanda.atendente;
   document.querySelector("#itens-comanda").innerHTML = comanda.itens.map(item => 
     `${item.nome} (${item.qtde} ${item.medida}) - R$${item.total}`).join("<br>");
-  document.querySelector("#id-comanda").textContent = comanda.idVenda;
+  document.querySelector("#id-comanda").textContent = comanda.idComanda;
   document.querySelector("#total-comanda").textContent = `R$${comanda.total}`;
 
   const fechar = document.querySelector("#fechar-resumo-comanda");

@@ -111,7 +111,30 @@
         <header class="titulo-de-pagina">
             <h1>Bem-vindo, <span id="nomeUsuarioDisplay"></span>!</h1>
         </header>
+
+        
+        <section class="graficos">
+            <h1 style="margin: 0 auto; font-size: 2em;">Status do Sistema</h1>
+
+            <div>
+                <h2>Comandas</h2>
+                <p>Comandas abertas: <span id="comandasAbertas">0</span></p>
+                <p>Comandas encerradas hoje: <span id="comandasEncerradas">0</span></p>
+            </div>
+            <!-- Status dos PDVs -->
+            <div>
+                <h2>Status dos PDVs</h2>
+                <ul id="statusPdvs"></ul>
+            </div>
+            <!-- Itens em Baixa -->
+            <div>
+                <h2>Alerta de Estoque</h2>
+                <ul id="alertaEstoqueBaixo" style="color:#fc5050; font-weight:bold; padding-left: 24px;"></ul>
+            </div>
+        </section>
+        
         <div class="container">
+            <h1 style="margin: 0 auto; font-size: 2em;">Acesso Rápido</h1>
             <a href="pdv.html">
                 <div class="card" id="button-vendas"><span class="material-symbols-outlined">Shopping_Cart</span>
                     <h1>Sistema de Vendas</h1>
@@ -120,7 +143,7 @@
             </a>
             <a href="dashboard.html">
                 <div class="card" id="button-dashboard"><span class="material-symbols-outlined">Monitoring</span><span>
-                        <h1>DashBoard</h1>
+                        <h1>Visão Geral</h1>
                         <p>Analise as vendas da padaria em forma de gráficos</p>
                 </div>
             </a>
@@ -149,18 +172,22 @@
                 </div>
             </a>
         </div>
-
-        <h1 style="margin: 0 auto; font-size: 3em;">Gráficos</h1>
-
-        <section id="graficos">
+        
+        <section class="graficos">
+            <h1 style="margin: 0 auto; font-size: 2em;">Dia de Hoje</h1>
+            <!-- Vendas do Dia -->
             <div>
-                <canvas id="vendasPorCategoria"></canvas>
+                <h2>Total de itens vendidos hoje: <span id="totalVendasHoje">0</span></h2>
+                <canvas id="vendasPorHora" width="400" height="220"></canvas>
+            </div>
+            <!-- Produtos Mais Vendidos -->
+            <div>
+                <h2>Top Produtos Vendidos</h2>
+                <ol id="topProdutosVendidos"></ol>
             </div>
             <div>
-                <canvas id="vendasMensais"></canvas>
-            </div>
-            <div>
-                <canvas id="estoqueBaixo"></canvas>
+                <h2>Movimentação por Faixa de Horário</h2>
+                <canvas id="movimentacaoHorario" width="400" height="220"></canvas>
             </div>
         </section>
     </main>
@@ -179,36 +206,18 @@
     </script>
 
     <script>
-        // Gráfico de Vendas por Categoria
-        const ctx1 = document.getElementById('vendasPorCategoria').getContext('2d');
-        new Chart(ctx1, {
-            type: 'pie',
-            data: {
-                labels: ['Pães', 'Bolos', 'Bebidas', 'Doces'],
-                datasets: [{
-                    data: [40, 25, 20, 15],
-                    backgroundColor: ['#f3a853', '#4a9a2e', '#fc5050', '#967345']
-                }]
-            },
-            options: {
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Vendas por Categoria'
-                    }
-                }
-            }
-        });
-
-        // Gráfico de Vendas Mensais
-        const ctx2 = document.getElementById('vendasMensais').getContext('2d');
-        new Chart(ctx2, {
+        // 1. Vendas do Dia (por hora)
+        const vendasPorHora = [10, 15, 20, 25, 30, 40, 50, 60, 40, 20, 10, 0]; // 12h de operação
+        const totalVendasHoje = vendasPorHora.reduce((a, b) => a + b, 0);
+        document.getElementById('totalVendasHoje').textContent = totalVendasHoje;
+        const ctxVendasHora = document.getElementById('vendasPorHora').getContext('2d');
+        new Chart(ctxVendasHora, {
             type: 'bar',
             data: {
-                labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                labels: ['06h', '07h', '08h', '09h', '10h', '11h', '12h', '13h', '14h', '15h', '16h', '17h'],
                 datasets: [{
-                    label: 'Vendas (R$)',
-                    data: [1200, 1500, 1800, 2000, 2200, 2500, 2700, 3000, 3200, 3500, 3700, 4000],
+                    label: 'Itens vendidos',
+                    data: vendasPorHora,
                     backgroundColor: '#f3a853'
                 }]
             },
@@ -216,7 +225,7 @@
                 plugins: {
                     title: {
                         display: true,
-                        text: 'Vendas Mensais'
+                        text: 'Vendas por Hora'
                     }
                 },
                 responsive: true,
@@ -224,26 +233,92 @@
             }
         });
 
-        // Gráfico de Estoque Baixo
-        const ctx3 = document.getElementById('estoqueBaixo').getContext('2d');
-        new Chart(ctx3, {
-            type: 'doughnut',
+        // 2. Produtos Mais Vendidos (Top 5) - sem imagens
+        const topProdutos = [
+            { nome: 'Pão Francês', qtd: 180 },
+            { nome: 'Bolo de Chocolate', qtd: 90 },
+            { nome: 'Café', qtd: 75 },
+            { nome: 'Croissant', qtd: 60 },
+            { nome: 'Sonho', qtd: 55 }
+        ];
+        const topProdutosOl = document.getElementById('topProdutosVendidos');
+        topProdutos.forEach((prod, idx) => {
+            const li = document.createElement('li');
+            li.style.marginBottom = '0.5em';
+            li.innerHTML = `<span style="font-size:1.2em; font-weight:bold; margin-right:0.5em;">${idx + 1}º</span>
+                <span>${prod.nome} – ${prod.qtd} unidades</span>`;
+            topProdutosOl.appendChild(li);
+        });
+
+        // 3. Comandas Abertas/Encerradas
+        const comandasAbertas = 3;
+        const comandasEncerradas = 54;
+        document.getElementById('comandasAbertas').textContent = comandasAbertas;
+        document.getElementById('comandasEncerradas').textContent = comandasEncerradas;
+
+        // 4. Movimentação por Faixa de Horário (linha)
+        const ctxMovHorario = document.getElementById('movimentacaoHorario').getContext('2d');
+        new Chart(ctxMovHorario, {
+            type: 'line',
             data: {
-                labels: ['Farinha', 'Açúcar', 'Manteiga', 'Ovos'],
+                labels: ['06h-08h', '08h-10h', '10h-12h', '12h-14h', '14h-16h', '16h-18h'],
                 datasets: [{
-                    data: [5, 8, 3, 2],
-                    backgroundColor: ['#fc5050', '#f3a853', '#4a9a2e', '#967345']
+                    label: 'Vendas',
+                    data: [30, 60, 90, 110, 60, 20],
+                    borderColor: '#4a9a2e',
+                    backgroundColor: 'rgba(74,154,46,0.1)',
+                    fill: true,
+                    tension: 0.3
                 }]
             },
             options: {
                 plugins: {
                     title: {
                         display: true,
-                        text: 'Produtos com Estoque Baixo'
+                        text: 'Movimentação por Faixa de Horário'
                     }
-                }
+                },
+                responsive: true,
+                maintainAspectRatio: false
             }
         });
+
+        // 5. Status dos PDVs
+        const pdvs = [
+            { nome: 'PDV 1', status: 'Ativo', ultima: '17:05' },
+            { nome: 'PDV 2', status: 'Ativo', ultima: '17:03' },
+            { nome: 'PDV 3', status: 'Inativo', ultima: '16:40' }
+        ];
+        const statusPdvsUl = document.getElementById('statusPdvs');
+        pdvs.forEach(pdv => {
+            const li = document.createElement('li');
+            li.innerHTML = `<span style="font-weight:bold;">${pdv.nome}:</span> 
+                <span style="color:${pdv.status === 'Ativo' ? '#4a9a2e' : '#fc5050'}">${pdv.status}</span>
+                <span style="font-size:0.9em; color:#888;">(Última atividade: ${pdv.ultima})</span>`;
+            statusPdvsUl.appendChild(li);
+        });
+
+        // 6. Itens em Baixa (Alerta Simples em lista)
+        const itensBaixo = [
+            { nome: 'Farinha' },
+            { nome: 'Ovos' },
+            { nome: 'Fermento' }
+        ];
+        const alertaEstoque = document.getElementById('alertaEstoqueBaixo');
+        alertaEstoque.innerHTML = '';
+        if (itensBaixo.length > 0) {
+            itensBaixo.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item.nome + ' com estoque baixo';
+                alertaEstoque.appendChild(li);
+            });
+        } else {
+            const li = document.createElement('li');
+            li.textContent = 'Nenhum item com estoque baixo.';
+            alertaEstoque.appendChild(li);
+        }
     </script>
 
 </body>
+
+</html>

@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/padrao.css">
   <link rel="stylesheet" href="../css/login.css">
+  <link rel="stylesheet" href="../css/popups.css">
   <link rel="stylesheet" href="../css/recu-senha.css">
   <script src="../js/popup-recu-senha.js"></script>
   <script src="../js/login.js"></script>
@@ -55,7 +56,7 @@
 
   <div id="backdrop-popup" class="backdrop-popup"></div>
 
-  <main class="recu-senha" id="popup-1">
+  <div class="recu-senha popup" id="popup-recu1">
     <header class="titulo-de-pagina">
       <a href="#" onclick="fecharTodosPopups()">
         <span class="material-symbols-outlined icon">close</span>
@@ -65,16 +66,15 @@
       </div>
     </header>
     <div class="conteudo">
-      <p>Para solicitar a redefinição de senha, enviaremos um <br> código por e-mail para que possa redefinir sua senha.
-        <br> Preencha o campo abaixo e clique em "Enviar Código"</p>
+      <p>Para solicitar a redefinição de senha, enviaremos um código por e-mail para que possa redefinir sua senha. Preencha o campo abaixo e clique em "Enviar Código".</p>
       <form>
         <input type="email" placeholder="E-mail" name="email" class="campo" />
         <button class="btn" type="button" onclick="mostrarPopup2()">Enviar Código</button>
       </form>
     </div>
-  </main>
+  </div>
 
-  <main class="recu-senha" id="popup-2">
+  <div class="recu-senha popup" id="popup-recu2">
     <header class="titulo-de-pagina">
       <a href="#" onclick="voltarParaPopup1()">
         <span class="material-symbols-outlined icon">arrow_back</span>
@@ -87,13 +87,13 @@
       <p>Verifique seu e-mail e insira o código:</p>
       <form>
         <input type="number" placeholder="Código" name="code" class="campo sem-spinners"/>
-        <button class="btn">Reenviar Código</button>
+        <button class="btn" type="button" onclick="reenviarCodigo()">Reenviar Código</button>
         <button class="btn" type="button" onclick="mostrarPopup3()">Continuar</button>
       </form>
     </div>
-  </main>
+  </div>
 
-  <main class="recu-senha" id="popup-3">
+  <div class="recu-senha popup" id="popup-recu3">
     <header class="titulo-de-pagina">
       <a href="#" onclick="cancelar()">
         <span class="material-symbols-outlined icon">cancel</span>
@@ -105,12 +105,12 @@
     <div class="conteudo">
       <p>Preencha os campos abaixo com sua nova senha e clique em "Redefinir Senha".</p>
       <form>
-        <input type="text" placeholder="Nova senha" name="password" class="campo"/>
-        <input type="text" placeholder="Repetir senha" name="repassword" class="campo"/>
+        <input type="password" placeholder="Nova senha" name="password" class="campo"/>
+        <input type="password" placeholder="Repetir senha" name="repassword" class="campo"/>
         <button class="btn" type="button" onclick="fecharTodosPopups()">Redefinir Senha</button>
       </form>
     </div>
-  </main>
+  </div>
 
 
 </body>

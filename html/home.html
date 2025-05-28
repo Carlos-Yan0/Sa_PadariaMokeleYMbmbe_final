@@ -117,16 +117,14 @@
             <h1 style="margin: 0 auto; font-size: 2em;">Status do Sistema</h1>
 
             <div>
+                <h2>Status dos PDVs</h2>
+                <ul id="statusPdvs"></ul>
+            </div>
+            <div>
                 <h2>Comandas</h2>
                 <p>Comandas abertas: <span id="comandasAbertas">0</span></p>
                 <p>Comandas encerradas hoje: <span id="comandasEncerradas">0</span></p>
             </div>
-            <!-- Status dos PDVs -->
-            <div>
-                <h2>Status dos PDVs</h2>
-                <ul id="statusPdvs"></ul>
-            </div>
-            <!-- Itens em Baixa -->
             <div>
                 <h2>Alerta de Estoque</h2>
                 <ul id="alertaEstoqueBaixo" style="color:#fc5050; font-weight:bold; padding-left: 24px;"></ul>
@@ -285,9 +283,9 @@
 
         // 5. Status dos PDVs
         const pdvs = [
-            { nome: 'PDV 1', status: 'Ativo', ultima: '17:05' },
-            { nome: 'PDV 2', status: 'Ativo', ultima: '17:03' },
-            { nome: 'PDV 3', status: 'Inativo', ultima: '16:40' }
+            { nome: '0-00001', status: 'Ativo', ultima: '17:05' },
+            { nome: '0-00002', status: 'Ativo', ultima: '17:03' },
+            { nome: '0-00003', status: 'Inativo', ultima: '16:40' }
         ];
         const statusPdvsUl = document.getElementById('statusPdvs');
         pdvs.forEach(pdv => {

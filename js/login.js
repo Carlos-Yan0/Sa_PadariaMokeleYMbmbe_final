@@ -6,7 +6,7 @@ if (!localStorage.getItem('usuarios')) {
         senha: "Karina",
         cpf: "123.456.789-01",
         telefone: "(47)99901-4350",
-        email: "Yan.KarinaLinda@Mokele.com",
+        email: "Yan@Mokele.com",
         salario: "R$2.50",
         cargo: "Gerente",
         status: "ativo"

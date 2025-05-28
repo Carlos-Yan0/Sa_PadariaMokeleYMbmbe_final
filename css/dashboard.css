@@ -1,18 +1,64 @@
-section {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center; /* Centraliza os gráficos horizontalmente */
-    align-items: center;
-    padding: 20px;
+.graficos {
+    display: grid;
+
+    /* ME DESCULPE PELO COMENTÁRIO IMENSO:
+
+    Essa linha faz uma grade onde as colunas terão largura mínima de 320px e podem se expandir até preencher 
+    o espaço disponível (1fr = fração do espaço livre).
+    O auto-fit faz com que o número de colunas se ajuste automaticamente com base na largura do container (.graficos) 
+    aumentando ou diminuindo conforme o espaço permitir.
+     */
+    
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    
+    gap: 32px;
+    justify-items: flex-start;
+    align-items: flex-start;
+    padding: 20px 40px;
+    padding-top: 0px;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 16px;
 }
 
-
-section canvas {
+.graficos canvas {
     min-width: 200px;
-    max-width: 400px; /* Define um tamanho máximo para os gráficos */
-    height: auto; /* Mantém a proporção do gráfico */
-    display: block; /* Garante que o canvas seja tratado como um bloco */
+    max-width: 100%;
+    height: 220px !important;
+    max-height: 220px;
+    display: block;
+}
+
+.graficos canvas {
+    border: 2px solid #bd9f78;
+    border-radius: 12px;
+}
+
+.graficos div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    padding: 12px 0;
+}
+
+.graficos ol{
+    list-style: none;
+    padding-left: 36px;
+}
+
+.graficos h1 {
+    grid-column: 1 / -1;
+    justify-self: center;
+    align-self: start;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-size: 2em;
+    font-weight: 600;
+    width: 100%;
 }
 
 @media (max-width: 768px) {

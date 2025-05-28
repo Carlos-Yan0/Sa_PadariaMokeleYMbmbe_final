@@ -5,6 +5,13 @@
     padding-right: 0px;
 }
 
+.container h1 {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+    grid-column-start: span 3;
+}
+
 .titulo-de-pagina {
     width: 100%;
     margin: -20px auto 0 auto;
@@ -28,10 +35,11 @@
     grid-template-columns: repeat(3, 1fr); /* 3 colunas de larguras iguais */
     gap: 20px; /* Espaço entre os cards */
     padding: 20px 20px;
-    background-color: #fffcf9;
+    background-color: #e3d3c3;
     width: 100%;
     box-sizing: border-box;
-    
+
+    border-radius: 16px;
     overflow-y: auto;
 }
 

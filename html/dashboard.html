@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="../css/padrao.css">
     <link rel="stylesheet" href="../css/menu.css">
@@ -105,23 +105,88 @@
         </ul>
     </nav>
 
-
-    <main>
-        <header class="titulo-de-pagina">
-            <h1>Dashboard</h1>
+    <main id="main-dashboard">
+        <header class="titulo-de-pagina" id="header-dashboard">
+            <h1 class="titulo-dashboard">Gráficos</h1>
         </header>
-        <section>
-            <div>
-                <canvas id="vendasPorCategoria"></canvas>
+
+        <section id="graficos-dashboard" class="graficos">
+            <div class="grafico-container" id="grafico-vendas-por-periodo" style="grid-column: span 2; max-height: 90vh;">
+            <h2 class="titulo-grafico">Vendas por Período</h2>
+            <p class="descricao-grafico">Evolução das vendas ao longo do tempo.</p>
+            <canvas id="vendasPorPeriodo" class="canvas-grafico"></canvas>
+            <a href="./historico-vendas.html" class="link-util" id="link-historico-vendas">Ver histórico completo</a>
             </div>
-            <div>
-                <canvas id="vendasMensais"></canvas>
+
+            <div class="grafico-container" id="grafico-produtos-mais-vendidos">
+            <h2 class="titulo-grafico">Produtos Mais Vendidos</h2>
+            <p class="descricao-grafico">Top 10 produtos com maior volume de vendas.</p>
+            <canvas id="produtosMaisVendidos" class="canvas-grafico"></canvas>
+            <a href="./estoque.html" class="link-util" id="link-gerenciar-estoque">Gerenciar estoque</a>
             </div>
-            <div>
-                <canvas id="estoqueBaixo"></canvas>
+
+            <div class="grafico-container" id="grafico-ticket-medio">
+            <h2 class="titulo-grafico">Ticket Médio</h2>
+            <p class="descricao-grafico">Valor médio gasto por cliente em diferentes períodos.</p>
+            <canvas id="ticketMedio" class="canvas-grafico"></canvas>
+            <a href="./pdv.html" class="link-util" id="link-sistema-vendas">Acessar sistema de vendas</a>
             </div>
-            <div>
-                <canvas id="metodosPagamento"></canvas>
+
+            <div class="grafico-container" id="grafico-comparativo-vendas">
+            <h2 class="titulo-grafico">Comparativo de Vendas</h2>
+            <p class="descricao-grafico">Comparação entre períodos como mês atual vs. anterior.</p>
+            <canvas id="comparativoVendas" class="canvas-grafico"></canvas>
+            <a href="./dashboard.html" class="link-util" id="link-explorar-graficos">Explorar mais gráficos</a>
+            </div>
+
+            <div class="grafico-container" id="grafico-margem-lucro-produto">
+            <h2 class="titulo-grafico">Margem de Lucro por Produto</h2>
+            <p class="descricao-grafico">Margem de lucro líquida por produto vendido.</p>
+            <canvas id="margemLucroPorProduto" class="canvas-grafico"></canvas>
+            <a href="./fornecedor.html" class="link-util" id="link-ver-fornecedores">Ver fornecedores</a>
+            </div>
+            
+            <div class="grafico-container" id="grafico-vendas-por-hora">
+                <h2 class="titulo-grafico">Vendas por Hora</h2>
+                <p class="descricao-grafico">Total de itens vendidos ao longo do dia.</p>
+                <canvas id="vendasPorHora" class="canvas-grafico" style="border: transparent;"></canvas>
+                <a href="./historico-vendas.html" class="link-util" id="link-historico-vendas-hora">Ver histórico completo</a>
+            </div>
+
+            <div class="grafico-container" id="grafico-movimentacao-horario">
+                <h2 class="titulo-grafico">Movimentação por Faixa de Horário</h2>
+                <p class="descricao-grafico">Vendas agrupadas por intervalos de tempo.</p>
+                <canvas id="movimentacaoHorario" class="canvas-grafico" style="border: transparent;"></canvas>
+                <a href="./dashboard.html" class="link-util" id="link-explorar-movimentacao">Explorar mais gráficos</a>
+            </div>
+
+            <div class="status-container" id="status-pdvs" style="grid-row: span 2;">
+                <h2 class="titulo-status">Status dos PDVs</h2>
+                <ul class="lista-status" id="statusPdvs"></ul>
+            </div>
+
+            <div class="status-container" id="status-comandas">
+                <h2 class="titulo-status">Comandas</h2>
+                <ul class="lista-status">
+                    <li class="item-status">Comandas abertas: <span id="comandasAbertas">0</span></li>
+                    <li class="item-status">Comandas encerradas hoje: <span id="comandasEncerradas">0</span></li>
+                </ul>
+            </div>
+
+            <div class="status-container" id="alerta-estoque">
+                <h2 class="titulo-status">Alerta de Estoque</h2>
+                <ul class="lista-status" id="alertaEstoqueBaixo" style="color:#fc5050; font-weight:bold;"></ul>
+            </div>
+
+            <div class="status-container" style="grid-column: span 2; max-height: 90vh;">
+            <h2 class="titulo-status">Status do Sistema</h2>
+            <ul class="lista-status">
+                <li class="item-status">Total de vendas hoje: <span id="totalVendasHoje">R$ 0,00</span></li>
+                <li class="item-status">Clientes atendidos: <span id="clientesAtendidos">0</span></li>
+                <li class="item-status">Produtos em estoque: <span id="produtosEmEstoque">0</span></li>
+                <li class="item-status">Pedidos pendentes: <span id="pedidosPendentes">0</span></li>
+                <li class="item-status">Lucro estimado: <span id="lucroEstimado">R$ 0,00</span></li>
+            </ul>
             </div>
         </section>
     </main>
@@ -130,99 +195,7 @@
         <span class="footer-esquerdo">Usuário: <span id="nomeUsuarioFooter"></span></span>
         <span class="footer-direito">Copyright 2025-2025</span>
     </footer>
-    
-    <script>
-        const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
-        if (usuarioLogado) {
-          document.getElementById('nomeUsuarioFooter').textContent = usuarioLogado.nome;
-        }
-        // Gráfico de Vendas por Categoria
-        const ctx1 = document.getElementById('vendasPorCategoria').getContext('2d');
-        new Chart(ctx1, {
-            type: 'pie',
-            data: {
-                labels: ['Pães', 'Bolos', 'Bebidas', 'Doces'],
-                datasets: [{
-                    data: [40, 25, 20, 15],
-                    backgroundColor: ['#f3a853', '#4a9a2e', '#fc5050', '#967345']
-                }]
-            },
-            options: {
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Vendas por Categoria'
-                    }
-                }
-            }
-        });
-
-        // Gráfico de Vendas Mensais
-        const ctx2 = document.getElementById('vendasMensais').getContext('2d');
-        new Chart(ctx2, {
-            type: 'bar',
-            data: {
-                labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-                datasets: [{
-                    label: 'Vendas (R$)',
-                    data: [1200, 1500, 1800, 2000, 2200, 2500, 2700, 3000, 3200, 3500, 3700, 4000],
-                    backgroundColor: '#f3a853'
-                }]
-            },
-            options: {
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Vendas Mensais'
-                    }
-                },
-                responsive: true,
-                maintainAspectRatio: false
-            }
-        });
-
-        // Gráfico de Estoque Baixo
-        const ctx3 = document.getElementById('estoqueBaixo').getContext('2d');
-        new Chart(ctx3, {
-            type: 'doughnut',
-            data: {
-                labels: ['Farinha', 'Açúcar', 'Manteiga', 'Ovos'],
-                datasets: [{
-                    data: [5, 8, 3, 2],
-                    backgroundColor: ['#fc5050', '#f3a853', '#4a9a2e', '#967345']
-                }]
-            },
-            options: {
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Produtos com Estoque Baixo'
-                    }
-                }
-            }
-        });
-
-        // Gráfico de Métodos de Pagamento
-        const ctx4 = document.getElementById('metodosPagamento').getContext('2d');
-        new Chart(ctx4, {
-            type: 'polarArea',
-            data: {
-                labels: ['Cartão', 'Dinheiro', 'Pix'],
-                datasets: [{
-                    data: [50, 30, 20],
-                    backgroundColor: ['#4a9a2e', '#f3a853', '#fc5050']
-                }]
-            },
-            options: {
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Métodos de Pagamento'
-                    }
-                }
-            }
-        });
-    </script>
+    <script src="../js/dashboard.js"></script>
 </body>
 
 </html>
